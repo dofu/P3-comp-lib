@@ -40,15 +40,14 @@ with this library unless the prompt says otherwise.
    navigation and actions only. The logo belongs to website pages, and
    only when the prompt says the screen is a website. Treat every screen
    as an app screen unless told it is a website.
-2. **Light and dark preview, outside the screen.** Render the screen
-   inside a phone-sized frame and put a light/dark toggle on the page
-   outside that frame, for the person reviewing the design to flip
-   themes. The toggle is not part of the screen and must not appear
-   inside it. It sets `data-theme="light"` or `data-theme="dark"` on the
-   `<html>` element, which is what `tokens/tokens.css` reads. For the
-   theme to show, the screen's own surface must paint
-   `background: var(--pds-surface-1)` and `color: var(--pds-on-surface-1)`;
-   the library does not style the page for you.
+2. **Wrap the screen in `<pds-preview>`.** Import `preview/pds-preview.js`
+   and put the whole screen inside `<pds-preview>`. It draws the
+   phone-sized frame (375 px wide, 16 px corners) and, above the frame and
+   outside the screen, the reviewer's toggles: Light/Dark and
+   Rounded/Square corners. Do not build your own theme or corner
+   controls, and never put such controls inside the screen. The frame
+   paints the surface tokens, so the screen needs no page background of
+   its own. See `preview/pds-preview.md`.
 
 ## Brand assets
 
@@ -70,6 +69,7 @@ scale with `width`/`height` on an `<img>` and keep the aspect ratio.
 P3-comp-lib/
   tokens/tokens.css     - colour tokens as CSS custom properties (light + dark)
   brand/                - POEMS logo and mark as SVG (website pages only)
+  preview/pds-preview.* - the reviewer's frame and toggles for generated screens (not in index.js)
   src/pds-<name>.js     - one file per component (25 files)
   src/pds-<name>.md     - usage guidance per component (when to use, do & don't, gaps)
   custom-elements.json  - machine-readable manifest of all 25 components

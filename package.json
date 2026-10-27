@@ -8,6 +8,7 @@
     "src",
     "tokens",
     "brand",
+    "preview",
     "custom-elements.json"
   ],
   "customElements": "custom-elements.json",

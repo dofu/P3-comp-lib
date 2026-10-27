@@ -3341,6 +3341,150 @@
           }
         }
       ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "preview/pds-preview.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "PdsPreview",
+          "tagName": "pds-preview",
+          "customElement": true,
+          "description": "`<pds-preview>`: the reviewer's frame around a generated screen. Not an app component and not exported from index.js: a phone-sized card with 16px corners and, above it and outside the screen, toggles for light/dark and rounded/square corners.",
+          "attributes": [
+            {
+              "name": "theme",
+              "type": {
+                "text": "'light'|'dark'"
+              },
+              "default": "light",
+              "description": "Theme to preview. Mirrored onto data-theme on the <html> element so tokens/tokens.css switches."
+            },
+            {
+              "name": "corners",
+              "type": {
+                "text": "'rounded'|'square'"
+              },
+              "default": "rounded",
+              "description": "Frame corners: 16px radius, or none."
+            },
+            {
+              "name": "width",
+              "type": {
+                "text": "number"
+              },
+              "default": "375",
+              "description": "Frame width in CSS px."
+            },
+            {
+              "name": "height",
+              "type": {
+                "text": "number"
+              },
+              "default": "812",
+              "description": "Frame minimum height in CSS px; the frame grows with its content."
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "theme",
+              "type": {
+                "text": "'light'|'dark'"
+              },
+              "default": "light",
+              "reflects": true,
+              "description": "Theme to preview. Mirrored onto data-theme on the <html> element so tokens/tokens.css switches."
+            },
+            {
+              "kind": "field",
+              "name": "corners",
+              "type": {
+                "text": "'rounded'|'square'"
+              },
+              "default": "rounded",
+              "reflects": true,
+              "description": "Frame corners: 16px radius, or none."
+            },
+            {
+              "kind": "field",
+              "name": "width",
+              "type": {
+                "text": "number"
+              },
+              "default": "375",
+              "reflects": true,
+              "description": "Frame width in CSS px."
+            },
+            {
+              "kind": "field",
+              "name": "height",
+              "type": {
+                "text": "number"
+              },
+              "default": "812",
+              "reflects": true,
+              "description": "Frame minimum height in CSS px; the frame grows with its content."
+            }
+          ],
+          "events": [
+            {
+              "name": "pds-preview-change",
+              "type": {
+                "text": "CustomEvent"
+              },
+              "description": "detail: { theme, corners } after either toggle. Named apart from the screen's own change events, which bubble through the wrapper."
+            }
+          ],
+          "slots": [
+            {
+              "name": "",
+              "description": "The screen. The frame paints --pds-surface-1 behind it and --pds-on-surface-1 for text."
+            }
+          ],
+          "cssProperties": [
+            {
+              "name": "--pds-surface-1",
+              "description": "Frame background."
+            },
+            {
+              "name": "--pds-on-surface-1",
+              "description": "Frame text colour."
+            },
+            {
+              "name": "--pds-preview-radius",
+              "description": "Corner radius when corners=\"rounded\" (default 16px)."
+            }
+          ],
+          "cssParts": [
+            {
+              "name": "toolbar"
+            },
+            {
+              "name": "frame"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "PdsPreview",
+          "declaration": {
+            "name": "PdsPreview",
+            "module": "preview/pds-preview.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "pds-preview",
+          "declaration": {
+            "name": "PdsPreview",
+            "module": "preview/pds-preview.js"
+          }
+        }
+      ]
     }
   ]
 }
