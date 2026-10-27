@@ -15,6 +15,9 @@
  *   grows with its content.
  * @attr {'on'|'off'} [status-bar=on] - The phone status bar (`pds-status-bar`
  *   with the notch) at the top of the frame, as on the P3 screens in Figma.
+ * @attr {'on'|'off'} [home-indicator=on] - The phone's home line
+ *   (`pds-home-indicator`) at the bottom of the frame. The bottom navigation
+ *   bar is not added here: only root screens carry one.
  * @attr {'en'|'zh'|'ja'} [language=en] - Copy language to preview: English,
  *   modern Chinese (Simplified, `zh-Hans`) or Japanese. Sets `lang` on
  *   `<html>` and swaps the screen's copy: an element with `data-zh` and
@@ -40,6 +43,7 @@
  * @cssprop --pds-preview-radius - Corner radius when `corners="rounded"` (default 48px).
  */
 import "../src/pds-status-bar.js";
+import "../src/pds-home-indicator.js";
 
 const LANG_TAGS = { en: "en", zh: "zh-Hans", ja: "ja" };
 
@@ -118,6 +122,8 @@ TEMPLATE.innerHTML = `
     }
     .note[hidden] { display: none; }
     .frame {
+      display: flex;
+      flex-direction: column;
       width: var(--_width, 375px);
       max-width: 100%;
       min-height: var(--_height, 812px);
@@ -128,6 +134,7 @@ TEMPLATE.innerHTML = `
       color: var(--pds-on-surface-1, #141414);
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.08);
     }
+    .home { margin-top: auto; }
     :host([corners="square"]) .frame {
       border-radius: 0;
     }
@@ -158,12 +165,12 @@ TEMPLATE.innerHTML = `
   </div>
   <p class="note" part="note" hidden>中文 and 日本語 copy is suggested by the model, shortest wording possible, not taken from POEMS translation files. Translators review it before release.</p>
   <p class="note note-font" part="font-note" hidden>Roboto is not available on this device. Text is shown in a fallback font and may not be 100% accurate to the design.</p>
-  <div class="frame" part="frame"><pds-status-bar class="status" notch></pds-status-bar><slot></slot></div>
+  <div class="frame" part="frame"><pds-status-bar class="status" notch></pds-status-bar><slot></slot><pds-home-indicator class="home"></pds-home-indicator></div>
 `;
 
 export class PdsPreview extends HTMLElement {
   static get observedAttributes() {
-    return ["theme", "corners", "width", "height", "language", "status-bar"];
+    return ["theme", "corners", "width", "height", "language", "status-bar", "home-indicator"];
   }
 
   constructor() {
@@ -210,6 +217,7 @@ export class PdsPreview extends HTMLElement {
     document.documentElement.lang = LANG_TAGS[language];
     this.shadowRoot.querySelector(".note").hidden = language === "en";
     this.shadowRoot.querySelector(".status").hidden = this.getAttribute("status-bar") === "off";
+    this.shadowRoot.querySelector(".home").hidden = this.getAttribute("home-indicator") === "off";
     this._applyLanguage(language);
   }
 

@@ -13,9 +13,11 @@ project that includes this library, these rules apply.
 3. `custom-elements.json` is the contract: use only the attributes it
    lists. Per-component guidance (when to use, do and don't) is in
    `src/<component>.md`. Colours come from `tokens/tokens.css` only.
-4. Wrap every screen you render for review in `<pds-preview>` from
+4. Add `pds-navigation-bar` only on root screens; the preview frame
+   already carries the status bar and the home line.
+5. Wrap every screen you render for review in `<pds-preview>` from
    `preview/pds-preview.js`, and finish with the checklist in the README.
-5. Copy is short and complete, no fillers, and every string is given in
+6. Copy is short and complete, no fillers, and every string is given in
    English, modern Chinese (Simplified) and Japanese with the `data-zh`,
    `data-ja` and `data-<attr>-zh/ja` conventions in `preview/pds-preview.md`.
    Chinese and Japanese copy is your suggestion, the shortest wording

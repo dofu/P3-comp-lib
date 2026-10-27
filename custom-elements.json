@@ -3403,6 +3403,50 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/pds-home-indicator.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "PdsHomeIndicator",
+          "tagName": "pds-home-indicator",
+          "customElement": true,
+          "description": "`<pds-home-indicator>`: the phone's home indicator zone at the bottom of a screen (375x34, 134x5 line centred, 8px from the bottom), separate from pds-navigation-bar. Decorative, aria-hidden.",
+          "attributes": [],
+          "members": [],
+          "cssProperties": [
+            {
+              "name": "--pds-on-surface-1",
+              "description": "Line colour; the zone is transparent."
+            }
+          ],
+          "cssParts": [
+            {
+              "name": "line"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "PdsHomeIndicator",
+          "declaration": {
+            "name": "PdsHomeIndicator",
+            "module": "src/pds-home-indicator.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "pds-home-indicator",
+          "declaration": {
+            "name": "PdsHomeIndicator",
+            "module": "src/pds-home-indicator.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/pds-top-app-bar.js",
       "declarations": [
         {
@@ -3614,6 +3658,14 @@
               },
               "default": "on",
               "description": "The phone status bar (pds-status-bar with the notch) at the top of the frame, as on the P3 screens in Figma."
+            },
+            {
+              "name": "home-indicator",
+              "type": {
+                "text": "'on'|'off'"
+              },
+              "default": "on",
+              "description": "The phone's home line (pds-home-indicator) at the bottom of the frame. The bottom navigation bar is not added: only root screens carry one."
             }
           ],
           "members": [
@@ -3676,6 +3728,16 @@
               },
               "default": "on",
               "description": "The phone status bar (pds-status-bar with the notch) at the top of the frame, as on the P3 screens in Figma."
+            },
+            {
+              "kind": "field",
+              "reflects": true,
+              "name": "home-indicator",
+              "type": {
+                "text": "'on'|'off'"
+              },
+              "default": "on",
+              "description": "The phone's home line (pds-home-indicator) at the bottom of the frame. The bottom navigation bar is not added: only root screens carry one."
             }
           ],
           "events": [

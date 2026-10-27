@@ -43,6 +43,13 @@ The frame starts with `pds-status-bar` (time, signal, wifi, battery, notch),
 as every P3 screen in Figma does. Set `status-bar="off"` to hide it. A
 screen inside the preview must not add its own.
 
+## Home line
+
+The frame ends with `pds-home-indicator` (the 34px zone with the home
+line), as every P3 screen in Figma does. Set `home-indicator="off"` to
+hide it. The bottom navigation bar is not part of the frame: add
+`pds-navigation-bar` only on root screens.
+
 ## Font
 
 The library asks for Roboto but loads no web font. On a device without

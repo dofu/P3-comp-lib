@@ -2,7 +2,7 @@
 
 A framework-free UI component library, built as native
 [Web Components](https://developer.mozilla.org/en-US/docs/Web/API/Web_components).
-27 custom elements, each shipped as plain JavaScript with a matching usage
+28 custom elements, each shipped as plain JavaScript with a matching usage
 guide. See "What's built" below for the full list and tag names.
 
 ## Rules for every screen
@@ -22,16 +22,21 @@ new page or in an existing project, unless the prompt says otherwise.
    visuals or its screenshots. This library and `tokens/tokens.css` are
    the only visual source: use the tokens for every colour, never a hex
    value or a custom colour.
-3. **No logo in an app screen.** POEMS app screens never carry the POEMS
+3. **Bottom navigation only on root screens.** Add `pds-navigation-bar`
+   (Home, Watchlist, Markets, Trade, Community, Me) only when the prompt
+   names a root screen or asks for it. A detail screen, a form or a ticket
+   has none. The status bar and the home line come with the preview frame
+   on every screen.
+4. **No logo in an app screen.** POEMS app screens never carry the POEMS
    logo or wordmark in the header. The top app bar holds a title,
    navigation and actions only. The logo belongs to website pages, and
    only when the prompt says the screen is a website. Treat every screen
    as an app screen unless told it is a website.
-4. **Wrap the screen in `<pds-preview>`.** Import `preview/pds-preview.js`
+5. **Wrap the screen in `<pds-preview>`.** Import `preview/pds-preview.js`
    and put the whole screen inside `<pds-preview>`. It draws the
    phone-sized frame (375 px wide, 48 px corners) with the phone's status
-   bar at the top, and, above the frame and outside the screen, the
-   reviewer's toggles: Light/Dark, Rounded/Square
+   bar at the top and the home line at the bottom, and, above the frame
+   and outside the screen, the reviewer's toggles: Light/Dark, Rounded/Square
    corners and Language. Do not build your own theme, corner or language
    controls, and never put such controls inside the screen. The frame
    paints the surface tokens, so the screen needs no page background of
@@ -39,7 +44,7 @@ new page or in an existing project, unless the prompt says otherwise.
    for Roboto but loads no web font; on a device without Roboto, text is
    shown in a fallback font and may not be 100% accurate. The preview
    shows a note when that is the case.
-5. **Copy: short, complete, in three languages.** Write every
+6. **Copy: short, complete, in three languages.** Write every
    user-facing string as a complete sentence or label, as short as it can
    be. No fillers or fluff: no "please", "simply", "just", "in order to",
    no pleasantries. Give every string in English, modern Chinese
@@ -49,7 +54,7 @@ new page or in an existing project, unless the prompt says otherwise.
    (`title`, `label`, `placeholder`, `supporting-text`, `error`,
    `message`, `action-label`). The preview's Language toggle switches
    them. See `preview/pds-preview.md`. Disclaimer: Chinese and Japanese copy is not taken from POEMS translation files. Claude is tasked to suggest the shortest wording possible; translators review it before anything ships.
-6. **Finish with the checklist.** End your answer with these six lines,
+7. **Finish with the checklist.** End your answer with these six lines,
    filled in honestly:
 
    ```
@@ -144,11 +149,11 @@ P3-comp-lib/
 
 ## What's built
 
-27 custom elements: Badge (`pds-badge`), Button (`pds-button`), Card
+28 custom elements: Badge (`pds-badge`), Button (`pds-button`), Card
 (`pds-card`, an early exploration, see below), Checkbox (`pds-checkbox`),
 Chip (`pds-chip`), Dialog (`pds-dialog`), Divider (`pds-divider`), List
 (`pds-list` + `pds-list-row`), Menu (`pds-menu` + `pds-menu-item`),
-Icon (`pds-icon`), Status bar (`pds-status-bar`), Navigation bar (`pds-navigation-bar` + `pds-nav-item`), Progress indicator
+Icon (`pds-icon`), Status bar (`pds-status-bar`), Home indicator (`pds-home-indicator`), Navigation bar (`pds-navigation-bar` + `pds-nav-item`), Progress indicator
 (`pds-progress`, circular and linear), Radio button (`pds-radio`), Search
 (`pds-search`), Sheets (`pds-bottom-sheet` + `pds-side-sheet`), Snackbar
 (`pds-snackbar`), Switch (`pds-switch`), Tabs (`pds-tabs` + `pds-tab`), Text
