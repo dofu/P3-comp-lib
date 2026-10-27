@@ -60,20 +60,19 @@ new page or in an existing project, unless the prompt says otherwise.
    (`title`, `label`, `placeholder`, `supporting-text`, `error`,
    `message`, `action-label`). The preview's Language toggle switches
    them. See `preview/pds-preview.md`. Disclaimer: Chinese and Japanese copy is not taken from POEMS translation files. Claude is tasked to suggest the shortest wording possible; translators review it before anything ships.
-7. **Finish with the checklist, short.** End your answer with the line
-   `Components used:` and the `pds-*` tags you used. Then add a line only
-   for something the reviewer needs to know; leave the others out:
+7. **End with what the reviewer must decide, nothing else.** No build
+   notes, no list of components used, no explanation of how you made the
+   page. After the screen, add a line only when it applies, one line per
+   item:
 
    ```
-   Components used: <pds-* tags>
-   Hand-built: <what, and why the library had nothing for it>
-   Substituted: <missing component, and what you used instead>
+   Substituted: <missing component> · used <what instead>
+   Hand-built: <what> · <why the library had nothing for it>
    Logo in screen: <why, if it is a website page>
-   Not in pds-preview: <why>
-   Copy not in all three languages: <which strings>
+   Copy missing a language: <which strings>
    ```
 
-   A clean screen ends with the first line alone. Never write "none".
+   A clean screen ends with the screen.
 
 ## Why web components, and why plain JS
 
@@ -99,6 +98,19 @@ new page or in an existing project, unless the prompt says otherwise.
 3. Write plain HTML using the tags, e.g. `<pds-button size="large">Buy</pds-button>`,
    importing `./index.js` (or the one component needed from `src/`) and
    `./tokens/tokens.css`.
+
+## When the library has no component
+
+Use the stand-in below and say so in one "Substituted" line, so every
+screen makes the same choice:
+
+| Need | Use instead |
+|---|---|
+| Segmented control (two or three options, one selected) | Two or three `pds-chip`, the chosen one `selected` |
+| Tag or label next to a title ("Cash Plus", "Opted in") | A secondary text line under the title |
+| Quick-action tile (icon over a caption) | `pds-icon-button` with a caption under it |
+| Mascot or illustration | `pds-icon name="ask_ai"` for the AI entry point; otherwise leave it out |
+| Date picker, slider, chart | Not available yet: a `pds-text-field` for the date or value, a static image for the chart, and say so |
 
 ## Brand assets
 

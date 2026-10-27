@@ -33,6 +33,8 @@ named `<name>-rounded` and `<name>-filled`; `sort` has `-default`,
 
 ## Known limitations
 
-- Needs the page served over http(s): a `file://` page cannot fetch the
-  SVG and the icon renders empty (a `pds-icon-error` event fires).
+- The page must import the library from a URL (the CDN or a served copy),
+  so that `icons/icons.js` can be loaded next to it. A page that pastes the
+  library's code inline has no `icons/` next to it and the icons render
+  empty (a `pds-icon-error` event fires).
 - No size tokens yet; `size` is a plain number of px.

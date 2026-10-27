@@ -16,9 +16,11 @@
  *
  * @cssprop --pds-icon-size - Width and height; the `size` attribute sets it.
  *
- * Icons are fetched once from `icons/<name>.svg` next to this module, so they
- * also work from a CDN copy of the repo, and cached per page. Serve the
- * library over http(s); a `file://` page cannot fetch.
+ * Icons come from `icons/icons.js`, a module that inlines every SVG, loaded
+ * once per page with a script import, so they work in sandboxed single-file
+ * pages (a claude.ai artifact) and from a CDN copy of the repo. The SVG
+ * files in `icons/` are the fallback when the module is unavailable. Never
+ * copy the library into a page to make icons work; import it from the CDN.
  */
 const ICONS_URL = new URL("../icons/", import.meta.url);
 
@@ -31,9 +33,16 @@ export function iconName(name, style) {
 }
 const cache = new Map();
 
+// icons/icons.js inlines every icon as a module, so a page that cannot fetch (a sandboxed single-file page,
+// such as a claude.ai artifact) still gets its icons through a script import. The SVG files remain the fallback.
+const bundle = import(/* webpackIgnore: true */ new URL("icons.js", ICONS_URL).href).then((m) => m.default).catch(() => null);
+
 function fetchIcon(name) {
   if (!cache.has(name)) {
-    cache.set(name, fetch(new URL(`${name}.svg`, ICONS_URL)).then((r) => (r.ok ? r.text() : Promise.reject(new Error(`${r.status} for icons/${name}.svg`)))));
+    cache.set(name, bundle.then((icons) => {
+      if (icons && icons[name]) return icons[name];
+      return fetch(new URL(`${name}.svg`, ICONS_URL)).then((r) => (r.ok ? r.text() : Promise.reject(new Error(`${r.status} for icons/${name}.svg`))));
+    }));
   }
   return cache.get(name);
 }

@@ -1551,7 +1551,7 @@
           "name": "PdsIcon",
           "tagName": "pds-icon",
           "customElement": true,
-          "description": "`<pds-icon>`: one icon from this library's icons/ folder, inlined as SVG so it takes the surrounding text colour.",
+          "description": "`<pds-icon>`: one icon from this library's icons/ folder, inlined as SVG so it takes the surrounding text colour. Loads icons/icons.js (all icons as a module) with a script import, so it works in sandboxed single-file pages; the SVG files are the fallback.",
           "attributes": [
             {
               "name": "name",
