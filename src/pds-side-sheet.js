@@ -36,6 +36,7 @@ TEMPLATE.innerHTML = `
       box-sizing: border-box;
       border-radius: 16px 0 0 16px;
       background: var(--pds-surface-1, #ffffff);
+      color: var(--pds-on-surface-1, #141414); /* slotted content inherits this; without it the browser's default dialog colour (black) shows in Dark */
       overflow-y: auto;
     }
     :host([side="start"]) dialog {

@@ -35,6 +35,7 @@ TEMPLATE.innerHTML = `
       box-sizing: border-box;
       border-radius: 28px 28px 0 0;
       background: var(--pds-surface-1, #ffffff);
+      color: var(--pds-on-surface-1, #141414); /* slotted content inherits this; without it the browser's default dialog colour (black) shows in Dark */
       overflow-y: auto;
     }
     dialog::backdrop {
