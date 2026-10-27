@@ -235,4 +235,4 @@ everything here is checked-in source.
 ## You read this far
 
 Why does every preview come with a Dark toggle? Because light attracts
-bugs.
+bugs. 🪲
