@@ -26,5 +26,3 @@ value is never cut short.
 
 - Only a single generic trailing-icon slot; no built-in password
   show/hide toggle.
-- The border colour token currently resolves to the same value in Dark
-  and Light mode, so the resting border reads faint on a light background.

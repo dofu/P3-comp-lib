@@ -35,15 +35,13 @@
  *   `error` is set.
  * @cssprop --pds-grey-300 - Placeholder colour, and the disabled state's
  *   displayed-text colour.
+ * @cssprop --pds-outline-focus - Border colour while the field has focus (blue-500).
  * @cssprop --pds-on-container-caret - Text cursor (caret) colour: blue-500 in
  *   Light, blue-200 in Dark (Figma "On Container/Caret").
  *
  * Known limitations:
  * - Only a single generic trailing-icon slot; no built-in password
  *   show/hide toggle.
- * - This border colour token currently resolves to the same value in
- *   Dark and Light mode, so the resting border reads faint on a light
- *   background.
  */
 const TEMPLATE = document.createElement("template");
 TEMPLATE.innerHTML = `
@@ -71,6 +69,7 @@ TEMPLATE.innerHTML = `
       padding: 8px 16px;
       box-sizing: border-box;
     }
+    :host(:focus-within) .container { border-color: var(--pds-outline-focus, #0043ce); }
     :host([error]) .container { border-color: var(--pds-on-surface-text-negative, #ca2323); }
     :host([disabled]) .container {
       border-color: var(--pds-transparency-outline-20, #ffffff33);

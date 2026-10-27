@@ -11,9 +11,6 @@
  * @cssprop --pds-transparency-outline-20 - The line colour.
  *
  * Known limitations:
- * - This colour token currently resolves to the same value in both Dark
- *   and Light mode, so the line reads a little faint against a light
- *   background today.
  */
 const TEMPLATE = document.createElement("template");
 TEMPLATE.innerHTML = `

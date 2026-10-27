@@ -32,3 +32,14 @@ title itself matters more than a fixed bar height.
 
 - The scroll-tint opacity applied while `scrolled` is a placeholder, not
   a finalised value.
+
+## Icon actions
+
+Use `pds-icon-button` in the `leading` and `trailing` slots for back, close
+and toolbar actions:
+
+```html
+<pds-top-app-bar title="Counter details">
+  <pds-icon-button slot="leading" icon="arrow_left" label="Back"></pds-icon-button>
+</pds-top-app-bar>
+```

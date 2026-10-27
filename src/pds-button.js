@@ -25,7 +25,7 @@
  * @cssprop --pds-container-primary-1 - Fill for the primary variant.
  * @cssprop --pds-grey-600 - Label colour for the primary variant.
  * @cssprop --pds-orange-500 - Border and label colour for the secondary variant.
- * @cssprop --pds-white-20 - Fill for the disabled state.
+ * @cssprop --pds-container-disabled - Fill for the disabled state (visible in both themes).
  * @cssprop --pds-grey-300 - Label colour for the disabled state.
  *
  * Known limitations:
@@ -99,7 +99,7 @@ TEMPLATE.innerHTML = `
     }
 
     :host([disabled]) button {
-      background: var(--pds-white-20, rgba(255, 255, 255, 0.2));
+      background: var(--pds-container-disabled, rgba(20, 20, 20, 0.12));
       color: var(--pds-grey-300, #747474);
       border: none;
     }

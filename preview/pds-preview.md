@@ -56,9 +56,15 @@ The library asks for Roboto but loads no web font. On a device without
 Roboto, text renders in the system font and may not be 100% accurate to
 the design. The preview detects this and shows a note under the toolbar.
 
+## Several screens on one page
+
+A flow is one page with one `<pds-preview>` per screen, side by side or
+stacked. Each preview carries its own toggles; its theme and language
+apply to that frame only.
+
 ## Do
 
-- Put exactly one screen inside it, and nothing else on the page.
+- Put exactly one screen inside each preview. A flow uses one preview per screen.
 - Let it paint the surface: the frame sets `--pds-surface-1` and
   `--pds-on-surface-1`, so the screen does not need its own page
   background.
@@ -76,8 +82,6 @@ the design. The preview detects this and shows a note under the toolbar.
 
 - Width and height are plain attributes (`width="390"`); there is no
   device picker yet.
-- The theme toggle sets `data-theme` on `<html>`, so two previews on one
-  page would fight over it. One screen per page.
 - Listen for `pds-preview-change` (detail `{ theme, corners, language }`),
   not `change`: the screen's own `change` events bubble through the wrapper.
 - Copy added to the screen after the first language switch is not

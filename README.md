@@ -2,7 +2,7 @@
 
 A framework-free UI component library, built as native
 [Web Components](https://developer.mozilla.org/en-US/docs/Web/API/Web_components).
-28 custom elements, each shipped as plain JavaScript with a matching usage
+29 custom elements, each shipped as plain JavaScript with a matching usage
 guide. See "What's built" below for the full list and tag names.
 
 ## Rules for every screen
@@ -42,7 +42,11 @@ new page or in an existing project, unless the prompt says otherwise.
    corners and Language. Do not build your own theme, corner or language
    controls, and never put such controls inside the screen. The frame
    paints the surface tokens, so the screen needs no page background of
-   its own. See `preview/pds-preview.md`. Font disclaimer: the library asks
+   its own. Deliver the result as one live HTML page (an artifact), never
+   as an image, a PDF or a zip: the toggles only work on the live page. A
+   flow of several screens is one page with one `<pds-preview>` per
+   screen, side by side, each with its own toggles. See
+   `preview/pds-preview.md`. Font disclaimer: the library asks
    for Roboto but loads no web font; on a device without Roboto, text is
    shown in a fallback font and may not be 100% accurate. The preview
    shows a note when that is the case.
@@ -152,11 +156,11 @@ P3-comp-lib/
 
 ## What's built
 
-28 custom elements: Badge (`pds-badge`), Button (`pds-button`), Card
+29 custom elements: Badge (`pds-badge`), Button (`pds-button`), Card
 (`pds-card`, an early exploration, see below), Checkbox (`pds-checkbox`),
 Chip (`pds-chip`), Dialog (`pds-dialog`), Divider (`pds-divider`), List
 (`pds-list` + `pds-list-row`), Menu (`pds-menu` + `pds-menu-item`),
-Icon (`pds-icon`), Status bar (`pds-status-bar`), Home indicator (`pds-home-indicator`), Navigation bar (`pds-navigation-bar` + `pds-nav-item`), Progress indicator
+Icon (`pds-icon`), Icon button (`pds-icon-button`), Status bar (`pds-status-bar`), Home indicator (`pds-home-indicator`), Navigation bar (`pds-navigation-bar` + `pds-nav-item`), Progress indicator
 (`pds-progress`, circular and linear), Radio button (`pds-radio`), Search
 (`pds-search`), Sheets (`pds-bottom-sheet` + `pds-side-sheet`), Snackbar
 (`pds-snackbar`), Switch (`pds-switch`), Tabs (`pds-tabs` + `pds-tab`), Text
@@ -172,15 +176,14 @@ eighteen.
 
 Each of these is a real, deliberate gap, not an oversight:
 
-- **Hover, pressed, and focus colours** are not finalised yet for several
-  components; the interaction styles in those files are a placeholder.
+- **Hover and pressed colours** are not finalised yet for several
+  components; the washes in those files are a placeholder. Fields have
+  their focus outline (blue-500) from the design system.
+- **No Singpass mark** in the icon set yet; a "Link with Singpass" button
+  uses `id_card` until the brand asset is added.
 - **The badge count cap** (`max`, default `99`) is left to the caller to
   override rather than fixed by the library, since the right cap for a
   given product surface hasn't been settled.
-- **Two outline tokens** in `tokens/tokens.css` currently resolve to the
-  same value in both Dark and Light mode, so a border that relies on them
-  for contrast against a light background is faint. See the comment in
-  that file.
 
 ## Publishing
 

@@ -10,7 +10,9 @@
 
   Theme switching: the default (no attribute) is "system": Light unless
   the OS is set to Dark. A page can force a theme by setting
-  data-theme="light" or data-theme="dark" on the root element.
+  data-theme="light" or data-theme="dark" on the root element, or on any
+  element to theme just its subtree: pds-preview sets it on itself, so
+  several previews on one page can show different themes.
 */
 
 :root {
@@ -56,8 +58,12 @@
   /* Known limitation: these two currently resolve to the same
      translucent white in both Light and Dark, so an outline that
      relies on them for contrast against a light background is faint. */
-  --pds-transparency-outline-20: #ffffff33;
-  --pds-transparency-outline-50: #ffffff80;
+  --pds-transparency-outline-20: rgba(20, 20, 20, 0.2); /* borders and lines on a light surface */
+  --pds-transparency-outline-50: rgba(20, 20, 20, 0.5);
+  --pds-container-disabled: rgba(20, 20, 20, 0.12); /* disabled button fill */
+  --pds-outline-focus: #0043ce; /* focused field outline: V2 Blue/blue-500 (DS Text fields page) */
+  --pds-state-hover: rgba(20, 20, 20, 0.08);
+  --pds-state-pressed: rgba(20, 20, 20, 0.12);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -68,6 +74,12 @@
     --pds-on-surface-2: #9f9f9f;
     --pds-on-surface-text-negative: #e96e6e;
     --pds-on-container-caret: #8aa9e8; /* V2 Blue/blue-200 */
+    --pds-transparency-outline-20: #ffffff33;
+    --pds-transparency-outline-50: #ffffff80;
+    --pds-container-disabled: rgba(255, 255, 255, 0.2);
+    --pds-outline-focus: #0043ce;
+    --pds-state-hover: rgba(255, 255, 255, 0.08);
+    --pds-state-pressed: rgba(255, 255, 255, 0.12);
     --pds-container-secondary-1-50: #595959;
     --pds-container-secondary-2-100: #595959;
     --pds-on-container-tertiary: #f78f20;
@@ -78,13 +90,20 @@
   }
 }
 
-:root[data-theme="dark"] {
+:root[data-theme="dark"],
+[data-theme="dark"] {
   --pds-surface-1: #141414;
   --pds-surface-2: #2f2f2f;
   --pds-on-surface-1: #ffffff;
   --pds-on-surface-2: #9f9f9f;
   --pds-on-surface-text-negative: #e96e6e;
   --pds-on-container-caret: #8aa9e8; /* V2 Blue/blue-200 */
+  --pds-transparency-outline-20: #ffffff33;
+  --pds-transparency-outline-50: #ffffff80;
+  --pds-container-disabled: rgba(255, 255, 255, 0.2);
+  --pds-outline-focus: #0043ce;
+  --pds-state-hover: rgba(255, 255, 255, 0.08);
+  --pds-state-pressed: rgba(255, 255, 255, 0.12);
   --pds-container-secondary-1-50: #595959;
   --pds-container-secondary-2-100: #595959;
   --pds-on-container-tertiary: #f78f20;
@@ -92,4 +111,27 @@
   --pds-scheme-on-surface: #e6e0e9;
   --pds-scheme-on-surface-variant: #cac4d0;
   --pds-scheme-secondary-container: #4a4458;
+}
+
+/* A light frame inside a dark page (several previews on one page): same values as :root. */
+[data-theme="light"] {
+  --pds-surface-1: #ffffff;
+  --pds-surface-2: #eaeaea;
+  --pds-on-surface-1: #141414;
+  --pds-on-surface-2: #595959;
+  --pds-on-surface-text-negative: #ca2323;
+  --pds-on-container-caret: #0043ce;
+  --pds-transparency-outline-20: rgba(20, 20, 20, 0.2);
+  --pds-transparency-outline-50: rgba(20, 20, 20, 0.5);
+  --pds-container-disabled: rgba(20, 20, 20, 0.12);
+  --pds-outline-focus: #0043ce;
+  --pds-state-hover: rgba(20, 20, 20, 0.08);
+  --pds-state-pressed: rgba(20, 20, 20, 0.12);
+  --pds-container-secondary-1-50: #eaeaea;
+  --pds-container-secondary-2-100: #bfbfbf;
+  --pds-on-container-tertiary: #c36807;
+  --pds-on-container-inverse-primary: #141414;
+  --pds-scheme-on-surface: #1d1b20;
+  --pds-scheme-on-surface-variant: #49454f;
+  --pds-scheme-secondary-container: #e8def8;
 }

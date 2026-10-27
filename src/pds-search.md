@@ -28,5 +28,3 @@ enforces a minimum query length for you.
 ## Known limitations
 
 - No Focused or Disabled visual state yet.
-- The border colour token currently resolves to the same value in Dark
-  and Light mode, so the outline reads faint on a light background.

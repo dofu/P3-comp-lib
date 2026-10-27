@@ -32,5 +32,3 @@ list; use a list row instead.
 
 - This is a draft proposal, not a reviewed, final component.
 - Filled and Tonal-raised currently look identical in Light mode.
-- The outlined border colour token currently resolves to the same value
-  in Dark and Light mode, so it reads faint on a light background.

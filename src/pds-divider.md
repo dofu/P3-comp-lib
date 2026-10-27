@@ -18,5 +18,3 @@ flush. `middle-inset` offsets both edges by 16px.
 
 ## Known limitations
 
-- The line's colour token currently resolves to the same value in Dark and
-  Light mode, so it reads faint against a light background today.

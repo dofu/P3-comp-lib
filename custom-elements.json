@@ -321,8 +321,8 @@
               "description": "Border and label colour for the secondary variant."
             },
             {
-              "name": "--pds-white-20",
-              "description": "Fill for the disabled state."
+              "name": "--pds-container-disabled",
+              "description": "Fill for the disabled state (visible in both themes)."
             },
             {
               "name": "--pds-grey-300",
@@ -1649,6 +1649,123 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/pds-icon-button.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "PdsIconButton",
+          "tagName": "pds-icon-button",
+          "customElement": true,
+          "description": "`<pds-icon-button>`: an icon-only button with a 48px touch target, for back and close in a top app bar and for toolbar actions.",
+          "attributes": [
+            {
+              "name": "icon",
+              "type": {
+                "text": "string"
+              },
+              "description": "Icon name from icons/ (see icons/icons.json), e.g. arrow_left, close, search."
+            },
+            {
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "description": "Accessible name, required: what the button does (Back, Close). No visible text."
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disabled state."
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "reflects": true,
+              "name": "icon",
+              "type": {
+                "text": "string"
+              },
+              "description": "Icon name from icons/ (see icons/icons.json), e.g. arrow_left, close, search."
+            },
+            {
+              "kind": "field",
+              "reflects": true,
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "description": "Accessible name, required: what the button does (Back, Close). No visible text."
+            },
+            {
+              "kind": "field",
+              "reflects": true,
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disabled state."
+            }
+          ],
+          "events": [
+            {
+              "name": "click",
+              "description": "Native click event; suppressed while disabled."
+            }
+          ],
+          "cssProperties": [
+            {
+              "name": "--pds-on-surface-1",
+              "description": "Icon colour."
+            },
+            {
+              "name": "--pds-state-hover",
+              "description": "Hover wash."
+            },
+            {
+              "name": "--pds-state-pressed",
+              "description": "Pressed wash."
+            },
+            {
+              "name": "--pds-container-primary-1",
+              "description": "Focus ring."
+            }
+          ],
+          "cssParts": [
+            {
+              "name": "button"
+            },
+            {
+              "name": "icon"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "PdsIconButton",
+          "declaration": {
+            "name": "PdsIconButton",
+            "module": "src/pds-icon-button.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "pds-icon-button",
+          "declaration": {
+            "name": "PdsIconButton",
+            "module": "src/pds-icon-button.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/pds-nav-item.js",
       "declarations": [
         {
@@ -2214,6 +2331,10 @@
             {
               "name": "--pds-on-container-caret",
               "description": "Text cursor (caret) colour: blue-500 in Light, blue-200 in Dark (Figma On Container/Caret)."
+            },
+            {
+              "name": "--pds-outline-focus",
+              "description": "Border colour while the field has focus (blue-500)."
             }
           ],
           "cssParts": [
@@ -3100,6 +3221,10 @@
             {
               "name": "--pds-on-container-caret",
               "description": "Text cursor (caret) colour: blue-500 in Light, blue-200 in Dark (Figma On Container/Caret)."
+            },
+            {
+              "name": "--pds-outline-focus",
+              "description": "Border colour while the field has focus (blue-500)."
             }
           ],
           "cssParts": [
@@ -3617,7 +3742,7 @@
                 "text": "'light'|'dark'"
               },
               "default": "light",
-              "description": "Theme to preview. Mirrored onto data-theme on the <html> element so tokens/tokens.css switches."
+              "description": "Theme to preview. Set as data-theme on this element (several previews on one page can differ) and on <html> when this is the only preview."
             },
             {
               "name": "corners",
@@ -3677,7 +3802,7 @@
               },
               "default": "light",
               "reflects": true,
-              "description": "Theme to preview. Mirrored onto data-theme on the <html> element so tokens/tokens.css switches."
+              "description": "Theme to preview. Set as data-theme on this element (several previews on one page can differ) and on <html> when this is the only preview."
             },
             {
               "kind": "field",

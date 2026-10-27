@@ -6,8 +6,9 @@
  *
  * @element pds-preview
  *
- * @attr {'light'|'dark'} [theme=light] - Theme to preview. Mirrored onto
- *   `data-theme` on the `<html>` element so `tokens/tokens.css` switches.
+ * @attr {'light'|'dark'} [theme=light] - Theme to preview. Set as `data-theme`
+ *   on this element, so several previews on one page can differ, and on
+ *   `<html>` too when this is the only preview on the page.
  * @attr {'rounded'|'square'} [corners=rounded] - Frame corners: 48 px
  *   radius, or none.
  * @attr {number} [width=375] - Frame width in CSS px.
@@ -207,14 +208,18 @@ export class PdsPreview extends HTMLElement {
   _sync() {
     const theme = this.theme;
     const corners = this.corners;
-    document.documentElement.dataset.theme = theme;
+    const previews = document.querySelectorAll("pds-preview");
+    const sole = this.isConnected && previews.length === 1 && previews[0] === this;  // never touch the page from a detached or second preview
+    this.dataset.theme = theme;
+    if (sole) document.documentElement.dataset.theme = theme;
     for (const b of this.shadowRoot.querySelectorAll("[data-theme-choice]")) b.setAttribute("aria-pressed", String(b.dataset.themeChoice === theme));
     for (const b of this.shadowRoot.querySelectorAll("[data-corners-choice]")) b.setAttribute("aria-pressed", String(b.dataset.cornersChoice === corners));
     this._frame.style.setProperty("--_width", `${this.width}px`);
     this._frame.style.setProperty("--_height", `${this.height}px`);
     const language = this.language;
     for (const b of this.shadowRoot.querySelectorAll("[data-language-choice]")) b.setAttribute("aria-pressed", String(b.dataset.languageChoice === language));
-    document.documentElement.lang = LANG_TAGS[language];
+    this.lang = LANG_TAGS[language];
+    if (sole) document.documentElement.lang = LANG_TAGS[language];
     this.shadowRoot.querySelector(".note").hidden = language === "en";
     this.shadowRoot.querySelector(".status").hidden = this.getAttribute("status-bar") === "off";
     this.shadowRoot.querySelector(".home").hidden = this.getAttribute("home-indicator") === "off";

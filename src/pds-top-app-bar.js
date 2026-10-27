@@ -158,7 +158,11 @@ export class PdsTopAppBar extends HTMLElement {
     const text = this.getAttribute("title") || "";
     if (!this._fallbackNode) this._fallbackNode = document.createTextNode(text);
     else this._fallbackNode.textContent = text;
-    if (this._fallbackNode.parentNode !== this) { this.textContent = ""; this.appendChild(this._fallbackNode); }
+    if (this._fallbackNode.parentNode !== this) {
+      // Only drop stray whitespace text in the default slot; never remove slotted elements (leading/trailing icons).
+      for (const n of [...this.childNodes]) if (n.nodeType === Node.TEXT_NODE && !n.textContent.trim()) n.remove();
+      this.appendChild(this._fallbackNode);
+    }
   }
 
   _syncSubtitle() {

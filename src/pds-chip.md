@@ -25,6 +25,4 @@ buttons use.
 
 ## Known limitations
 
-- The border colour token currently resolves to the same value in Dark
-  and Light mode, so the outline reads faint on a light background today.
 - Hover and Pressed colours are not finalised yet.

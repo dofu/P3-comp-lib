@@ -20,13 +20,12 @@
  * @cssprop --pds-transparent-white-12 - Pressed wash.
  * @cssprop --pds-on-surface-1 - Icon and typed-text colour.
  * @cssprop --pds-on-surface-2 - Placeholder text colour.
+ * @cssprop --pds-outline-focus - Border colour while the field has focus (blue-500).
  * @cssprop --pds-on-container-caret - Text cursor (caret) colour: blue-500 in
  *   Light, blue-200 in Dark (Figma "On Container/Caret").
  *
  * Known limitations:
  * - No Focused or Disabled visual state yet.
- * - This border colour token currently resolves to the same value in
- *   Dark and Light mode, so the outline reads faint on a light background.
  */
 const TEMPLATE = document.createElement("template");
 TEMPLATE.innerHTML = `
@@ -45,7 +44,8 @@ TEMPLATE.innerHTML = `
       padding: 4px;
       box-sizing: border-box;
     }
-    .bar:hover { background: var(--pds-transparent-white-8, rgba(255, 255, 255, 0.08)); }
+    .bar:focus-within { border-color: var(--pds-outline-focus, #0043ce); }
+    .bar:hover { background: var(--pds-state-hover, rgba(20, 20, 20, 0.08)); }
     .bar:has(input:active) { background: var(--pds-transparent-white-12, rgba(255, 255, 255, 0.12)); }
     ::slotted([slot="icon"]) {
       width: 48px;
