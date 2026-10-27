@@ -3351,7 +3351,7 @@
           "name": "PdsPreview",
           "tagName": "pds-preview",
           "customElement": true,
-          "description": "`<pds-preview>`: the reviewer's frame around a generated screen. Not an app component and not exported from index.js: a phone-sized card with 16px corners and, above it and outside the screen, toggles for light/dark and rounded/square corners.",
+          "description": "`<pds-preview>`: the reviewer's frame around a generated screen. Not an app component and not exported from index.js: a phone-sized card with 48px corners and, above it and outside the screen, toggles for light/dark and rounded/square corners.",
           "attributes": [
             {
               "name": "theme",
@@ -3367,7 +3367,7 @@
                 "text": "'rounded'|'square'"
               },
               "default": "rounded",
-              "description": "Frame corners: 16px radius, or none."
+              "description": "Frame corners: 48px radius, or none."
             },
             {
               "name": "width",
@@ -3405,7 +3405,7 @@
               },
               "default": "rounded",
               "reflects": true,
-              "description": "Frame corners: 16px radius, or none."
+              "description": "Frame corners: 48px radius, or none."
             },
             {
               "kind": "field",
@@ -3454,7 +3454,7 @@
             },
             {
               "name": "--pds-preview-radius",
-              "description": "Corner radius when corners=\"rounded\" (default 16px)."
+              "description": "Corner radius when corners=\"rounded\" (default 48px)."
             }
           ],
           "cssParts": [

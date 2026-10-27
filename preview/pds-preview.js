@@ -8,7 +8,7 @@
  *
  * @attr {'light'|'dark'} [theme=light] - Theme to preview. Mirrored onto
  *   `data-theme` on the `<html>` element so `tokens/tokens.css` switches.
- * @attr {'rounded'|'square'} [corners=rounded] - Frame corners: 16 px
+ * @attr {'rounded'|'square'} [corners=rounded] - Frame corners: 48 px
  *   radius, or none.
  * @attr {number} [width=375] - Frame width in CSS px.
  * @attr {number} [height=812] - Frame minimum height in CSS px. The frame
@@ -24,7 +24,7 @@
  *
  * @cssprop --pds-surface-1 - Frame background.
  * @cssprop --pds-on-surface-1 - Frame text colour.
- * @cssprop --pds-preview-radius - Corner radius when `corners="rounded"` (default 16px).
+ * @cssprop --pds-preview-radius - Corner radius when `corners="rounded"` (default 48px).
  */
 const TEMPLATE = document.createElement("template");
 TEMPLATE.innerHTML = `
@@ -39,7 +39,7 @@ TEMPLATE.innerHTML = `
       min-height: 100vh;
       background: #e6e6e6;
       font-family: Roboto, system-ui, sans-serif;
-      --pds-preview-radius: 16px;
+      --pds-preview-radius: 48px;
     }
     .toolbar {
       display: flex;
@@ -85,7 +85,7 @@ TEMPLATE.innerHTML = `
       min-height: var(--_height, 812px);
       box-sizing: border-box;
       overflow: hidden;
-      border-radius: var(--pds-preview-radius, 16px);
+      border-radius: var(--pds-preview-radius, 48px);
       background: var(--pds-surface-1, #ffffff);
       color: var(--pds-on-surface-1, #141414);
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.08);

@@ -3,7 +3,7 @@
 ## When to use
 
 Wrap every generated screen in it. It is the reviewer's frame, not part of
-the app: a phone-sized card with 16 px corners, and two toggles above it,
+the app: a phone-sized card with 48 px corners, and two toggles above it,
 outside the screen, for light/dark and rounded/square corners.
 
 ```html

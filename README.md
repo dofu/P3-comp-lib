@@ -42,7 +42,7 @@ with this library unless the prompt says otherwise.
    as an app screen unless told it is a website.
 2. **Wrap the screen in `<pds-preview>`.** Import `preview/pds-preview.js`
    and put the whole screen inside `<pds-preview>`. It draws the
-   phone-sized frame (375 px wide, 16 px corners) and, above the frame and
+   phone-sized frame (375 px wide, 48 px corners) and, above the frame and
    outside the screen, the reviewer's toggles: Light/Dark and
    Rounded/Square corners. Do not build your own theme or corner
    controls, and never put such controls inside the screen. The frame
