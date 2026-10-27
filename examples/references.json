@@ -1,5 +1,62 @@
 {
   "schema": "p3-comp-lib/reference-screens/1",
   "note": "One record per reference screen. Written by the design system team's pull and check scripts; do not edit by hand.",
-  "screens": []
+  "screens": [
+    {
+      "slug": "trade-tab",
+      "screen": "Trade tab",
+      "figma": {
+        "fileName": "Trade Tab Header in P3",
+        "fileKey": "9Os85rSrvIgd9s64knjtMe",
+        "pageName": "Exploration 2 - 13/10/26",
+        "nodeId": "2276:407",
+        "nodeName": "A1 · Chips 2×4 / Default",
+        "nodeType": "FRAME",
+        "size": [
+          375,
+          812
+        ],
+        "url": "https://www.figma.com/design/9Os85rSrvIgd9s64knjtMe/?node-id=2276-407"
+      },
+      "pulledAt": "2026-10-27T16:44:10Z",
+      "pulledBy": "Figma connector render at 2x (no file version available through the connector)",
+      "pulledFileVersion": null,
+      "pulledFileLastModified": null,
+      "checkedAt": null,
+      "checkedFileVersion": null,
+      "checkedFileLastModified": null,
+      "status": "unverified",
+      "note": "From an exploration page dated 13 Oct 2026: the chips-row header option. Confirm with the design team that it is the chosen direction.",
+      "exemplarHtml": false,
+      "render": "examples/trade-tab/reference.png"
+    },
+    {
+      "slug": "trade-ticket-recurring",
+      "screen": "Trade ticket (recurring order)",
+      "figma": {
+        "fileName": "Trade - Counter Details - Stocks",
+        "fileKey": "dARit1smv40LvsvhF16cah",
+        "pageName": "🚧 Recurring Order (23/2/26)",
+        "nodeId": "14861:5906",
+        "nodeName": "Trade Ticket/Buy",
+        "nodeType": "FRAME",
+        "size": [
+          375,
+          1150
+        ],
+        "url": "https://www.figma.com/design/dARit1smv40LvsvhF16cah/?node-id=14861-5906"
+      },
+      "pulledAt": "2026-10-27T16:44:10Z",
+      "pulledBy": "Figma connector render at 2x (no file version available through the connector)",
+      "pulledFileVersion": null,
+      "pulledFileLastModified": null,
+      "checkedAt": null,
+      "checkedFileVersion": null,
+      "checkedFileLastModified": null,
+      "status": "unverified",
+      "note": "From a work-in-progress page dated 23 Feb 2026. Buy and Sell use green and grey here, not the library's orange primary; check before copying colours.",
+      "exemplarHtml": false,
+      "render": "examples/trade-ticket-recurring/reference.png"
+    }
+  ]
 }
