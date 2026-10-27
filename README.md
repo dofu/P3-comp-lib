@@ -2,7 +2,7 @@
 
 A framework-free UI component library, built as native
 [Web Components](https://developer.mozilla.org/en-US/docs/Web/API/Web_components).
-25 custom elements, each shipped as plain JavaScript with a matching usage
+26 custom elements, each shipped as plain JavaScript with a matching usage
 guide. See "What's built" below for the full list and tag names.
 
 ## Rules for every screen
@@ -14,8 +14,10 @@ new page or in an existing project, unless the prompt says otherwise.
    `pds-*` element from this repo. Never write your own button, input,
    tab, chip, switch, list, dialog or navigation, never style a raw
    `<button>` or `<input>` to look like one, and never copy patterns from
-   another UI kit. If the library has no component for what you need, say
-   so in your answer and use the closest one. Do not invent it.
+   another UI kit. Icons come from `icons/` through
+   `<pds-icon name="…">`; never paste SVG paths from another set or draw
+   your own. If the library has no component or icon for what you need,
+   say so in your answer and use the closest one. Do not invent it.
 2. **The current POEMS app is not a reference.** Do not reproduce its
    visuals or its screenshots. This library and `tokens/tokens.css` are
    the only visual source: use the tokens for every colour, never a hex
@@ -94,12 +96,40 @@ new page or in an existing project, unless the prompt says otherwise.
 Website pages only (see rule 1). Do not recolour, stretch or redraw them;
 scale with `width`/`height` on an `<img>` and keep the aspect ratio.
 
+## Icons
+
+`icons/` holds the Phillip Design System V2 icon set: 135 SVG files,
+24 x 24, listed in `icons/icons.json`. Use them through `<pds-icon>`:
+
+```html
+<pds-icon name="search"></pds-icon>
+<pds-icon name="notification" label="Notifications"></pds-icon>
+```
+
+Ten icons have a rounded and a filled style (`home-rounded`,
+`home-filled`, ...). The bottom bar uses them through `pds-nav-item`'s
+`icon` attribute, which swaps styles with selection:
+
+```html
+<pds-navigation-bar>
+  <pds-nav-item icon="home" selected>Home</pds-nav-item>
+  <pds-nav-item icon="watchlist">Watchlist</pds-nav-item>
+  <pds-nav-item icon="globe">Markets</pds-nav-item>
+  <pds-nav-item icon="trade">Trade</pds-nav-item>
+  <pds-nav-item icon="community">Community</pds-nav-item>
+  <pds-nav-item icon="me">Me</pds-nav-item>
+</pds-navigation-bar>
+```
+
+See `src/pds-icon.md` and `src/pds-navigation-bar.md`.
+
 ## Folder layout
 
 ```
 P3-comp-lib/
   tokens/tokens.css     - colour tokens as CSS custom properties (light + dark)
   brand/                - POEMS logo and mark as SVG (website pages only)
+  icons/                - V2 icon set, 135 SVG files + icons.json (use through pds-icon)
   preview/pds-preview.* - the reviewer's frame and toggles for generated screens (not in index.js)
   src/pds-<name>.js     - one file per component (25 files)
   src/pds-<name>.md     - usage guidance per component (when to use, do & don't, gaps)
@@ -110,11 +140,11 @@ P3-comp-lib/
 
 ## What's built
 
-25 custom elements: Badge (`pds-badge`), Button (`pds-button`), Card
+26 custom elements: Badge (`pds-badge`), Button (`pds-button`), Card
 (`pds-card`, an early exploration, see below), Checkbox (`pds-checkbox`),
 Chip (`pds-chip`), Dialog (`pds-dialog`), Divider (`pds-divider`), List
 (`pds-list` + `pds-list-row`), Menu (`pds-menu` + `pds-menu-item`),
-Navigation bar (`pds-navigation-bar` + `pds-nav-item`), Progress indicator
+Icon (`pds-icon`), Navigation bar (`pds-navigation-bar` + `pds-nav-item`), Progress indicator
 (`pds-progress`, circular and linear), Radio button (`pds-radio`), Search
 (`pds-search`), Sheets (`pds-bottom-sheet` + `pds-side-sheet`), Snackbar
 (`pds-snackbar`), Switch (`pds-switch`), Tabs (`pds-tabs` + `pds-tab`), Text

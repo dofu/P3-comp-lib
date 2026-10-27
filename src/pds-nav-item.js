@@ -5,18 +5,29 @@
  *
  * @attr {boolean} [selected=false] - Exactly one `pds-nav-item` sharing
  *   the same parent is selected at a time; enforced by the parent.
+ * @attr {string} [icon] - Icon name from `icons/` (see `icons/icons.json`):
+ *   `home`, `watchlist`, `globe`, `trade`, `community`, `me` for the P3
+ *   bottom bar. The item shows `<name>-rounded` when unselected and
+ *   `<name>-filled` when selected, falling back to `<name>` where no
+ *   variant exists. Use the `icon` slot instead for a custom icon.
  *
  * @slot - The item's label text.
- * @slot icon - The destination's icon.
+ * @slot icon - A custom icon (inline SVG), when `icon` is not set.
  * @slot badge - An optional `pds-badge`, positioned on the icon's corner.
  *
  * @fires change - Fired when the user selects this item.
  *
- * @cssprop --pds-scheme-secondary-container - Selected pill fill.
- * @cssprop --pds-scheme-on-surface - Selected label colour, and the base
- *   colour for the hover/focus/pressed wash.
- * @cssprop --pds-scheme-on-surface-variant - Unselected label colour.
+ * @cssprop --pds-container-primary-1 - Selected icon colour and the 2px
+ *   indicator line at the top of the selected item.
+ * @cssprop --pds-on-surface-1 - Selected label colour.
+ * @cssprop --pds-on-surface-2 - Unselected icon and label colour.
+ *
+ * Matches the P3 bottom bar (Trade Tab Header file): items 62px tall, a 2px
+ * orange line across the top of the selected item, orange icon and bold
+ * label when selected, grey icon and label otherwise. No pill.
  */
+import { iconName } from "./pds-icon.js";
+
 const TEMPLATE = document.createElement("template");
 TEMPLATE.innerHTML = `
   <style>
@@ -32,46 +43,45 @@ TEMPLATE.innerHTML = `
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 4px;
+      gap: 6px;
       width: 100%;
-      height: 56px;
+      height: 62px;
       cursor: pointer;
       position: relative;
+      color: var(--pds-on-surface-2, #595959);
     }
-    .icon-wrap { position: relative; display: inline-flex; }
-    .pill {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 56px;
-      height: 32px;
-      border-radius: 999px;
+    button::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: transparent;
     }
-    :host([selected]) .pill { background: var(--pds-scheme-secondary-container, #e8def8); }
+    :host([selected]) button::before { background: var(--pds-container-primary-1, #f78f20); }
+    .icon-wrap { position: relative; display: inline-flex; width: 24px; height: 24px; }
+    :host([selected]) .icon-wrap { color: var(--pds-container-primary-1, #f78f20); }
     ::slotted([slot="icon"]) { width: 24px; height: 24px; }
     ::slotted([slot="badge"]) { position: absolute; top: -4px; right: -4px; }
     .label {
       font-size: 12px;
       letter-spacing: 0.5px;
       line-height: 16px;
-      color: var(--pds-scheme-on-surface-variant, #49454f);
     }
     :host([selected]) .label {
-      color: var(--pds-scheme-on-surface, #1d1b20);
-      font-weight: 600;
+      color: var(--pds-on-surface-1, #141414);
+      font-weight: 700;
     }
     button:focus-visible {
-      outline: 2px solid var(--pds-scheme-on-surface, #1d1b20);
+      outline: 2px solid var(--pds-container-primary-1, #f78f20);
       outline-offset: -2px;
     }
   </style>
   <button type="button" part="button" role="tab">
-    <span class="pill" part="pill">
-      <span class="icon-wrap">
-        <slot name="icon"></slot>
-        <slot name="badge"></slot>
-      </span>
+    <span class="icon-wrap" part="icon">
+      <slot name="icon"></slot>
+      <slot name="badge"></slot>
     </span>
     <span class="label" part="label"><slot></slot></span>
   </button>
@@ -79,7 +89,7 @@ TEMPLATE.innerHTML = `
 
 export class PdsNavItem extends HTMLElement {
   static get observedAttributes() {
-    return ["selected"];
+    return ["selected", "icon"];
   }
 
   constructor() {
@@ -87,7 +97,10 @@ export class PdsNavItem extends HTMLElement {
     this.attachShadow({ mode: "open" });
     this.shadowRoot.appendChild(TEMPLATE.content.cloneNode(true));
     this._button = this.shadowRoot.querySelector("button");
+    this._iconWrap = this.shadowRoot.querySelector(".icon-wrap");
+    this._iconEl = null;
     this._upgradeProperty("selected");
+    this._upgradeProperty("icon");
   }
 
   /** See the longer note on pds-tabs/pds-tab: draining a property write
@@ -101,12 +114,21 @@ export class PdsNavItem extends HTMLElement {
     }
   }
 
-  connectedCallback() {
-    this._button.setAttribute("aria-selected", String(this.selected));
-  }
+  connectedCallback() { this._sync(); }
+  attributeChangedCallback() { this._sync(); }
 
-  attributeChangedCallback() {
+  _sync() {
     this._button.setAttribute("aria-selected", String(this.selected));
+    const icon = this.icon;
+    if (!icon) {
+      if (this._iconEl) { this._iconEl.remove(); this._iconEl = null; }
+      return;
+    }
+    if (!this._iconEl) {
+      this._iconEl = document.createElement("pds-icon");
+      this._iconWrap.prepend(this._iconEl);
+    }
+    this._iconEl.setAttribute("name", iconName(icon, this.selected ? "filled" : "rounded"));
   }
 
   _setRoving(isTabStop) {
@@ -115,6 +137,9 @@ export class PdsNavItem extends HTMLElement {
 
   get selected() { return this.hasAttribute("selected"); }
   set selected(v) { this.toggleAttribute("selected", Boolean(v)); }
+
+  get icon() { return this.getAttribute("icon") || ""; }
+  set icon(v) { if (v) this.setAttribute("icon", v); else this.removeAttribute("icon"); }
 }
 
 customElements.define("pds-nav-item", PdsNavItem);

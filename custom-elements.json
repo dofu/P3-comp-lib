@@ -1544,6 +1544,111 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/pds-icon.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "PdsIcon",
+          "tagName": "pds-icon",
+          "customElement": true,
+          "description": "`<pds-icon>`: one icon from this library's icons/ folder, inlined as SVG so it takes the surrounding text colour.",
+          "attributes": [
+            {
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "description": "File name in icons/ without .svg (e.g. search, home-rounded, home-filled, trade); see icons/icons.json. A missing -rounded/-filled variant falls back to the base name."
+            },
+            {
+              "name": "size",
+              "type": {
+                "text": "number"
+              },
+              "default": "24",
+              "description": "Width and height in CSS px."
+            },
+            {
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "description": "Accessible name. Without it the icon is decorative."
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "reflects": true,
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "description": "File name in icons/ without .svg (e.g. search, home-rounded, home-filled, trade); see icons/icons.json. A missing -rounded/-filled variant falls back to the base name."
+            },
+            {
+              "kind": "field",
+              "reflects": true,
+              "name": "size",
+              "type": {
+                "text": "number"
+              },
+              "default": "24",
+              "description": "Width and height in CSS px."
+            },
+            {
+              "kind": "field",
+              "reflects": true,
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "description": "Accessible name. Without it the icon is decorative."
+            }
+          ],
+          "events": [
+            {
+              "name": "pds-icon-error",
+              "type": {
+                "text": "CustomEvent"
+              },
+              "description": "detail: { name } when no file could be loaded."
+            }
+          ],
+          "cssProperties": [
+            {
+              "name": "--pds-icon-size",
+              "description": "Width and height; the size attribute sets it."
+            }
+          ],
+          "cssParts": [
+            {
+              "name": "svg"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "PdsIcon",
+          "declaration": {
+            "name": "PdsIcon",
+            "module": "src/pds-icon.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "pds-icon",
+          "declaration": {
+            "name": "PdsIcon",
+            "module": "src/pds-icon.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/pds-nav-item.js",
       "declarations": [
         {
@@ -1551,7 +1656,7 @@
           "name": "PdsNavItem",
           "tagName": "pds-nav-item",
           "customElement": true,
-          "description": "`<pds-nav-item>`: a navigation destination, used inside `pds-navigation-bar`.",
+          "description": "`<pds-nav-item>`: a navigation destination, used inside `pds-navigation-bar`. Matches the P3 bottom bar: 2px orange top line, orange icon and bold label when selected, grey otherwise, no pill.",
           "attributes": [
             {
               "name": "selected",
@@ -1560,6 +1665,13 @@
               },
               "default": "false",
               "description": "Exactly one `pds-nav-item` sharing the same parent is selected at a time; enforced by the parent."
+            },
+            {
+              "name": "icon",
+              "type": {
+                "text": "string"
+              },
+              "description": "Icon name from icons/ (home, watchlist, globe, trade, community, me for the P3 bottom bar). Shows <name>-rounded when unselected and <name>-filled when selected, falling back to <name>. Use the icon slot for a custom icon instead."
             }
           ],
           "members": [
@@ -1572,6 +1684,15 @@
               "default": "false",
               "reflects": true,
               "description": "Exactly one `pds-nav-item` sharing the same parent is selected at a time; enforced by the parent."
+            },
+            {
+              "kind": "field",
+              "reflects": true,
+              "name": "icon",
+              "type": {
+                "text": "string"
+              },
+              "description": "Icon name from icons/ (home, watchlist, globe, trade, community, me for the P3 bottom bar). Shows <name>-rounded when unselected and <name>-filled when selected, falling back to <name>. Use the icon slot for a custom icon instead."
             }
           ],
           "slots": [
@@ -1581,7 +1702,7 @@
             },
             {
               "name": "icon",
-              "description": "The destination's icon."
+              "description": "A custom icon (inline SVG), when the icon attribute is not set."
             },
             {
               "name": "badge",
@@ -1596,16 +1717,16 @@
           ],
           "cssProperties": [
             {
-              "name": "--pds-scheme-secondary-container",
-              "description": "Selected pill fill."
+              "name": "--pds-container-primary-1",
+              "description": "Selected icon colour and the 2px indicator line at the top of the selected item."
             },
             {
-              "name": "--pds-scheme-on-surface",
-              "description": "Selected label colour, and the base colour for the hover/focus/pressed wash."
+              "name": "--pds-on-surface-1",
+              "description": "Selected label colour."
             },
             {
-              "name": "--pds-scheme-on-surface-variant",
-              "description": "Unselected label colour."
+              "name": "--pds-on-surface-2",
+              "description": "Unselected icon and label colour."
             }
           ],
           "cssParts": [
@@ -1613,7 +1734,7 @@
               "name": "button"
             },
             {
-              "name": "pill"
+              "name": "icon"
             },
             {
               "name": "label"
