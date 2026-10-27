@@ -13,6 +13,8 @@
  * @attr {number} [width=375] - Frame width in CSS px.
  * @attr {number} [height=812] - Frame minimum height in CSS px. The frame
  *   grows with its content.
+ * @attr {'on'|'off'} [status-bar=on] - The phone status bar (`pds-status-bar`
+ *   with the notch) at the top of the frame, as on the P3 screens in Figma.
  * @attr {'en'|'zh'|'ja'} [language=en] - Copy language to preview: English,
  *   modern Chinese (Simplified, `zh-Hans`) or Japanese. Sets `lang` on
  *   `<html>` and swaps the screen's copy: an element with `data-zh` and
@@ -37,6 +39,8 @@
  * @cssprop --pds-on-surface-1 - Frame text colour.
  * @cssprop --pds-preview-radius - Corner radius when `corners="rounded"` (default 48px).
  */
+import "../src/pds-status-bar.js";
+
 const LANG_TAGS = { en: "en", zh: "zh-Hans", ja: "ja" };
 
 /** True when `family` is installed: text set in it measures differently from the fallback. */
@@ -154,12 +158,12 @@ TEMPLATE.innerHTML = `
   </div>
   <p class="note" part="note" hidden>中文 and 日本語 copy is suggested by the model, shortest wording possible, not taken from POEMS translation files. Translators review it before release.</p>
   <p class="note note-font" part="font-note" hidden>Roboto is not available on this device. Text is shown in a fallback font and may not be 100% accurate to the design.</p>
-  <div class="frame" part="frame"><slot></slot></div>
+  <div class="frame" part="frame"><pds-status-bar class="status" notch></pds-status-bar><slot></slot></div>
 `;
 
 export class PdsPreview extends HTMLElement {
   static get observedAttributes() {
-    return ["theme", "corners", "width", "height", "language"];
+    return ["theme", "corners", "width", "height", "language", "status-bar"];
   }
 
   constructor() {
@@ -205,6 +209,7 @@ export class PdsPreview extends HTMLElement {
     for (const b of this.shadowRoot.querySelectorAll("[data-language-choice]")) b.setAttribute("aria-pressed", String(b.dataset.languageChoice === language));
     document.documentElement.lang = LANG_TAGS[language];
     this.shadowRoot.querySelector(".note").hidden = language === "en";
+    this.shadowRoot.querySelector(".status").hidden = this.getAttribute("status-bar") === "off";
     this._applyLanguage(language);
   }
 

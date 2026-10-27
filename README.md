@@ -2,7 +2,7 @@
 
 A framework-free UI component library, built as native
 [Web Components](https://developer.mozilla.org/en-US/docs/Web/API/Web_components).
-26 custom elements, each shipped as plain JavaScript with a matching usage
+27 custom elements, each shipped as plain JavaScript with a matching usage
 guide. See "What's built" below for the full list and tag names.
 
 ## Rules for every screen
@@ -29,8 +29,9 @@ new page or in an existing project, unless the prompt says otherwise.
    as an app screen unless told it is a website.
 4. **Wrap the screen in `<pds-preview>`.** Import `preview/pds-preview.js`
    and put the whole screen inside `<pds-preview>`. It draws the
-   phone-sized frame (375 px wide, 48 px corners) and, above the frame and
-   outside the screen, the reviewer's toggles: Light/Dark, Rounded/Square
+   phone-sized frame (375 px wide, 48 px corners) with the phone's status
+   bar at the top, and, above the frame and outside the screen, the
+   reviewer's toggles: Light/Dark, Rounded/Square
    corners and Language. Do not build your own theme, corner or language
    controls, and never put such controls inside the screen. The frame
    paints the surface tokens, so the screen needs no page background of
@@ -143,11 +144,11 @@ P3-comp-lib/
 
 ## What's built
 
-26 custom elements: Badge (`pds-badge`), Button (`pds-button`), Card
+27 custom elements: Badge (`pds-badge`), Button (`pds-button`), Card
 (`pds-card`, an early exploration, see below), Checkbox (`pds-checkbox`),
 Chip (`pds-chip`), Dialog (`pds-dialog`), Divider (`pds-divider`), List
 (`pds-list` + `pds-list-row`), Menu (`pds-menu` + `pds-menu-item`),
-Icon (`pds-icon`), Navigation bar (`pds-navigation-bar` + `pds-nav-item`), Progress indicator
+Icon (`pds-icon`), Status bar (`pds-status-bar`), Navigation bar (`pds-navigation-bar` + `pds-nav-item`), Progress indicator
 (`pds-progress`, circular and linear), Radio button (`pds-radio`), Search
 (`pds-search`), Sheets (`pds-bottom-sheet` + `pds-side-sheet`), Snackbar
 (`pds-snackbar`), Switch (`pds-switch`), Tabs (`pds-tabs` + `pds-tab`), Text

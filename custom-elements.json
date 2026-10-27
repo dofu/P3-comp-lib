@@ -3318,6 +3318,91 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/pds-status-bar.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "PdsStatusBar",
+          "tagName": "pds-status-bar",
+          "customElement": true,
+          "description": "`<pds-status-bar>`: the phone's status bar at the top of a screen as drawn on the P3 screens in Figma (375x44, iPhone layout): time left, signal, wifi and battery right, optional notch. Decorative, aria-hidden.",
+          "attributes": [
+            {
+              "name": "time",
+              "type": {
+                "text": "string"
+              },
+              "default": "9:41",
+              "description": "The clock text."
+            },
+            {
+              "name": "notch",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draw the device notch (black, 219x30, centred). pds-preview turns it on."
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "reflects": true,
+              "name": "time",
+              "type": {
+                "text": "string"
+              },
+              "default": "9:41",
+              "description": "The clock text."
+            },
+            {
+              "kind": "field",
+              "reflects": true,
+              "name": "notch",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draw the device notch (black, 219x30, centred). pds-preview turns it on."
+            }
+          ],
+          "cssProperties": [
+            {
+              "name": "--pds-on-surface-1",
+              "description": "Time, icon and battery colour; the bar is transparent."
+            }
+          ],
+          "cssParts": [
+            {
+              "name": "time"
+            },
+            {
+              "name": "icons"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "PdsStatusBar",
+          "declaration": {
+            "name": "PdsStatusBar",
+            "module": "src/pds-status-bar.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "pds-status-bar",
+          "declaration": {
+            "name": "PdsStatusBar",
+            "module": "src/pds-status-bar.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/pds-top-app-bar.js",
       "declarations": [
         {
@@ -3521,6 +3606,14 @@
               },
               "default": "en",
               "description": "Copy language to preview: English, modern Chinese (Simplified, zh-Hans) or Japanese. Sets lang on <html> and swaps copy declared with data-zh/data-ja (text) or data-<attr>-zh/data-<attr>-ja (attributes)."
+            },
+            {
+              "name": "status-bar",
+              "type": {
+                "text": "'on'|'off'"
+              },
+              "default": "on",
+              "description": "The phone status bar (pds-status-bar with the notch) at the top of the frame, as on the P3 screens in Figma."
             }
           ],
           "members": [
@@ -3573,6 +3666,16 @@
               },
               "default": "en",
               "description": "Copy language to preview: English, modern Chinese (Simplified, zh-Hans) or Japanese. Sets lang on <html> and swaps copy declared with data-zh/data-ja (text) or data-<attr>-zh/data-<attr>-ja (attributes)."
+            },
+            {
+              "kind": "field",
+              "reflects": true,
+              "name": "status-bar",
+              "type": {
+                "text": "'on'|'off'"
+              },
+              "default": "on",
+              "description": "The phone status bar (pds-status-bar with the notch) at the top of the frame, as on the P3 screens in Figma."
             }
           ],
           "events": [

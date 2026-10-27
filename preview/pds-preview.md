@@ -37,6 +37,12 @@ whenever 中文 or 日本語 is selected.
 - English is read from the page and kept in `data-en` / `data-<attr>-en`,
   so EN restores it.
 
+## Status bar
+
+The frame starts with `pds-status-bar` (time, signal, wifi, battery, notch),
+as every P3 screen in Figma does. Set `status-bar="off"` to hide it. A
+screen inside the preview must not add its own.
+
 ## Font
 
 The library asks for Roboto but loads no web font. On a device without
