@@ -11,7 +11,10 @@ A screen built with this library is a high-fidelity concept: it shows an
 idea in the real components so people can react to it. It does not settle
 requirements, it is not a URS, and it is not a build to hand to developers.
 Developers build from the design system and the agreed requirements; the
-concept shows what you mean. Say this when someone asks what the screen is.
+concept shows what you mean. It does not cover backend logic,
+calculations, validation rules, error handling, flows that differ by
+account or product type, edge cases, or P3 and legacy constraints; those
+stay in the URS. Say this when someone asks what the screen is.
 
 ## Rules for every screen
 
