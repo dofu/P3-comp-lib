@@ -15,10 +15,16 @@ looks old for a tab that is changing.
 
 | Screen | Figma source | Pulled | File changed since pull | Exemplar HTML |
 |---|---|---|---|---|
-| Trade tab | [Trade Tab Header in P3 · Exploration 2 - 13/10/26 · A1 · Chips 2×4 / Default](https://www.figma.com/design/9Os85rSrvIgd9s64knjtMe/?node-id=2276-407) | 2026-10-27 | unverified: pulled without a file version; re-pull with the token to track changes | pending |
-| | *From an exploration page dated 13 Oct 2026: the chips-row header option. Confirm with the design team that it is the chosen direction.* | | | |
 | Trade ticket (recurring order) | [Trade - Counter Details - Stocks · 🚧 Recurring Order (23/2/26) · Trade Ticket/Buy](https://www.figma.com/design/dARit1smv40LvsvhF16cah/?node-id=14861-5906) | 2026-10-27 | unverified: pulled without a file version; re-pull with the token to track changes | pending |
 | | *From a work-in-progress page dated 23 Feb 2026. Buy and Sell use green and grey here, not the library's orange primary; check before copying colours.* | | | |
+| Counter detail (Quotes tab) | [Trade - Counter Details - Stocks · ✅ Trade Ticket - SGX Risk Check (27/04/26) · Counter Detail/EQ/Quotes](https://www.figma.com/design/dARit1smv40LvsvhF16cah/?node-id=18993-209041) | 2026-10-27 | unverified: pulled without a file version; re-pull with the token to track changes | pending |
+| | *Page approved (✅) on 27 Apr 2026, section still marked in progress. Buy, Short and Sell use green, orange and red here.* | | | |
+| Trade ticket (Buy, limit order) | [Trade - Counter Details - Stocks · ✅ Trade Ticket - SGX Risk Check (27/04/26) · Trade Ticket/Buy](https://www.figma.com/design/dARit1smv40LvsvhF16cah/?node-id=18993-208878) | 2026-10-27 | unverified: pulled without a file version; re-pull with the token to track changes | pending |
+| | *Same approved page. Buy is green and Review buy order is a green primary; the library's orange primary is not used on trade tickets.* | | | |
+| Trade ticket: price outside allowed range (dialog) | [Trade - Counter Details - Stocks · ✅ Trade Ticket - SGX Risk Check (27/04/26) · Trade Ticket/Buy](https://www.figma.com/design/dARit1smv40LvsvhF16cah/?node-id=18993-210973) | 2026-10-27 | unverified: pulled without a file version; re-pull with the token to track changes | pending |
+| | *Same approved page. The SGX risk-check dialog over the dimmed ticket: title, two paragraphs, one Okay action.* | | | |
+| Trade ticket: review order (bottom sheet) | [Trade - Counter Details - Stocks · ✅ Trade Ticket - SGX Risk Check (27/04/26) · Trade Ticket/Buy](https://www.figma.com/design/dARit1smv40LvsvhF16cah/?node-id=18993-211939) | 2026-10-27 | unverified: pulled without a file version; re-pull with the token to track changes | pending |
+| | *Same approved page. Review Order bottom sheet with the High buy price flag and a green Confirm buy order.* | | | |
 
 The table is regenerated from `references.json` by the design system
 team's check script; do not edit it by hand.

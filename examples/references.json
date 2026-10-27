@@ -3,34 +3,6 @@
   "note": "One record per reference screen. Written by the design system team's pull and check scripts; do not edit by hand.",
   "screens": [
     {
-      "slug": "trade-tab",
-      "screen": "Trade tab",
-      "figma": {
-        "fileName": "Trade Tab Header in P3",
-        "fileKey": "9Os85rSrvIgd9s64knjtMe",
-        "pageName": "Exploration 2 - 13/10/26",
-        "nodeId": "2276:407",
-        "nodeName": "A1 · Chips 2×4 / Default",
-        "nodeType": "FRAME",
-        "size": [
-          375,
-          812
-        ],
-        "url": "https://www.figma.com/design/9Os85rSrvIgd9s64knjtMe/?node-id=2276-407"
-      },
-      "pulledAt": "2026-10-27T16:44:10Z",
-      "pulledBy": "Figma connector render at 2x (no file version available through the connector)",
-      "pulledFileVersion": null,
-      "pulledFileLastModified": null,
-      "checkedAt": null,
-      "checkedFileVersion": null,
-      "checkedFileLastModified": null,
-      "status": "unverified",
-      "note": "From an exploration page dated 13 Oct 2026: the chips-row header option. Confirm with the design team that it is the chosen direction.",
-      "exemplarHtml": false,
-      "render": "examples/trade-tab/reference.png"
-    },
-    {
       "slug": "trade-ticket-recurring",
       "screen": "Trade ticket (recurring order)",
       "figma": {
@@ -57,6 +29,122 @@
       "note": "From a work-in-progress page dated 23 Feb 2026. Buy and Sell use green and grey here, not the library's orange primary; check before copying colours.",
       "exemplarHtml": false,
       "render": "examples/trade-ticket-recurring/reference.png"
+    },
+    {
+      "slug": "counter-detail-quotes",
+      "screen": "Counter detail (Quotes tab)",
+      "figma": {
+        "fileName": "Trade - Counter Details - Stocks",
+        "fileKey": "dARit1smv40LvsvhF16cah",
+        "pageName": "✅ Trade Ticket - SGX Risk Check (27/04/26)",
+        "sectionName": "🚧 Trade Ticket - SGX Risk Check (27/04/26)",
+        "nodeId": "18993:209041",
+        "nodeName": "Counter Detail/EQ/Quotes",
+        "nodeType": "FRAME",
+        "size": [
+          375,
+          1000
+        ],
+        "url": "https://www.figma.com/design/dARit1smv40LvsvhF16cah/?node-id=18993-209041"
+      },
+      "pulledAt": "2026-10-27T16:52:20Z",
+      "pulledBy": "Figma connector render at 2x (no file version available through the connector)",
+      "pulledFileVersion": null,
+      "pulledFileLastModified": null,
+      "checkedAt": null,
+      "checkedFileVersion": null,
+      "checkedFileLastModified": null,
+      "status": "unverified",
+      "note": "Page approved (✅) on 27 Apr 2026, section still marked in progress. Buy, Short and Sell use green, orange and red here.",
+      "exemplarHtml": false,
+      "render": "examples/counter-detail-quotes/reference.png"
+    },
+    {
+      "slug": "trade-ticket-buy",
+      "screen": "Trade ticket (Buy, limit order)",
+      "figma": {
+        "fileName": "Trade - Counter Details - Stocks",
+        "fileKey": "dARit1smv40LvsvhF16cah",
+        "pageName": "✅ Trade Ticket - SGX Risk Check (27/04/26)",
+        "sectionName": "🚧 Trade Ticket - SGX Risk Check (27/04/26)",
+        "nodeId": "18993:208878",
+        "nodeName": "Trade Ticket/Buy",
+        "nodeType": "FRAME",
+        "size": [
+          375,
+          1090
+        ],
+        "url": "https://www.figma.com/design/dARit1smv40LvsvhF16cah/?node-id=18993-208878"
+      },
+      "pulledAt": "2026-10-27T16:52:20Z",
+      "pulledBy": "Figma connector render at 2x (no file version available through the connector)",
+      "pulledFileVersion": null,
+      "pulledFileLastModified": null,
+      "checkedAt": null,
+      "checkedFileVersion": null,
+      "checkedFileLastModified": null,
+      "status": "unverified",
+      "note": "Same approved page. Buy is green and Review buy order is a green primary; the library's orange primary is not used on trade tickets.",
+      "exemplarHtml": false,
+      "render": "examples/trade-ticket-buy/reference.png"
+    },
+    {
+      "slug": "trade-ticket-risk-check",
+      "screen": "Trade ticket: price outside allowed range (dialog)",
+      "figma": {
+        "fileName": "Trade - Counter Details - Stocks",
+        "fileKey": "dARit1smv40LvsvhF16cah",
+        "pageName": "✅ Trade Ticket - SGX Risk Check (27/04/26)",
+        "sectionName": "🚧 Trade Ticket - SGX Risk Check (27/04/26)",
+        "nodeId": "18993:210973",
+        "nodeName": "Trade Ticket/Buy",
+        "nodeType": "FRAME",
+        "size": [
+          375,
+          812
+        ],
+        "url": "https://www.figma.com/design/dARit1smv40LvsvhF16cah/?node-id=18993-210973"
+      },
+      "pulledAt": "2026-10-27T16:52:20Z",
+      "pulledBy": "Figma connector render at 2x (no file version available through the connector)",
+      "pulledFileVersion": null,
+      "pulledFileLastModified": null,
+      "checkedAt": null,
+      "checkedFileVersion": null,
+      "checkedFileLastModified": null,
+      "status": "unverified",
+      "note": "Same approved page. The SGX risk-check dialog over the dimmed ticket: title, two paragraphs, one Okay action.",
+      "exemplarHtml": false,
+      "render": "examples/trade-ticket-risk-check/reference.png"
+    },
+    {
+      "slug": "trade-ticket-review-order",
+      "screen": "Trade ticket: review order (bottom sheet)",
+      "figma": {
+        "fileName": "Trade - Counter Details - Stocks",
+        "fileKey": "dARit1smv40LvsvhF16cah",
+        "pageName": "✅ Trade Ticket - SGX Risk Check (27/04/26)",
+        "sectionName": "🚧 Trade Ticket - SGX Risk Check (27/04/26)",
+        "nodeId": "18993:211939",
+        "nodeName": "Trade Ticket/Buy",
+        "nodeType": "FRAME",
+        "size": [
+          375,
+          812
+        ],
+        "url": "https://www.figma.com/design/dARit1smv40LvsvhF16cah/?node-id=18993-211939"
+      },
+      "pulledAt": "2026-10-27T16:52:20Z",
+      "pulledBy": "Figma connector render at 2x (no file version available through the connector)",
+      "pulledFileVersion": null,
+      "pulledFileLastModified": null,
+      "checkedAt": null,
+      "checkedFileVersion": null,
+      "checkedFileLastModified": null,
+      "status": "unverified",
+      "note": "Same approved page. Review Order bottom sheet with the High buy price flag and a green Confirm buy order.",
+      "exemplarHtml": false,
+      "render": "examples/trade-ticket-review-order/reference.png"
     }
   ]
 }
