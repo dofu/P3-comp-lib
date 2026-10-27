@@ -61,6 +61,7 @@ TEMPLATE.innerHTML = `
     }
     .track {
       position: relative;
+      pointer-events: none; /* clicks and taps must reach the input underneath */
       width: 52px;
       height: 32px;
       border-radius: 999px;

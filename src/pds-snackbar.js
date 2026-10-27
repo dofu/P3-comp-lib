@@ -60,6 +60,7 @@ TEMPLATE.innerHTML = `
       font-family: Roboto, system-ui, sans-serif;
       z-index: 1000;
     }
+    :host([hidden]) { display: none; }
     [hidden] { display: none !important; }
     .message {
       flex: 1;
@@ -100,7 +101,7 @@ TEMPLATE.innerHTML = `
     }
     .close svg { width: 24px; height: 24px; }
   </style>
-  <span class="message" part="message"><slot></slot></span>
+  <span class="message" part="message"><span class="text" hidden></span><slot></slot></span>
   <button type="button" class="action" part="action" hidden></button>
   <button type="button" class="close" part="close" aria-label="Dismiss" hidden>
     <svg viewBox="0 0 24 24" fill="none"><path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
@@ -117,6 +118,7 @@ export class PdsSnackbar extends HTMLElement {
     this.attachShadow({ mode: "open" });
     this.shadowRoot.appendChild(TEMPLATE.content.cloneNode(true));
     this._messageSlot = this.shadowRoot.querySelector(".message slot");
+    this._textEl = this.shadowRoot.querySelector(".message .text");
     this._actionBtn = this.shadowRoot.querySelector(".action");
     this._closeBtn = this.shadowRoot.querySelector(".close");
     this._timer = null;
@@ -143,7 +145,10 @@ export class PdsSnackbar extends HTMLElement {
 
   _sync() {
     const message = this.getAttribute("message");
-    if (message !== null) this._messageSlot.parentElement.textContent = message;
+    // Write into a span beside the slot; replacing the parent's children would delete the slot.
+    this._textEl.textContent = message ?? "";
+    this._textEl.hidden = message === null;
+    this._messageSlot.hidden = message !== null;
     const label = this.getAttribute("action-label");
     this._actionBtn.hidden = !label;
     this._actionBtn.textContent = label || "";
