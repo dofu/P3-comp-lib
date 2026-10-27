@@ -37,6 +37,12 @@ whenever 中文 or 日本語 is selected.
 - English is read from the page and kept in `data-en` / `data-<attr>-en`,
   so EN restores it.
 
+## Font
+
+The library asks for Roboto but loads no web font. On a device without
+Roboto, text renders in the system font and may not be 100% accurate to
+the design. The preview detects this and shows a note under the toolbar.
+
 ## Do
 
 - Put exactly one screen inside it, and nothing else on the page.

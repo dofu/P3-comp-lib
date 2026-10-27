@@ -22,6 +22,8 @@
  *   is kept in `data-en` / `data-<attr>-en` and restored on EN.
  *   While 中文 or 日本語 is selected, a note under the toolbar states that the
  *   copy is the model's shortest suggestion, not from POEMS translation files.
+ *   A second note appears when Roboto is not installed on the device: text
+ *   is then shown in a fallback font and may not be 100% accurate.
  *
  * @slot - The screen. The frame paints `--pds-surface-1` behind it and
  *   `--pds-on-surface-1` for text, so the screen need not style its own
@@ -36,6 +38,19 @@
  * @cssprop --pds-preview-radius - Corner radius when `corners="rounded"` (default 48px).
  */
 const LANG_TAGS = { en: "en", zh: "zh-Hans", ja: "ja" };
+
+/** True when `family` is installed: text set in it measures differently from the fallback. */
+function fontAvailable(family) {
+  try {
+    const ctx = document.createElement("canvas").getContext("2d");
+    const sample = "mmmmmmmmmmlliWQ0123";
+    const widths = ["monospace", "serif"].map((fallback) => {
+      ctx.font = `32px ${fallback}`; const base = ctx.measureText(sample).width;
+      ctx.font = `32px "${family}", ${fallback}`; return ctx.measureText(sample).width !== base;
+    });
+    return widths.some(Boolean);
+  } catch { return true; }
+}
 const TEMPLATE = document.createElement("template");
 TEMPLATE.innerHTML = `
   <style>
@@ -138,6 +153,7 @@ TEMPLATE.innerHTML = `
     </div>
   </div>
   <p class="note" part="note" hidden>中文 and 日本語 copy is suggested by the model, shortest wording possible, not taken from POEMS translation files. Translators review it before release.</p>
+  <p class="note note-font" part="font-note" hidden>Roboto is not available on this device. Text is shown in a fallback font and may not be 100% accurate to the design.</p>
   <div class="frame" part="frame"><slot></slot></div>
 `;
 
@@ -156,6 +172,7 @@ export class PdsPreview extends HTMLElement {
 
   connectedCallback() {
     this.shadowRoot.querySelector(".toolbar").addEventListener("click", this._onClick);
+    this.shadowRoot.querySelector(".note-font").hidden = fontAvailable("Roboto");
     this._sync();
   }
 

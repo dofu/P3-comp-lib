@@ -34,7 +34,10 @@ new page or in an existing project, unless the prompt says otherwise.
    corners and Language. Do not build your own theme, corner or language
    controls, and never put such controls inside the screen. The frame
    paints the surface tokens, so the screen needs no page background of
-   its own. See `preview/pds-preview.md`.
+   its own. See `preview/pds-preview.md`. Font disclaimer: the library asks
+   for Roboto but loads no web font; on a device without Roboto, text is
+   shown in a fallback font and may not be 100% accurate. The preview
+   shows a note when that is the case.
 5. **Copy: short, complete, in three languages.** Write every
    user-facing string as a complete sentence or label, as short as it can
    be. No fillers or fluff: no "please", "simply", "just", "in order to",
