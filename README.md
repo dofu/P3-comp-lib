@@ -57,7 +57,11 @@ new page or in an existing project, unless the prompt says otherwise.
    as an image, a PDF or a zip: the toggles only work on the live page. A
    flow of several screens is one page with one `<pds-preview>` per
    screen, side by side, each with its own toggles. See
-   `preview/pds-preview.md`. Font disclaimer: the library asks
+   `preview/pds-preview.md`. If a picture is asked for anyway (a
+   screenshot, a PDF, an image for a document), render it with
+   `corners="square"`, no toggles and no drawn status bar: square
+   corners mark a static render. Rounded corners belong to the live page
+   only, and a picture with rounded corners is not from this library. Font disclaimer: the library asks
    for Roboto but loads no web font; on a device without Roboto, text is
    shown in a fallback font and may not be 100% accurate. The preview
    shows a note when that is the case.

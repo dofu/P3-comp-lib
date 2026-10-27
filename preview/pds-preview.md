@@ -62,8 +62,15 @@ hide it. The bottom navigation bar is not part of the frame: add
 
 The preview paints no background of its own, so a page shows nothing
 outside the frame's rounded corners; the frame has a shadow and a hairline
-edge instead. Use the Corners toggle (Square) if a render must have no
-radius at all.
+edge instead.
+
+## Static renders
+
+The deliverable is the live page. When a picture is asked for anyway (a
+screenshot, a PDF, an image for a document), set `corners="square"` and
+leave the toggles out of the shot: square corners mark a static render,
+and rounded corners belong to the live page only. A reviewer who sees
+rounded corners on a picture knows it did not come from this library.
 
 ## Font
 

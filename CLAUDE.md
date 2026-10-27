@@ -17,7 +17,10 @@ project that includes this library, these rules apply.
    already carries the status bar and the home line.
 5. Wrap every screen you render for review in `<pds-preview>` from
    `preview/pds-preview.js`, and end with only what the reviewer must decide
-   (README rule 7): no build notes, no component list.
+   (README rule 7): no build notes, no component list. The deliverable is
+   the live page. If a picture is asked for anyway, render it with
+   `corners="square"` and no toggles: rounded corners are for the live
+   page only.
 6. A screen you build is a high-fidelity concept to show an idea: not a
    URS, not settled requirements, not a build to hand to developers. Say
    so if asked.
