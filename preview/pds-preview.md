@@ -25,6 +25,9 @@ it, outside the screen: light/dark, rounded/square corners, and language
 Give every user-facing string in English, modern Chinese (Simplified) and
 Japanese. The Language toggle swaps them and sets `lang` on `<html>`.
 
+Disclaimer: Chinese and Japanese copy is not taken from POEMS translation files. Claude is tasked to suggest the shortest wording possible; translators review it before anything ships. The preview shows this note under the toolbar
+whenever 中文 or 日本語 is selected.
+
 - Text: `<span data-zh="登录" data-ja="ログイン">Log in</span>`. Put the
   span inside the component (`<pds-button><span …>Log in</span></pds-button>`).
 - Attribute copy: `data-<attr>-zh` and `data-<attr>-ja` on the element,

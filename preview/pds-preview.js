@@ -20,6 +20,8 @@
  *   `data-<attr>-ja` gets that attribute replaced (title, label,
  *   placeholder, supporting-text, error, message, action-label). English
  *   is kept in `data-en` / `data-<attr>-en` and restored on EN.
+ *   While 中文 or 日本語 is selected, a note under the toolbar states that the
+ *   copy is the model's shortest suggestion, not from POEMS translation files.
  *
  * @slot - The screen. The frame paints `--pds-surface-1` behind it and
  *   `--pds-on-surface-1` for text, so the screen need not style its own
@@ -87,6 +89,15 @@ TEMPLATE.innerHTML = `
       outline: 2px solid #f78f20;
       outline-offset: 2px;
     }
+    .note {
+      margin: -8px 0 0;
+      max-width: 560px;
+      text-align: center;
+      font-size: 12px;
+      line-height: 16px;
+      color: #5c5c5c;
+    }
+    .note[hidden] { display: none; }
     .frame {
       width: var(--_width, 375px);
       max-width: 100%;
@@ -126,6 +137,7 @@ TEMPLATE.innerHTML = `
       </div>
     </div>
   </div>
+  <p class="note" part="note" hidden>中文 and 日本語 copy is suggested by the model, shortest wording possible, not taken from POEMS translation files. Translators review it before release.</p>
   <div class="frame" part="frame"><slot></slot></div>
 `;
 
@@ -175,6 +187,7 @@ export class PdsPreview extends HTMLElement {
     const language = this.language;
     for (const b of this.shadowRoot.querySelectorAll("[data-language-choice]")) b.setAttribute("aria-pressed", String(b.dataset.languageChoice === language));
     document.documentElement.lang = LANG_TAGS[language];
+    this.shadowRoot.querySelector(".note").hidden = language === "en";
     this._applyLanguage(language);
   }
 

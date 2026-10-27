@@ -42,7 +42,7 @@ new page or in an existing project, unless the prompt says otherwise.
    attribute copy as `data-<attr>-zh` and `data-<attr>-ja` on the element
    (`title`, `label`, `placeholder`, `supporting-text`, `error`,
    `message`, `action-label`). The preview's Language toggle switches
-   them. See `preview/pds-preview.md`.
+   them. See `preview/pds-preview.md`. Disclaimer: Chinese and Japanese copy is not taken from POEMS translation files. Claude is tasked to suggest the shortest wording possible; translators review it before anything ships.
 6. **Finish with the checklist.** End your answer with these six lines,
    filled in honestly:
 

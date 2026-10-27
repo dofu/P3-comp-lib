@@ -18,3 +18,5 @@ project that includes this library, these rules apply.
 5. Copy is short and complete, no fillers, and every string is given in
    English, modern Chinese (Simplified) and Japanese with the `data-zh`,
    `data-ja` and `data-<attr>-zh/ja` conventions in `preview/pds-preview.md`.
+   Chinese and Japanese copy is your suggestion, the shortest wording
+   possible, not taken from POEMS translation files; say so if asked.
