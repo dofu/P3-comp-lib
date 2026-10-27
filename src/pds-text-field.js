@@ -35,6 +35,8 @@
  *   `error` is set.
  * @cssprop --pds-grey-300 - Placeholder colour, and the disabled state's
  *   displayed-text colour.
+ * @cssprop --pds-on-container-caret - Text cursor (caret) colour: blue-500 in
+ *   Light, blue-200 in Dark (Figma "On Container/Caret").
  *
  * Known limitations:
  * - Only a single generic trailing-icon slot; no built-in password
@@ -86,6 +88,7 @@ TEMPLATE.innerHTML = `
       color: var(--pds-on-surface-1, #141414);
       white-space: nowrap;
       overflow-x: auto;
+      caret-color: var(--pds-on-container-caret, #0043ce);
     }
     textarea { white-space: normal; resize: vertical; }
     input::placeholder, textarea::placeholder { color: var(--pds-grey-300, #747474); }

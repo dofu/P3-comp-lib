@@ -20,6 +20,8 @@
  * @cssprop --pds-transparent-white-12 - Pressed wash.
  * @cssprop --pds-on-surface-1 - Icon and typed-text colour.
  * @cssprop --pds-on-surface-2 - Placeholder text colour.
+ * @cssprop --pds-on-container-caret - Text cursor (caret) colour: blue-500 in
+ *   Light, blue-200 in Dark (Figma "On Container/Caret").
  *
  * Known limitations:
  * - No Focused or Disabled visual state yet.
@@ -59,6 +61,7 @@ TEMPLATE.innerHTML = `
       letter-spacing: 0.5px;
       line-height: 24px;
       color: var(--pds-on-surface-1, #141414);
+      caret-color: var(--pds-on-container-caret, #0043ce);
     }
     input::placeholder { color: var(--pds-on-surface-2, #595959); }
     .search-button {

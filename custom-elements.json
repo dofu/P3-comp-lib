@@ -2089,6 +2089,10 @@
             {
               "name": "--pds-on-surface-2",
               "description": "Placeholder text colour."
+            },
+            {
+              "name": "--pds-on-container-caret",
+              "description": "Text cursor (caret) colour: blue-500 in Light, blue-200 in Dark (Figma On Container/Caret)."
             }
           ],
           "cssParts": [
@@ -2971,6 +2975,10 @@
             {
               "name": "--pds-grey-300",
               "description": "Placeholder colour, and the disabled state's displayed-text colour."
+            },
+            {
+              "name": "--pds-on-container-caret",
+              "description": "Text cursor (caret) colour: blue-500 in Light, blue-200 in Dark (Figma On Container/Caret)."
             }
           ],
           "cssParts": [

@@ -44,6 +44,7 @@
   --pds-on-surface-1: #141414;
   --pds-on-surface-2: #595959;
   --pds-on-surface-text-negative: #ca2323;
+  --pds-on-container-caret: #0043ce; /* text cursor: V2 Blue/blue-500 (Figma "On Container/Caret", FUN-2222) */
   --pds-container-secondary-1-50: #eaeaea;
   --pds-container-secondary-2-100: #bfbfbf;
   --pds-on-container-tertiary: #c36807;
@@ -66,6 +67,7 @@
     --pds-on-surface-1: #ffffff;
     --pds-on-surface-2: #9f9f9f;
     --pds-on-surface-text-negative: #e96e6e;
+    --pds-on-container-caret: #8aa9e8; /* V2 Blue/blue-200 */
     --pds-container-secondary-1-50: #595959;
     --pds-container-secondary-2-100: #595959;
     --pds-on-container-tertiary: #f78f20;
@@ -82,6 +84,7 @@
   --pds-on-surface-1: #ffffff;
   --pds-on-surface-2: #9f9f9f;
   --pds-on-surface-text-negative: #e96e6e;
+  --pds-on-container-caret: #8aa9e8; /* V2 Blue/blue-200 */
   --pds-container-secondary-1-50: #595959;
   --pds-container-secondary-2-100: #595959;
   --pds-on-container-tertiary: #f78f20;
