@@ -18,7 +18,10 @@ project that includes this library, these rules apply.
 5. Wrap every screen you render for review in `<pds-preview>` from
    `preview/pds-preview.js`, and end with only what the reviewer must decide
    (README rule 7): no build notes, no component list.
-6. Copy is short and complete, no fillers, and every string is given in
+6. A screen you build is a high-fidelity concept to show an idea: not a
+   URS, not settled requirements, not a build to hand to developers. Say
+   so if asked.
+7. Copy is short and complete, no fillers, and every string is given in
    English, modern Chinese (Simplified) and Japanese with the `data-zh`,
    `data-ja` and `data-<attr>-zh/ja` conventions in `preview/pds-preview.md`.
    Chinese and Japanese copy is your suggestion, the shortest wording

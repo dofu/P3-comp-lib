@@ -31,7 +31,9 @@
  *   While 中文 or 日本語 is selected, a note under the toolbar states that the
  *   copy is the model's shortest suggestion, not from POEMS translation files.
  *   A second note appears when Roboto is not installed on the device: text
- *   is then shown in a fallback font and may not be 100% accurate.
+ *   is then shown in a fallback font and may not be 100% accurate. A third,
+ *   always shown, says the page is a concept prototype, not a requirements
+ *   document and not a build for developers.
  *
  * @slot - The screen. The frame paints `--pds-surface-1` behind it and
  *   `--pds-on-surface-1` for text, so the screen need not style its own
@@ -167,6 +169,7 @@ TEMPLATE.innerHTML = `
     </div>
   </div>
   <p class="note" part="note" hidden>中文 and 日本語 copy is suggested by the model, shortest wording possible, not taken from POEMS translation files. Translators review it before release.</p>
+  <p class="note note-scope" part="scope-note">Concept prototype: it shows the idea in the real components. Not a requirements document, not a build for developers.</p>
   <p class="note note-font" part="font-note" hidden>Roboto is not available on this device. Text is shown in a fallback font and may not be 100% accurate to the design.</p>
   <div class="frame" part="frame"><pds-status-bar class="status"></pds-status-bar><slot></slot><pds-home-indicator class="home"></pds-home-indicator></div>
 `;

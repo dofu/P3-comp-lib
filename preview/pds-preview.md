@@ -37,6 +37,12 @@ whenever 中文 or 日本語 is selected.
 - English is read from the page and kept in `data-en` / `data-<attr>-en`,
   so EN restores it.
 
+## What the page is
+
+A line under the toolbar says it on every page: concept prototype, shows
+the idea in the real components, not a requirements document, not a build
+for developers. It cannot be switched off; that is the point.
+
 ## Status bar
 
 The frame starts with `pds-status-bar` (time, signal, wifi, battery), as

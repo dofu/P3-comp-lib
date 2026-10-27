@@ -5,6 +5,14 @@ A framework-free UI component library, built as native
 29 custom elements, each shipped as plain JavaScript with a matching usage
 guide. See "What's built" below for the full list and tag names.
 
+## What a screen built with this is, and is not
+
+A screen built with this library is a high-fidelity concept: it shows an
+idea in the real components so people can react to it. It does not settle
+requirements, it is not a URS, and it is not a build to hand to developers.
+Developers build from the design system and the agreed requirements; the
+concept shows what you mean. Say this when someone asks what the screen is.
+
 ## Rules for every screen
 
 Read these first. They apply to every screen built with this library, in a

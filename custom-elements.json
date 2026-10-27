@@ -3924,6 +3924,9 @@
             },
             {
               "name": "font-note"
+            },
+            {
+              "name": "scope-note"
             }
           ]
         }
