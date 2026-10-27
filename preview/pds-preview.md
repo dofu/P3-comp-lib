@@ -50,6 +50,13 @@ line), as every P3 screen in Figma does. Set `home-indicator="off"` to
 hide it. The bottom navigation bar is not part of the frame: add
 `pds-navigation-bar` only on root screens.
 
+## Stage
+
+The preview paints no background of its own, so a page shows nothing
+outside the frame's rounded corners; the frame has a shadow and a hairline
+edge instead. Use the Corners toggle (Square) if a render must have no
+radius at all.
+
 ## Font
 
 The library asks for Roboto but loads no web font. On a device without

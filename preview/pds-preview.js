@@ -71,7 +71,7 @@ TEMPLATE.innerHTML = `
       padding: 24px 16px 40px;
       box-sizing: border-box;
       min-height: 100vh;
-      background: #e6e6e6;
+      background: transparent; /* no stage colour, so nothing shows outside the frame's rounded corners */
       font-family: Roboto, system-ui, sans-serif;
       --pds-preview-radius: 48px;
     }
@@ -133,7 +133,7 @@ TEMPLATE.innerHTML = `
       border-radius: var(--pds-preview-radius, 48px);
       background: var(--pds-surface-1, #ffffff);
       color: var(--pds-on-surface-1, #141414);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08), 0 8px 24px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.08);
     }
     .home { margin-top: auto; }
     :host([corners="square"]) .frame {
