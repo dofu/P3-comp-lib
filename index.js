@@ -1,0 +1,27 @@
+// Import this file once (or import the components you need directly from
+// src/) to register every Phillip Design System custom element.
+export * from "./src/pds-button.js";
+export * from "./src/pds-badge.js";
+export * from "./src/pds-divider.js";
+export * from "./src/pds-switch.js";
+export * from "./src/pds-radio.js";
+export * from "./src/pds-chip.js";
+export * from "./src/pds-top-app-bar.js";
+export * from "./src/pds-progress.js";
+export * from "./src/pds-snackbar.js";
+export * from "./src/pds-tooltip.js";
+export * from "./src/pds-dialog.js";
+export * from "./src/pds-search.js";
+export * from "./src/pds-text-field.js";
+export * from "./src/pds-card.js";
+export * from "./src/pds-list.js";
+export * from "./src/pds-list-row.js";
+export * from "./src/pds-tabs.js";
+export * from "./src/pds-tab.js";
+export * from "./src/pds-nav-item.js";
+export * from "./src/pds-navigation-bar.js";
+export * from "./src/pds-menu.js";
+export * from "./src/pds-menu-item.js";
+export * from "./src/pds-bottom-sheet.js";
+export * from "./src/pds-side-sheet.js";
+export * from "./src/pds-checkbox.js";

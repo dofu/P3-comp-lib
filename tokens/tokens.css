@@ -1,0 +1,92 @@
+/*
+  Design tokens as CSS custom properties.
+
+  Load this file once, globally, before any component renders:
+    <link rel="stylesheet" href="tokens/tokens.css">
+
+  Every component ships its own fallback value for each token it reads,
+  so components still render without this file. Loading it is what
+  makes components pick up the shared palette and theme.
+
+  Theme switching: the default (no attribute) is "system": Light unless
+  the OS is set to Dark. A page can force a theme by setting
+  data-theme="light" or data-theme="dark" on the root element.
+*/
+
+:root {
+  /* Primitives: fixed values, the same in both Light and Dark. */
+  --pds-orange-500: #f78f20;
+  --pds-grey-600: #141414;
+  --pds-grey-300: #747474;
+  --pds-red-100: #e96e6e;
+  --pds-blue-300: #5481de;
+  --pds-white: #ffffff;
+  --pds-white-20: rgba(255, 255, 255, 0.2);
+  --pds-container-primary-1: #f78f20;
+
+  /* Fixed overlay tints: layered on top of a colour that doesn't
+     itself change between Light and Dark (a modal scrim, a filled
+     button's own state-layer wash), so these stay constant too. */
+  --pds-transparent-black-20: rgba(0, 0, 0, 0.2);
+  --pds-transparent-black-50: rgba(0, 0, 0, 0.5);
+  --pds-transparent-white-8: rgba(255, 255, 255, 0.08);
+  --pds-transparent-white-12: rgba(255, 255, 255, 0.12);
+
+  /* Component sizing and timing, not colour. */
+  --pds-dialog-max-width: 560px;
+  --pds-dialog-scrim-opacity: 0.5;
+  --pds-snackbar-offset-bottom: 16px;
+  --pds-top-app-bar-scroll-tint: 0.08;
+
+  /* Semantic tokens: Light values (the default). */
+  --pds-surface-1: #ffffff;
+  --pds-surface-2: #eaeaea;
+  --pds-on-surface-1: #141414;
+  --pds-on-surface-2: #595959;
+  --pds-on-surface-text-negative: #ca2323;
+  --pds-container-secondary-1-50: #eaeaea;
+  --pds-container-secondary-2-100: #bfbfbf;
+  --pds-on-container-tertiary: #c36807;
+  --pds-on-container-inverse-primary: #141414;
+  --pds-scheme-on-surface: #1d1b20;
+  --pds-scheme-on-surface-variant: #49454f;
+  --pds-scheme-secondary-container: #e8def8;
+
+  /* Known limitation: these two currently resolve to the same
+     translucent white in both Light and Dark, so an outline that
+     relies on them for contrast against a light background is faint. */
+  --pds-transparency-outline-20: #ffffff33;
+  --pds-transparency-outline-50: #ffffff80;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --pds-surface-1: #141414;
+    --pds-surface-2: #2f2f2f;
+    --pds-on-surface-1: #ffffff;
+    --pds-on-surface-2: #9f9f9f;
+    --pds-on-surface-text-negative: #e96e6e;
+    --pds-container-secondary-1-50: #595959;
+    --pds-container-secondary-2-100: #595959;
+    --pds-on-container-tertiary: #f78f20;
+    --pds-on-container-inverse-primary: #ffffff;
+    --pds-scheme-on-surface: #e6e0e9;
+    --pds-scheme-on-surface-variant: #cac4d0;
+    --pds-scheme-secondary-container: #4a4458;
+  }
+}
+
+:root[data-theme="dark"] {
+  --pds-surface-1: #141414;
+  --pds-surface-2: #2f2f2f;
+  --pds-on-surface-1: #ffffff;
+  --pds-on-surface-2: #9f9f9f;
+  --pds-on-surface-text-negative: #e96e6e;
+  --pds-container-secondary-1-50: #595959;
+  --pds-container-secondary-2-100: #595959;
+  --pds-on-container-tertiary: #f78f20;
+  --pds-on-container-inverse-primary: #ffffff;
+  --pds-scheme-on-surface: #e6e0e9;
+  --pds-scheme-on-surface-variant: #cac4d0;
+  --pds-scheme-secondary-container: #4a4458;
+}

@@ -1,0 +1,3346 @@
+{
+  "schemaVersion": "1.0.0",
+  "readme": "README.md",
+  "modules": [
+    {
+      "kind": "javascript-module",
+      "path": "src/pds-badge.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "PdsBadge",
+          "tagName": "pds-badge",
+          "customElement": true,
+          "description": "`<pds-badge>`: a small status indicator, a dot or a count.",
+          "attributes": [
+            {
+              "name": "count",
+              "type": {
+                "text": "number"
+              },
+              "description": "Omit for the presence dot (6x6px, no label). Set a number for the count pill."
+            },
+            {
+              "name": "max",
+              "type": {
+                "text": "number"
+              },
+              "default": "99",
+              "description": "Cap for the count pill. Pass `max=\"999\"` if a larger cap fits your use case better."
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "count",
+              "type": {
+                "text": "number"
+              },
+              "reflects": true,
+              "description": "Omit for the presence dot (6x6px, no label). Set a number for the count pill."
+            },
+            {
+              "kind": "field",
+              "name": "max",
+              "type": {
+                "text": "number"
+              },
+              "default": "99",
+              "reflects": true,
+              "description": "Cap for the count pill. Pass `max=\"999\"` if a larger cap fits your use case better."
+            }
+          ],
+          "cssProperties": [
+            {
+              "name": "--pds-red-100",
+              "description": "Fill for both sizes."
+            },
+            {
+              "name": "--pds-white",
+              "description": "Label colour on the count pill."
+            }
+          ],
+          "cssParts": [
+            {
+              "name": "dot"
+            },
+            {
+              "name": "pill"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "PdsBadge",
+          "declaration": {
+            "name": "PdsBadge",
+            "module": "src/pds-badge.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "pds-badge",
+          "declaration": {
+            "name": "PdsBadge",
+            "module": "src/pds-badge.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/pds-bottom-sheet.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "PdsBottomSheet",
+          "tagName": "pds-bottom-sheet",
+          "customElement": true,
+          "description": "`<pds-bottom-sheet>`: a panel anchored to the bottom edge of the viewport, for a focused task or a short set of choices on narrow screens. Wraps the native `<dialog>` element.",
+          "attributes": [
+            {
+              "name": "open",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Reflects the sheet's shown/hidden state. Prefer the `show()`/`close()` methods over toggling this directly."
+            },
+            {
+              "name": "dismissible",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "description": "Whether Escape and a backdrop click close the sheet. Set `dismissible=\"false\"` for a sheet that requires an explicit in-content action to close."
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "open",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "reflects": true,
+              "description": "Reflects the sheet's shown/hidden state. Prefer the `show()`/`close()` methods over toggling this directly."
+            },
+            {
+              "kind": "field",
+              "name": "dismissible",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "reflects": true,
+              "description": "Whether Escape and a backdrop click close the sheet. Set `dismissible=\"false\"` for a sheet that requires an explicit in-content action to close."
+            },
+            {
+              "kind": "method",
+              "name": "show"
+            },
+            {
+              "kind": "method",
+              "name": "close"
+            }
+          ],
+          "slots": [
+            {
+              "name": "",
+              "description": "The sheet's content."
+            }
+          ],
+          "events": [
+            {
+              "name": "dismiss",
+              "description": "Fired when the sheet closes. `detail: { reason }`, where reason is `\"backdrop\"`, `\"escape\"`, or `\"api\"`."
+            }
+          ],
+          "cssProperties": [
+            {
+              "name": "--pds-surface-1",
+              "description": "Sheet background."
+            },
+            {
+              "name": "--pds-transparent-black-50",
+              "description": "Backdrop scrim."
+            },
+            {
+              "name": "--pds-scheme-on-surface-variant",
+              "description": "Drag handle colour."
+            }
+          ],
+          "cssParts": [
+            {
+              "name": "dialog"
+            },
+            {
+              "name": "handle"
+            },
+            {
+              "name": "content"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "PdsBottomSheet",
+          "declaration": {
+            "name": "PdsBottomSheet",
+            "module": "src/pds-bottom-sheet.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "pds-bottom-sheet",
+          "declaration": {
+            "name": "PdsBottomSheet",
+            "module": "src/pds-bottom-sheet.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/pds-button.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "PdsButton",
+          "tagName": "pds-button",
+          "customElement": true,
+          "description": "`<pds-button>`: a button for the one action a screen wants the user to take.",
+          "attributes": [
+            {
+              "name": "size",
+              "type": {
+                "text": "'small'|'medium'|'large'"
+              },
+              "default": "medium",
+              "description": "Which size to render. Height is a minimum, not a cap: the button always grows to fit its content."
+            },
+            {
+              "name": "variant",
+              "type": {
+                "text": "'primary'|'secondary'"
+              },
+              "default": "primary",
+              "description": "primary = filled; secondary = outlined."
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disabled state."
+            },
+            {
+              "name": "pending",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Shows an inline spinner, keeps the label, and disables the button so a second tap cannot fire while a request is in flight. Set it back to false yourself once the request finishes or fails."
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "size",
+              "type": {
+                "text": "'small'|'medium'|'large'"
+              },
+              "default": "medium",
+              "reflects": true,
+              "description": "Which size to render. Height is a minimum, not a cap: the button always grows to fit its content."
+            },
+            {
+              "kind": "field",
+              "name": "variant",
+              "type": {
+                "text": "'primary'|'secondary'"
+              },
+              "default": "primary",
+              "reflects": true,
+              "description": "primary = filled; secondary = outlined."
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "reflects": true,
+              "description": "Disabled state."
+            },
+            {
+              "kind": "field",
+              "name": "pending",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "reflects": true,
+              "description": "Shows an inline spinner, keeps the label, and disables the button so a second tap cannot fire while a request is in flight. Set it back to false yourself once the request finishes or fails."
+            }
+          ],
+          "slots": [
+            {
+              "name": "",
+              "description": "The button's label text. Casing is applied by the component (Small keeps whatever case you type; Medium and Large uppercase it), so type the label in normal sentence case and let the size decide."
+            },
+            {
+              "name": "icon",
+              "description": "Optional leading icon (an inline SVG or `<img>`). Hidden automatically while `pending`."
+            }
+          ],
+          "events": [
+            {
+              "name": "click",
+              "description": "Native click event; suppressed while `disabled` or `pending`."
+            }
+          ],
+          "cssProperties": [
+            {
+              "name": "--pds-container-primary-1",
+              "description": "Fill for the primary variant."
+            },
+            {
+              "name": "--pds-grey-600",
+              "description": "Label colour for the primary variant."
+            },
+            {
+              "name": "--pds-orange-500",
+              "description": "Border and label colour for the secondary variant."
+            },
+            {
+              "name": "--pds-white-20",
+              "description": "Fill for the disabled state."
+            },
+            {
+              "name": "--pds-grey-300",
+              "description": "Label colour for the disabled state."
+            }
+          ],
+          "cssParts": [
+            {
+              "name": "button"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "PdsButton",
+          "declaration": {
+            "name": "PdsButton",
+            "module": "src/pds-button.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "pds-button",
+          "declaration": {
+            "name": "PdsButton",
+            "module": "src/pds-button.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/pds-card.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "PdsCard",
+          "tagName": "pds-card",
+          "customElement": true,
+          "description": "`<pds-card>`: a flexible container for grouped content. This component is an early, unreviewed draft: sizes, spacing, and colours here are a starting proposal, not settled values. Expect them to change.",
+          "attributes": [
+            {
+              "name": "variant",
+              "type": {
+                "text": "'filled'|'outlined'|'tonal-raised'"
+              },
+              "default": "filled",
+              "description": "Container style."
+            },
+            {
+              "name": "size",
+              "type": {
+                "text": "'xs'|'s'|'m'|'l'|'xl'"
+              },
+              "description": "Width contract: xs 120px, s 156px, m 250px, l 343px, xl 384px. Height always hugs content. Omit to let width come from the container."
+            },
+            {
+              "name": "media-ratio",
+              "type": {
+                "text": "'16:9'|'3:4'|'1:1'|'none'"
+              },
+              "default": "none",
+              "description": "Aspect ratio applied to the media slot."
+            },
+            {
+              "name": "interactive",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Whole-card tap target (role=button, focusable, Enter/Space fire click)."
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Only meaningful with `interactive`."
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "variant",
+              "type": {
+                "text": "'filled'|'outlined'|'tonal-raised'"
+              },
+              "default": "filled",
+              "reflects": true,
+              "description": "Container style."
+            },
+            {
+              "kind": "field",
+              "name": "size",
+              "type": {
+                "text": "'xs'|'s'|'m'|'l'|'xl'"
+              },
+              "reflects": true,
+              "description": "Width contract: xs 120px, s 156px, m 250px, l 343px, xl 384px. Height always hugs content. Omit to let width come from the container."
+            },
+            {
+              "kind": "field",
+              "name": "mediaRatio",
+              "type": {
+                "text": "'16:9'|'3:4'|'1:1'|'none'"
+              },
+              "default": "none",
+              "reflects": true,
+              "attribute": "media-ratio",
+              "description": "Aspect ratio applied to the media slot."
+            },
+            {
+              "kind": "field",
+              "name": "interactive",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "reflects": true,
+              "description": "Whole-card tap target (role=button, focusable, Enter/Space fire click)."
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "reflects": true,
+              "description": "Only meaningful with `interactive`."
+            }
+          ],
+          "slots": [
+            {
+              "name": "media",
+              "description": "Optional media (image or video)."
+            },
+            {
+              "name": "header",
+              "description": "Optional header: avatar, title, meta, overflow menu."
+            },
+            {
+              "name": "",
+              "description": "Main content."
+            },
+            {
+              "name": "actions",
+              "description": "Optional actions: text buttons, or one full-width CTA."
+            },
+            {
+              "name": "meta",
+              "description": "Optional meta/footer: engagement row, links."
+            }
+          ],
+          "events": [
+            {
+              "name": "click",
+              "description": "Native click; suppressed while `interactive` and `disabled` are both set."
+            }
+          ],
+          "cssProperties": [
+            {
+              "name": "--pds-surface-2",
+              "description": "Filled variant background."
+            },
+            {
+              "name": "--pds-container-secondary-1-50",
+              "description": "Tonal-raised variant background."
+            },
+            {
+              "name": "--pds-transparency-outline-20",
+              "description": "Outlined variant border."
+            },
+            {
+              "name": "--pds-on-surface-1",
+              "description": "Default text colour."
+            }
+          ],
+          "cssParts": [
+            {
+              "name": "media"
+            },
+            {
+              "name": "header"
+            },
+            {
+              "name": "body"
+            },
+            {
+              "name": "actions"
+            },
+            {
+              "name": "meta"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "PdsCard",
+          "declaration": {
+            "name": "PdsCard",
+            "module": "src/pds-card.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "pds-card",
+          "declaration": {
+            "name": "PdsCard",
+            "module": "src/pds-card.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/pds-checkbox.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "PdsCheckbox",
+          "tagName": "pds-checkbox",
+          "customElement": true,
+          "description": "`<pds-checkbox>`: an independent, multi-select choice. Use a checkbox when selections are independent and more than one can be true at once, or when a choice only takes effect once the user submits a form. Use `pds-switch` instead for a setting that takes effect immediately.",
+          "attributes": [
+            {
+              "name": "checked",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Checked state."
+            },
+            {
+              "name": "indeterminate",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Indeterminate state; renders over `checked` when both are set."
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disabled state."
+            },
+            {
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "description": "Forwarded to the internal input."
+            },
+            {
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "on",
+              "description": "Forwarded to the internal input's value."
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "checked",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "reflects": true,
+              "description": "Checked state."
+            },
+            {
+              "kind": "field",
+              "name": "indeterminate",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "reflects": true,
+              "description": "Indeterminate state; renders over `checked` when both are set."
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "reflects": true,
+              "description": "Disabled state."
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "reflects": true,
+              "description": "Forwarded to the internal input."
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "on",
+              "reflects": true,
+              "description": "Forwarded to the internal input's value."
+            }
+          ],
+          "slots": [
+            {
+              "name": "",
+              "description": "The label text, inside the same tap target as the checkbox."
+            }
+          ],
+          "events": [
+            {
+              "name": "change",
+              "description": "Re-dispatched from the internal input's native change."
+            }
+          ],
+          "cssProperties": [
+            {
+              "name": "--pds-transparency-outline-50",
+              "description": "Border colour, unchecked/indeterminate."
+            },
+            {
+              "name": "--pds-orange-500",
+              "description": "Fill colour, checked."
+            },
+            {
+              "name": "--pds-white",
+              "description": "Checkmark colour."
+            },
+            {
+              "name": "--pds-on-surface-1",
+              "description": "Indeterminate dash colour and label colour."
+            },
+            {
+              "name": "--pds-transparent-white-8",
+              "description": "Hover/Pressed wash."
+            }
+          ],
+          "cssParts": [
+            {
+              "name": "label"
+            },
+            {
+              "name": "control"
+            },
+            {
+              "name": "wash"
+            },
+            {
+              "name": "box"
+            },
+            {
+              "name": "check"
+            },
+            {
+              "name": "dash"
+            },
+            {
+              "name": "text"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "PdsCheckbox",
+          "declaration": {
+            "name": "PdsCheckbox",
+            "module": "src/pds-checkbox.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "pds-checkbox",
+          "declaration": {
+            "name": "PdsCheckbox",
+            "module": "src/pds-checkbox.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/pds-chip.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "PdsChip",
+          "tagName": "pds-chip",
+          "customElement": true,
+          "description": "`<pds-chip>`: a compact, tappable input, filter, or choice element.",
+          "attributes": [
+            {
+              "name": "selected",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Shows a check icon in place of any leading icon and switches to the filled colour recipe."
+            },
+            {
+              "name": "dismissible",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Shows a trailing dismiss button and fires `dismiss` when activated."
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disabled state."
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "selected",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "reflects": true,
+              "description": "Shows a check icon in place of any leading icon and switches to the filled colour recipe."
+            },
+            {
+              "kind": "field",
+              "name": "dismissible",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "reflects": true,
+              "description": "Shows a trailing dismiss button and fires `dismiss` when activated."
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "reflects": true,
+              "description": "Disabled state."
+            }
+          ],
+          "slots": [
+            {
+              "name": "",
+              "description": "The chip's label text."
+            },
+            {
+              "name": "icon",
+              "description": "Optional leading icon (inline SVG or `<img>`). Hidden automatically while `selected`."
+            }
+          ],
+          "events": [
+            {
+              "name": "click",
+              "description": "Native click; suppressed while `disabled`."
+            },
+            {
+              "name": "dismiss",
+              "description": "Fired when the dismiss button is activated; detail: `{ label }`. Not fired while disabled."
+            }
+          ],
+          "cssProperties": [
+            {
+              "name": "--pds-transparency-outline-20",
+              "description": "Border colour, unselected and disabled."
+            },
+            {
+              "name": "--pds-orange-500",
+              "description": "Fill colour, selected."
+            },
+            {
+              "name": "--pds-on-surface-1",
+              "description": "Label/icon colour, unselected enabled."
+            },
+            {
+              "name": "--pds-grey-600",
+              "description": "Label/icon colour, selected."
+            },
+            {
+              "name": "--pds-grey-300",
+              "description": "Label/icon colour, disabled."
+            }
+          ],
+          "cssParts": [
+            {
+              "name": "chip"
+            },
+            {
+              "name": "body"
+            },
+            {
+              "name": "check-icon"
+            },
+            {
+              "name": "leading-icon"
+            },
+            {
+              "name": "dismiss-button"
+            },
+            {
+              "name": "dismiss-icon"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "PdsChip",
+          "declaration": {
+            "name": "PdsChip",
+            "module": "src/pds-chip.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "pds-chip",
+          "declaration": {
+            "name": "PdsChip",
+            "module": "src/pds-chip.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/pds-dialog.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "PdsDialog",
+          "tagName": "pds-dialog",
+          "customElement": true,
+          "description": "`<pds-dialog>`: a modal that interrupts the user for a decision.",
+          "attributes": [
+            {
+              "name": "dismissible",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "When true, Esc and a backdrop click close it. When false (default), only a slotted action can close it."
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "dismissible",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "reflects": true,
+              "description": "When true, Esc and a backdrop click close it. When false (default), only a slotted action can close it."
+            },
+            {
+              "kind": "field",
+              "name": "open",
+              "reflects": false,
+              "readonly": true,
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Whether the dialog is currently shown. Read-only; use `showModal()`/`close()`."
+            },
+            {
+              "kind": "field",
+              "name": "returnValue",
+              "reflects": false,
+              "readonly": false,
+              "type": {
+                "text": "string"
+              },
+              "description": "Mirrors the native dialog's `returnValue`."
+            },
+            {
+              "kind": "method",
+              "name": "showModal"
+            },
+            {
+              "kind": "method",
+              "name": "close",
+              "parameters": [
+                {
+                  "name": "returnValue"
+                }
+              ]
+            }
+          ],
+          "slots": [
+            {
+              "name": "title",
+              "description": "The dialog's headline."
+            },
+            {
+              "name": "",
+              "description": "The dialog's body content."
+            },
+            {
+              "name": "actions",
+              "description": "Up to two actions (composed from `pds-button`). Never more than two: one to confirm, one to dismiss."
+            }
+          ],
+          "events": [
+            {
+              "name": "pds-dialog-close",
+              "description": "Fired after the dialog closes. detail.returnValue mirrors the native dialog's returnValue."
+            }
+          ],
+          "cssProperties": [
+            {
+              "name": "--pds-container-secondary-1-50",
+              "description": "Dialog container fill."
+            },
+            {
+              "name": "--pds-on-surface-1",
+              "description": "Title and body text colour."
+            },
+            {
+              "name": "--pds-dialog-scrim-opacity",
+              "description": "Backdrop darkness, 0 to 1."
+            },
+            {
+              "name": "--pds-dialog-max-width",
+              "description": "Hard width ceiling, default 560px."
+            }
+          ],
+          "cssParts": [
+            {
+              "name": "dialog"
+            },
+            {
+              "name": "title"
+            },
+            {
+              "name": "body"
+            },
+            {
+              "name": "actions"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "PdsDialog",
+          "declaration": {
+            "name": "PdsDialog",
+            "module": "src/pds-dialog.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "pds-dialog",
+          "declaration": {
+            "name": "PdsDialog",
+            "module": "src/pds-dialog.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/pds-divider.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "PdsDivider",
+          "tagName": "pds-divider",
+          "customElement": true,
+          "description": "`<pds-divider>`: a thin rule that separates content within one context.",
+          "attributes": [
+            {
+              "name": "direction",
+              "type": {
+                "text": "'horizontal'|'vertical'"
+              },
+              "default": "horizontal",
+              "description": "Line orientation."
+            },
+            {
+              "name": "length",
+              "type": {
+                "text": "'full-width'|'inset'|'middle-inset'"
+              },
+              "default": "full-width",
+              "description": "full-width = no offset; inset = leading edge offset 16px, trailing edge flush; middle-inset = both edges offset 16px."
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "direction",
+              "type": {
+                "text": "'horizontal'|'vertical'"
+              },
+              "default": "horizontal",
+              "reflects": true,
+              "description": "Line orientation."
+            },
+            {
+              "kind": "field",
+              "name": "length",
+              "type": {
+                "text": "'full-width'|'inset'|'middle-inset'"
+              },
+              "default": "full-width",
+              "reflects": true,
+              "description": "full-width = no offset; inset = leading edge offset 16px, trailing edge flush; middle-inset = both edges offset 16px."
+            }
+          ],
+          "cssProperties": [
+            {
+              "name": "--pds-transparency-outline-20",
+              "description": "The line colour."
+            }
+          ],
+          "cssParts": [
+            {
+              "name": "line"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "PdsDivider",
+          "declaration": {
+            "name": "PdsDivider",
+            "module": "src/pds-divider.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "pds-divider",
+          "declaration": {
+            "name": "PdsDivider",
+            "module": "src/pds-divider.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/pds-list-row.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "PdsListRow",
+          "tagName": "pds-list-row",
+          "customElement": true,
+          "description": "`<pds-list-row>`: one row inside a `pds-list`.",
+          "attributes": [
+            {
+              "name": "lines",
+              "type": {
+                "text": "'1'|'2'|'3'"
+              },
+              "default": "1",
+              "description": "1 Line (57px), 2 Line (65px), or 3 Line+ (93px, secondary text clamped to 2 lines). Height is a minimum, not a cap."
+            },
+            {
+              "name": "divider",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Shows a bottom rule."
+            },
+            {
+              "name": "divider-inset",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Only visible while `divider` is set. Insets the divider 16px from both edges."
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "lines",
+              "type": {
+                "text": "'1'|'2'|'3'"
+              },
+              "default": "1",
+              "reflects": true,
+              "description": "1 Line (57px), 2 Line (65px), or 3 Line+ (93px, secondary text clamped to 2 lines). Height is a minimum, not a cap."
+            },
+            {
+              "kind": "field",
+              "name": "divider",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "reflects": true,
+              "description": "Shows a bottom rule."
+            },
+            {
+              "kind": "field",
+              "name": "dividerInset",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "reflects": true,
+              "attribute": "divider-inset",
+              "description": "Only visible while `divider` is set. Insets the divider 16px from both edges."
+            }
+          ],
+          "slots": [
+            {
+              "name": "leading",
+              "description": "Leading content (avatar, icon, or an inline control)."
+            },
+            {
+              "name": "",
+              "description": "Primary text. Wraps rather than truncating."
+            },
+            {
+              "name": "secondary",
+              "description": "Secondary text. Clamped to 2 lines while `lines=\"3\"`."
+            },
+            {
+              "name": "trailing",
+              "description": "Trailing content (icon, value, or an inline control). Never wraps or shrinks."
+            }
+          ],
+          "events": [
+            {
+              "name": "click",
+              "description": "Whole-row-tappable by default; becomes inert (no tabindex) once a recognised interactive control is detected in leading/trailing."
+            }
+          ],
+          "cssProperties": [
+            {
+              "name": "--pds-on-surface-1",
+              "description": "Primary text, secondary text, and icon slots' default colour."
+            },
+            {
+              "name": "--pds-transparency-outline-20",
+              "description": "Divider colour."
+            }
+          ],
+          "cssParts": [
+            {
+              "name": "row"
+            },
+            {
+              "name": "leading"
+            },
+            {
+              "name": "content"
+            },
+            {
+              "name": "headline"
+            },
+            {
+              "name": "supporting-text"
+            },
+            {
+              "name": "trailing"
+            },
+            {
+              "name": "divider"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "PdsListRow",
+          "declaration": {
+            "name": "PdsListRow",
+            "module": "src/pds-list-row.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "pds-list-row",
+          "declaration": {
+            "name": "PdsListRow",
+            "module": "src/pds-list-row.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/pds-list.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "PdsList",
+          "tagName": "pds-list",
+          "customElement": true,
+          "description": "`<pds-list>`: a plain structural container (role=\"list\") for `pds-list-row` children.",
+          "attributes": [],
+          "members": [],
+          "slots": [
+            {
+              "name": "",
+              "description": "One or more `pds-list-row` elements."
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "PdsList",
+          "declaration": {
+            "name": "PdsList",
+            "module": "src/pds-list.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "pds-list",
+          "declaration": {
+            "name": "PdsList",
+            "module": "src/pds-list.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/pds-menu-item.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "PdsMenuItem",
+          "tagName": "pds-menu-item",
+          "customElement": true,
+          "description": "`<pds-menu-item>`: a single row inside `pds-menu`.",
+          "attributes": [
+            {
+              "name": "density",
+              "type": {
+                "text": "'0'|'-2'|'-4'"
+              },
+              "default": "0",
+              "description": "Row height: 56px / 48px / 40px. Normally set by the parent `pds-menu`, not authored directly."
+            },
+            {
+              "name": "selected",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Shows a checked leading icon and a tinted background."
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "description": "Included on the `select` event's detail."
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "density",
+              "type": {
+                "text": "'0'|'-2'|'-4'"
+              },
+              "default": "0",
+              "reflects": true,
+              "description": "Row height: 56px / 48px / 40px. Normally set by the parent `pds-menu`, not authored directly."
+            },
+            {
+              "kind": "field",
+              "name": "selected",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "reflects": true,
+              "description": "Shows a checked leading icon and a tinted background."
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "reflects": true,
+              "description": "Included on the `select` event's detail."
+            }
+          ],
+          "slots": [
+            {
+              "name": "",
+              "description": "Label text."
+            },
+            {
+              "name": "leading",
+              "description": "An optional leading icon. Ignored while `selected`."
+            },
+            {
+              "name": "trailing",
+              "description": "An optional trailing icon or shortcut hint."
+            }
+          ],
+          "events": [
+            {
+              "name": "select",
+              "description": "Fired on click or Enter/Space when not disabled. `detail: { value }`."
+            }
+          ],
+          "cssProperties": [
+            {
+              "name": "--pds-scheme-secondary-container",
+              "description": "Selected row background."
+            },
+            {
+              "name": "--pds-scheme-on-surface",
+              "description": "Label colour, and the base colour for the hover/focus/pressed state layer."
+            },
+            {
+              "name": "--pds-scheme-on-surface-variant",
+              "description": "Trailing icon or shortcut hint colour."
+            }
+          ],
+          "cssParts": [
+            {
+              "name": "row"
+            },
+            {
+              "name": "check"
+            },
+            {
+              "name": "leading"
+            },
+            {
+              "name": "label"
+            },
+            {
+              "name": "trailing"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "PdsMenuItem",
+          "declaration": {
+            "name": "PdsMenuItem",
+            "module": "src/pds-menu-item.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "pds-menu-item",
+          "declaration": {
+            "name": "PdsMenuItem",
+            "module": "src/pds-menu-item.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/pds-menu.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "PdsMenu",
+          "tagName": "pds-menu",
+          "customElement": true,
+          "description": "`<pds-menu>`: a dropdown panel of `pds-menu-item` children.",
+          "attributes": [
+            {
+              "name": "density",
+              "type": {
+                "text": "'0'|'-2'|'-4'"
+              },
+              "default": "0",
+              "description": "Propagated automatically to every slotted `pds-menu-item`."
+            },
+            {
+              "name": "open",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Whether the panel is shown."
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "density",
+              "type": {
+                "text": "'0'|'-2'|'-4'"
+              },
+              "default": "0",
+              "reflects": true,
+              "description": "Propagated automatically to every slotted `pds-menu-item`."
+            },
+            {
+              "kind": "field",
+              "name": "open",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "reflects": true,
+              "description": "Whether the panel is shown."
+            },
+            {
+              "kind": "method",
+              "name": "toggle"
+            },
+            {
+              "kind": "method",
+              "name": "close"
+            }
+          ],
+          "slots": [
+            {
+              "name": "trigger",
+              "description": "Optional trigger element. Click toggles open; Arrow Down/Up open the menu and focus the first/last item."
+            },
+            {
+              "name": "",
+              "description": "`pds-menu-item` elements."
+            }
+          ],
+          "events": [
+            {
+              "name": "select",
+              "description": "Not fired directly; bubbles from whichever `pds-menu-item` descendant was activated (detail: `{ value }`)."
+            }
+          ],
+          "cssProperties": [
+            {
+              "name": "--pds-container-secondary-1-50",
+              "description": "Panel fill."
+            }
+          ],
+          "cssParts": [
+            {
+              "name": "trigger"
+            },
+            {
+              "name": "panel"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "PdsMenu",
+          "declaration": {
+            "name": "PdsMenu",
+            "module": "src/pds-menu.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "pds-menu",
+          "declaration": {
+            "name": "PdsMenu",
+            "module": "src/pds-menu.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/pds-nav-item.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "PdsNavItem",
+          "tagName": "pds-nav-item",
+          "customElement": true,
+          "description": "`<pds-nav-item>`: a navigation destination, used inside `pds-navigation-bar`.",
+          "attributes": [
+            {
+              "name": "selected",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Exactly one `pds-nav-item` sharing the same parent is selected at a time; enforced by the parent."
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "selected",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "reflects": true,
+              "description": "Exactly one `pds-nav-item` sharing the same parent is selected at a time; enforced by the parent."
+            }
+          ],
+          "slots": [
+            {
+              "name": "",
+              "description": "The item's label text."
+            },
+            {
+              "name": "icon",
+              "description": "The destination's icon."
+            },
+            {
+              "name": "badge",
+              "description": "An optional `pds-badge`, positioned on the icon's corner."
+            }
+          ],
+          "events": [
+            {
+              "name": "change",
+              "description": "Fired when the user selects this item."
+            }
+          ],
+          "cssProperties": [
+            {
+              "name": "--pds-scheme-secondary-container",
+              "description": "Selected pill fill."
+            },
+            {
+              "name": "--pds-scheme-on-surface",
+              "description": "Selected label colour, and the base colour for the hover/focus/pressed wash."
+            },
+            {
+              "name": "--pds-scheme-on-surface-variant",
+              "description": "Unselected label colour."
+            }
+          ],
+          "cssParts": [
+            {
+              "name": "button"
+            },
+            {
+              "name": "pill"
+            },
+            {
+              "name": "label"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "PdsNavItem",
+          "declaration": {
+            "name": "PdsNavItem",
+            "module": "src/pds-nav-item.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "pds-nav-item",
+          "declaration": {
+            "name": "PdsNavItem",
+            "module": "src/pds-nav-item.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/pds-navigation-bar.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "PdsNavigationBar",
+          "tagName": "pds-navigation-bar",
+          "customElement": true,
+          "description": "`<pds-navigation-bar>`: a bottom navigation bar managing single-selection among its `pds-nav-item` children.",
+          "attributes": [],
+          "members": [],
+          "slots": [
+            {
+              "name": "",
+              "description": "One or more `pds-nav-item` elements, in destination order."
+            }
+          ],
+          "cssProperties": [
+            {
+              "name": "--pds-surface-1",
+              "description": "Bar background."
+            },
+            {
+              "name": "--pds-transparency-outline-20",
+              "description": "The bar's top divider."
+            }
+          ],
+          "cssParts": [
+            {
+              "name": "items"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "PdsNavigationBar",
+          "declaration": {
+            "name": "PdsNavigationBar",
+            "module": "src/pds-navigation-bar.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "pds-navigation-bar",
+          "declaration": {
+            "name": "PdsNavigationBar",
+            "module": "src/pds-navigation-bar.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/pds-progress.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "PdsProgress",
+          "tagName": "pds-progress",
+          "customElement": true,
+          "description": "`<pds-progress>`: a circular or linear progress indicator.",
+          "attributes": [
+            {
+              "name": "shape",
+              "type": {
+                "text": "'circular'|'linear'"
+              },
+              "default": "circular",
+              "description": "Which shape to render."
+            },
+            {
+              "name": "determinate",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "true requires `value` and announces it; false (default) loops indefinitely and announces busy instead. Never combine both."
+            },
+            {
+              "name": "value",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "description": "0-100, clamped. Read only when `determinate`."
+            },
+            {
+              "name": "thickness",
+              "type": {
+                "text": "'4'|'8'"
+              },
+              "default": "4",
+              "description": "Stroke weight in pixels. Circular: 40px diameter at 4, 44px at 8. Linear: a 12px track either way, only the inner bar height changes."
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "shape",
+              "type": {
+                "text": "'circular'|'linear'"
+              },
+              "default": "circular",
+              "reflects": true,
+              "description": "Which shape to render."
+            },
+            {
+              "kind": "field",
+              "name": "determinate",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "reflects": true,
+              "description": "true requires `value` and announces it; false (default) loops indefinitely and announces busy instead. Never combine both."
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "reflects": true,
+              "description": "0-100, clamped. Read only when `determinate`."
+            },
+            {
+              "kind": "field",
+              "name": "thickness",
+              "type": {
+                "text": "'4'|'8'"
+              },
+              "default": "4",
+              "reflects": true,
+              "description": "Stroke weight in pixels. Circular: 40px diameter at 4, 44px at 8. Linear: a 12px track either way, only the inner bar height changes."
+            }
+          ],
+          "cssProperties": [
+            {
+              "name": "--pds-transparency-outline-20",
+              "description": "Track colour, both shapes."
+            },
+            {
+              "name": "--pds-blue-300",
+              "description": "Active/fill colour, both shapes."
+            }
+          ],
+          "cssParts": [
+            {
+              "name": "circular"
+            },
+            {
+              "name": "track"
+            },
+            {
+              "name": "active"
+            },
+            {
+              "name": "linear"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "PdsProgress",
+          "declaration": {
+            "name": "PdsProgress",
+            "module": "src/pds-progress.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "pds-progress",
+          "declaration": {
+            "name": "PdsProgress",
+            "module": "src/pds-progress.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/pds-radio.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "PdsRadio",
+          "tagName": "pds-radio",
+          "customElement": true,
+          "description": "`<pds-radio>`: exactly one selection from a named group. Native radio grouping via a shared `name` does not cross a Shadow DOM boundary, so this component manages mutual exclusion itself in JavaScript rather than relying on the browser.",
+          "attributes": [
+            {
+              "name": "checked",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Whether this radio is selected."
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disabled state."
+            },
+            {
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "description": "Groups every `pds-radio` sharing this exact value into one mutually exclusive set."
+            },
+            {
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "description": "Forwarded to the internal input's value."
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "checked",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "reflects": true,
+              "description": "Whether this radio is selected."
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "reflects": true,
+              "description": "Disabled state."
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "reflects": true,
+              "description": "Groups every `pds-radio` sharing this exact value into one mutually exclusive set."
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "reflects": true,
+              "description": "Forwarded to the internal input's value."
+            }
+          ],
+          "slots": [
+            {
+              "name": "",
+              "description": "The radio's label text. Casing is left exactly as typed."
+            }
+          ],
+          "events": [
+            {
+              "name": "change",
+              "description": "Fired when the user checks this radio (click, Space, or Arrow-key navigation from a sibling in the same group)."
+            }
+          ],
+          "cssProperties": [
+            {
+              "name": "--pds-orange-500",
+              "description": "Ring, dot and hover/press wash colour when checked."
+            },
+            {
+              "name": "--pds-grey-300",
+              "description": "Ring, dot and hover/press wash colour when unchecked."
+            },
+            {
+              "name": "--pds-on-surface-1",
+              "description": "Label text colour."
+            }
+          ],
+          "cssParts": [
+            {
+              "name": "label"
+            },
+            {
+              "name": "control"
+            },
+            {
+              "name": "wash"
+            },
+            {
+              "name": "ring"
+            },
+            {
+              "name": "dot"
+            },
+            {
+              "name": "text"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "PdsRadio",
+          "declaration": {
+            "name": "PdsRadio",
+            "module": "src/pds-radio.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "pds-radio",
+          "declaration": {
+            "name": "PdsRadio",
+            "module": "src/pds-radio.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/pds-search.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "PdsSearch",
+          "tagName": "pds-search",
+          "customElement": true,
+          "description": "`<pds-search>`: a search bar wrapping a native `<input type=\"search\">`.",
+          "attributes": [
+            {
+              "name": "placeholder",
+              "type": {
+                "text": "string"
+              },
+              "description": "Forwarded to the internal input."
+            },
+            {
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "description": "Seeds the internal input's initial value."
+            },
+            {
+              "name": "debounce",
+              "type": {
+                "text": "number"
+              },
+              "default": "300",
+              "description": "Milliseconds to wait after the last keystroke before firing `search`."
+            },
+            {
+              "name": "min-length",
+              "type": {
+                "text": "number"
+              },
+              "default": "2",
+              "description": "Minimum trimmed query length required before `search` can fire."
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "placeholder",
+              "type": {
+                "text": "string"
+              },
+              "reflects": true,
+              "description": "Forwarded to the internal input."
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "reflects": true,
+              "description": "Seeds the internal input's initial value."
+            },
+            {
+              "kind": "field",
+              "name": "debounce",
+              "type": {
+                "text": "number"
+              },
+              "default": "300",
+              "reflects": true,
+              "description": "Milliseconds to wait after the last keystroke before firing `search`."
+            },
+            {
+              "kind": "field",
+              "name": "minLength",
+              "type": {
+                "text": "number"
+              },
+              "default": "2",
+              "reflects": true,
+              "attribute": "min-length",
+              "description": "Minimum trimmed query length required before `search` can fire."
+            }
+          ],
+          "slots": [
+            {
+              "name": "icon",
+              "description": "Optional leading icon or avatar."
+            }
+          ],
+          "events": [
+            {
+              "name": "search",
+              "description": "detail: `{ value }`. Fires `debounce` ms after the last keystroke once `min-length` is met, or immediately on Enter."
+            }
+          ],
+          "cssProperties": [
+            {
+              "name": "--pds-transparency-outline-20",
+              "description": "Border colour."
+            },
+            {
+              "name": "--pds-transparent-white-8",
+              "description": "Hover wash."
+            },
+            {
+              "name": "--pds-transparent-white-12",
+              "description": "Pressed wash."
+            },
+            {
+              "name": "--pds-on-surface-1",
+              "description": "Icon and typed-text colour."
+            },
+            {
+              "name": "--pds-on-surface-2",
+              "description": "Placeholder text colour."
+            }
+          ],
+          "cssParts": [
+            {
+              "name": "bar"
+            },
+            {
+              "name": "leading-icon"
+            },
+            {
+              "name": "input"
+            },
+            {
+              "name": "search-button"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "PdsSearch",
+          "declaration": {
+            "name": "PdsSearch",
+            "module": "src/pds-search.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "pds-search",
+          "declaration": {
+            "name": "PdsSearch",
+            "module": "src/pds-search.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/pds-side-sheet.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "PdsSideSheet",
+          "tagName": "pds-side-sheet",
+          "customElement": true,
+          "description": "`<pds-side-sheet>`: a panel anchored to the left or right edge of the viewport, for supplementary content or actions alongside the main view. Wraps the native `<dialog>` element.",
+          "attributes": [
+            {
+              "name": "open",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Reflects the sheet's shown/hidden state. Prefer the `show()`/`close()` methods over toggling this directly."
+            },
+            {
+              "name": "side",
+              "type": {
+                "text": "'end'|'start'"
+              },
+              "default": "end",
+              "description": "Which viewport edge the sheet is anchored to. `end` is right in a left-to-right layout."
+            },
+            {
+              "name": "dismissible",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "description": "Whether Escape and a backdrop click close the sheet. Set `dismissible=\"false\"` for a sheet that requires an explicit in-content action to close."
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "open",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "reflects": true,
+              "description": "Reflects the sheet's shown/hidden state. Prefer the `show()`/`close()` methods over toggling this directly."
+            },
+            {
+              "kind": "field",
+              "name": "side",
+              "type": {
+                "text": "'end'|'start'"
+              },
+              "default": "end",
+              "reflects": true,
+              "description": "Which viewport edge the sheet is anchored to. `end` is right in a left-to-right layout."
+            },
+            {
+              "kind": "field",
+              "name": "dismissible",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "reflects": true,
+              "description": "Whether Escape and a backdrop click close the sheet. Set `dismissible=\"false\"` for a sheet that requires an explicit in-content action to close."
+            },
+            {
+              "kind": "method",
+              "name": "show"
+            },
+            {
+              "kind": "method",
+              "name": "close"
+            }
+          ],
+          "slots": [
+            {
+              "name": "",
+              "description": "The sheet's content."
+            }
+          ],
+          "events": [
+            {
+              "name": "dismiss",
+              "description": "Fired when the sheet closes. `detail: { reason }`, where reason is `\"backdrop\"`, `\"escape\"`, or `\"api\"`."
+            }
+          ],
+          "cssProperties": [
+            {
+              "name": "--pds-surface-1",
+              "description": "Sheet background."
+            },
+            {
+              "name": "--pds-transparent-black-50",
+              "description": "Backdrop scrim."
+            }
+          ],
+          "cssParts": [
+            {
+              "name": "dialog"
+            },
+            {
+              "name": "content"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "PdsSideSheet",
+          "declaration": {
+            "name": "PdsSideSheet",
+            "module": "src/pds-side-sheet.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "pds-side-sheet",
+          "declaration": {
+            "name": "PdsSideSheet",
+            "module": "src/pds-side-sheet.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/pds-snackbar.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "PdsSnackbar",
+          "tagName": "pds-snackbar",
+          "customElement": true,
+          "description": "`<pds-snackbar>`: a brief, non-blocking confirmation that something happened. A snackbar confirms a background action that already finished (\"Order submitted successfully\"). It never blocks the user and never carries information the user needs to complete a task or avoid an error; use a dialog for that instead.",
+          "attributes": [
+            {
+              "name": "message",
+              "type": {
+                "text": "string"
+              },
+              "description": "The notification text. Omit and use the default slot instead for richer needs. Keep it to one short, plain-language line; never markup or a link."
+            },
+            {
+              "name": "action-label",
+              "type": {
+                "text": "string"
+              },
+              "description": "Optional single action, rendered as a plain text button, never filled or elevated. Suspends the auto-dismiss timer; waits for the user to act instead."
+            },
+            {
+              "name": "duration",
+              "type": {
+                "text": "number"
+              },
+              "default": "6000",
+              "description": "Milliseconds before auto-dismiss. 0 disables auto-dismiss. Ignored while `action-label` is set."
+            },
+            {
+              "name": "dismissible",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Shows a close button, a 48x48 tap target around a 24x24 icon."
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "message",
+              "type": {
+                "text": "string"
+              },
+              "reflects": true,
+              "description": "The notification text. Omit and use the default slot instead for richer needs. Keep it to one short, plain-language line; never markup or a link."
+            },
+            {
+              "kind": "field",
+              "name": "actionLabel",
+              "type": {
+                "text": "string"
+              },
+              "reflects": true,
+              "attribute": "action-label",
+              "description": "Optional single action, rendered as a plain text button, never filled or elevated. Suspends the auto-dismiss timer; waits for the user to act instead."
+            },
+            {
+              "kind": "field",
+              "name": "duration",
+              "type": {
+                "text": "number"
+              },
+              "default": "6000",
+              "reflects": true,
+              "description": "Milliseconds before auto-dismiss. 0 disables auto-dismiss. Ignored while `action-label` is set."
+            },
+            {
+              "kind": "field",
+              "name": "dismissible",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "reflects": true,
+              "description": "Shows a close button, a 48x48 tap target around a 24x24 icon."
+            }
+          ],
+          "slots": [
+            {
+              "name": "",
+              "description": "Message content, used only when the `message` attribute is not set."
+            }
+          ],
+          "events": [
+            {
+              "name": "dismiss",
+              "description": "detail: `{ reason: \"timeout\" | \"action\" | \"close\" }`. Fired just before the component hides itself."
+            }
+          ],
+          "cssProperties": [
+            {
+              "name": "--pds-container-secondary-2-100",
+              "description": "Surface fill."
+            },
+            {
+              "name": "--pds-on-container-inverse-primary",
+              "description": "Message and close-icon colour."
+            },
+            {
+              "name": "--pds-on-container-tertiary",
+              "description": "Action label colour."
+            },
+            {
+              "name": "--pds-snackbar-offset-bottom",
+              "description": "Gap from the viewport bottom edge."
+            },
+            {
+              "name": "--pds-transparency-outline-20",
+              "description": "Hover/focus feedback placeholder."
+            }
+          ],
+          "cssParts": [
+            {
+              "name": "message"
+            },
+            {
+              "name": "action"
+            },
+            {
+              "name": "close"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "PdsSnackbar",
+          "declaration": {
+            "name": "PdsSnackbar",
+            "module": "src/pds-snackbar.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "pds-snackbar",
+          "declaration": {
+            "name": "PdsSnackbar",
+            "module": "src/pds-snackbar.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/pds-switch.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "PdsSwitch",
+          "tagName": "pds-switch",
+          "customElement": true,
+          "description": "`<pds-switch>`: an on/off toggle whose effect is immediate. Use this rather than a checkbox when the setting takes effect right away, with no separate save step. Use a checkbox instead when the choice only takes effect on a later submit.",
+          "attributes": [
+            {
+              "name": "checked",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "The on/off state. Wraps a native `<input type=\"checkbox\" role=\"switch\">`."
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disabled state (a flat opacity dim, not a colour swap)."
+            },
+            {
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "description": "Accessible name, applied as `aria-label` on the internal input."
+            },
+            {
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "description": "Forwarded to the internal input for form use."
+            },
+            {
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "on",
+              "description": "Forwarded to the internal input for form use."
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "checked",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "reflects": true,
+              "description": "The on/off state. Wraps a native `<input type=\"checkbox\" role=\"switch\">`."
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "reflects": true,
+              "description": "Disabled state (a flat opacity dim, not a colour swap)."
+            },
+            {
+              "kind": "field",
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "reflects": true,
+              "description": "Accessible name, applied as `aria-label` on the internal input."
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "reflects": true,
+              "description": "Forwarded to the internal input for form use."
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "on",
+              "reflects": true,
+              "description": "Forwarded to the internal input for form use."
+            }
+          ],
+          "events": [
+            {
+              "name": "change",
+              "description": "Re-dispatched from the internal input's native change."
+            }
+          ],
+          "cssProperties": [
+            {
+              "name": "--pds-surface-2",
+              "description": "Track fill, off."
+            },
+            {
+              "name": "--pds-container-primary-1",
+              "description": "Track fill, on."
+            },
+            {
+              "name": "--pds-on-container-inverse-primary",
+              "description": "Track outline (off only) and thumb fill, off."
+            },
+            {
+              "name": "--pds-on-container-tertiary",
+              "description": "Thumb fill, on."
+            },
+            {
+              "name": "--pds-transparent-black-20",
+              "description": "Track outline and thumb overlay, off."
+            },
+            {
+              "name": "--pds-transparent-black-50",
+              "description": "Thumb overlay, on."
+            },
+            {
+              "name": "--pds-transparent-white-8",
+              "description": "Hover/Focus ripple."
+            },
+            {
+              "name": "--pds-transparent-white-12",
+              "description": "Pressed ripple."
+            }
+          ],
+          "cssParts": [
+            {
+              "name": "control"
+            },
+            {
+              "name": "track"
+            },
+            {
+              "name": "state-layer"
+            },
+            {
+              "name": "thumb"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "PdsSwitch",
+          "declaration": {
+            "name": "PdsSwitch",
+            "module": "src/pds-switch.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "pds-switch",
+          "declaration": {
+            "name": "PdsSwitch",
+            "module": "src/pds-switch.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/pds-tab.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "PdsTab",
+          "tagName": "pds-tab",
+          "customElement": true,
+          "description": "`<pds-tab>`: a tab item, used inside `pds-tabs`.",
+          "attributes": [
+            {
+              "name": "selected",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Normally set by the parent `pds-tabs`."
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disabled state."
+            },
+            {
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "description": "An identifier for whatever content this tab switches to."
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "selected",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "reflects": true,
+              "description": "Normally set by the parent `pds-tabs`."
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "reflects": true,
+              "description": "Disabled state."
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "reflects": true,
+              "description": "An identifier for whatever content this tab switches to."
+            }
+          ],
+          "slots": [
+            {
+              "name": "",
+              "description": "The label text. Casing is left exactly as typed."
+            },
+            {
+              "name": "badge",
+              "description": "Optional badge content; place a `pds-badge` here."
+            }
+          ],
+          "events": [
+            {
+              "name": "change",
+              "description": "Dispatched by the parent `pds-tabs` when this tab becomes selected."
+            }
+          ],
+          "cssProperties": [
+            {
+              "name": "--pds-on-container-tertiary",
+              "description": "Selected label and indicator colour."
+            },
+            {
+              "name": "--pds-on-surface-1",
+              "description": "Unselected label colour."
+            }
+          ],
+          "cssParts": [
+            {
+              "name": "tab"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "PdsTab",
+          "declaration": {
+            "name": "PdsTab",
+            "module": "src/pds-tab.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "pds-tab",
+          "declaration": {
+            "name": "PdsTab",
+            "module": "src/pds-tab.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/pds-tabs.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "PdsTabs",
+          "tagName": "pds-tabs",
+          "customElement": true,
+          "description": "`<pds-tabs>`: a tab list managing selection and keyboard navigation for its `pds-tab` children.",
+          "attributes": [],
+          "members": [
+            {
+              "kind": "field",
+              "name": "selectedTab",
+              "reflects": false,
+              "readonly": true,
+              "type": {
+                "text": "PdsTab | null"
+              },
+              "description": "The currently selected tab element, or `null` if none is selected."
+            }
+          ],
+          "slots": [
+            {
+              "name": "",
+              "description": "One or more `pds-tab` elements."
+            }
+          ],
+          "events": [
+            {
+              "name": "change",
+              "description": "Bubbles from whichever `pds-tab` becomes selected."
+            }
+          ],
+          "cssProperties": [
+            {
+              "name": "--pds-surface-1",
+              "description": "Background of the whole tab row."
+            },
+            {
+              "name": "--pds-transparency-outline-20",
+              "description": "The row's bottom divider colour."
+            }
+          ],
+          "cssParts": [
+            {
+              "name": "list"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "PdsTabs",
+          "declaration": {
+            "name": "PdsTabs",
+            "module": "src/pds-tabs.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "pds-tabs",
+          "declaration": {
+            "name": "PdsTabs",
+            "module": "src/pds-tabs.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/pds-text-field.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "PdsTextField",
+          "tagName": "pds-text-field",
+          "customElement": true,
+          "description": "`<pds-text-field>`: a labelled text input, wrapping a native input/textarea.",
+          "attributes": [
+            {
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "description": "Visible caption, programmatically associated with the input via a real `<label for>`."
+            },
+            {
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "description": "Current text; reflects the live control on every input event."
+            },
+            {
+              "name": "placeholder",
+              "type": {
+                "text": "string"
+              },
+              "description": "Forwarded to the internal control."
+            },
+            {
+              "name": "error",
+              "type": {
+                "text": "string"
+              },
+              "description": "An error message. Replaces `supporting-text` when set; the two never show together."
+            },
+            {
+              "name": "supporting-text",
+              "type": {
+                "text": "string"
+              },
+              "description": "Helper text below the field. Hidden whenever `error` is set."
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disabled state."
+            },
+            {
+              "name": "type",
+              "type": {
+                "text": "'text'|'password'|'tel'"
+              },
+              "default": "text",
+              "description": "Forwarded to the internal input. Ignored while `multiline` is set."
+            },
+            {
+              "name": "multiline",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Renders a real `<textarea>` instead of `<input>`."
+            },
+            {
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "description": "Forwarded to the internal control."
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "reflects": true,
+              "description": "Visible caption, programmatically associated with the input via a real `<label for>`."
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "reflects": true,
+              "description": "Current text; reflects the live control on every input event."
+            },
+            {
+              "kind": "field",
+              "name": "placeholder",
+              "type": {
+                "text": "string"
+              },
+              "reflects": true,
+              "description": "Forwarded to the internal control."
+            },
+            {
+              "kind": "field",
+              "name": "error",
+              "type": {
+                "text": "string"
+              },
+              "reflects": true,
+              "description": "An error message. Replaces `supporting-text` when set; the two never show together."
+            },
+            {
+              "kind": "field",
+              "name": "supportingText",
+              "type": {
+                "text": "string"
+              },
+              "reflects": true,
+              "attribute": "supporting-text",
+              "description": "Helper text below the field. Hidden whenever `error` is set."
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "reflects": true,
+              "description": "Disabled state."
+            },
+            {
+              "kind": "field",
+              "name": "type",
+              "type": {
+                "text": "'text'|'password'|'tel'"
+              },
+              "default": "text",
+              "reflects": true,
+              "description": "Forwarded to the internal input. Ignored while `multiline` is set."
+            },
+            {
+              "kind": "field",
+              "name": "multiline",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "reflects": true,
+              "description": "Renders a real `<textarea>` instead of `<input>`."
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "reflects": true,
+              "description": "Forwarded to the internal control."
+            }
+          ],
+          "slots": [
+            {
+              "name": "leading-icon",
+              "description": "Optional leading icon/adornment."
+            },
+            {
+              "name": "trailing-icon",
+              "description": "Optional trailing icon/adornment."
+            }
+          ],
+          "events": [
+            {
+              "name": "input",
+              "description": "Native input event, already composed."
+            },
+            {
+              "name": "change",
+              "description": "Re-dispatched since the internal control's own change does not cross the shadow boundary."
+            }
+          ],
+          "cssProperties": [
+            {
+              "name": "--pds-on-surface-1",
+              "description": "Label colour, typed-value colour, and default supporting-text colour."
+            },
+            {
+              "name": "--pds-on-surface-2",
+              "description": "Label colour when disabled."
+            },
+            {
+              "name": "--pds-transparency-outline-20",
+              "description": "Border colour at rest, and both fill and border when disabled."
+            },
+            {
+              "name": "--pds-on-surface-text-negative",
+              "description": "Border and text colour when `error` is set."
+            },
+            {
+              "name": "--pds-grey-300",
+              "description": "Placeholder colour, and the disabled state's displayed-text colour."
+            }
+          ],
+          "cssParts": [
+            {
+              "name": "label"
+            },
+            {
+              "name": "container"
+            },
+            {
+              "name": "leading-icon"
+            },
+            {
+              "name": "input"
+            },
+            {
+              "name": "trailing-icon"
+            },
+            {
+              "name": "supporting"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "PdsTextField",
+          "declaration": {
+            "name": "PdsTextField",
+            "module": "src/pds-text-field.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "pds-text-field",
+          "declaration": {
+            "name": "PdsTextField",
+            "module": "src/pds-text-field.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/pds-tooltip.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "PdsTooltip",
+          "tagName": "pds-tooltip",
+          "customElement": true,
+          "description": "`<pds-tooltip>`: a short label or richer note attached to a trigger element.",
+          "attributes": [
+            {
+              "name": "variant",
+              "type": {
+                "text": "'plain'|'rich'"
+              },
+              "default": "plain",
+              "description": "plain = a single label; rich = heading, body, and up to two actions."
+            },
+            {
+              "name": "placement",
+              "type": {
+                "text": "'above'|'below'"
+              },
+              "default": "above",
+              "description": "Where the surface renders relative to the trigger."
+            },
+            {
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "description": "Plain-variant text. Required for variant=\"plain\"."
+            },
+            {
+              "name": "heading",
+              "type": {
+                "text": "string"
+              },
+              "description": "Rich-variant title. Omit to hide it."
+            },
+            {
+              "name": "open",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Whether the tooltip surface is shown. Normally driven by hover/focus of the slotted trigger."
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "variant",
+              "type": {
+                "text": "'plain'|'rich'"
+              },
+              "default": "plain",
+              "reflects": true,
+              "description": "plain = a single label; rich = heading, body, and up to two actions."
+            },
+            {
+              "kind": "field",
+              "name": "placement",
+              "type": {
+                "text": "'above'|'below'"
+              },
+              "default": "above",
+              "reflects": true,
+              "description": "Where the surface renders relative to the trigger."
+            },
+            {
+              "kind": "field",
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "reflects": true,
+              "description": "Plain-variant text. Required for variant=\"plain\"."
+            },
+            {
+              "kind": "field",
+              "name": "heading",
+              "type": {
+                "text": "string"
+              },
+              "reflects": true,
+              "description": "Rich-variant title. Omit to hide it."
+            },
+            {
+              "kind": "field",
+              "name": "open",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "reflects": true,
+              "description": "Whether the tooltip surface is shown. Normally driven by hover/focus of the slotted trigger."
+            }
+          ],
+          "slots": [
+            {
+              "name": "",
+              "description": "The trigger element the tooltip attaches to."
+            },
+            {
+              "name": "body",
+              "description": "Rich-variant supporting text."
+            },
+            {
+              "name": "primary-action",
+              "description": "Rich-variant first action."
+            },
+            {
+              "name": "secondary-action",
+              "description": "Rich-variant second action; omit for a single action."
+            }
+          ],
+          "cssProperties": [
+            {
+              "name": "--pds-container-secondary-2-100",
+              "description": "Fill for the surface and the nub, both variants."
+            },
+            {
+              "name": "--pds-on-container-inverse-primary",
+              "description": "Text colour, both variants."
+            },
+            {
+              "name": "--pds-on-container-tertiary",
+              "description": "Fallback colour applied to slotted actions."
+            }
+          ],
+          "cssParts": [
+            {
+              "name": "trigger"
+            },
+            {
+              "name": "surface"
+            },
+            {
+              "name": "heading"
+            },
+            {
+              "name": "body"
+            },
+            {
+              "name": "label"
+            },
+            {
+              "name": "actions"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "PdsTooltip",
+          "declaration": {
+            "name": "PdsTooltip",
+            "module": "src/pds-tooltip.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "pds-tooltip",
+          "declaration": {
+            "name": "PdsTooltip",
+            "module": "src/pds-tooltip.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/pds-top-app-bar.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "PdsTopAppBar",
+          "tagName": "pds-top-app-bar",
+          "customElement": true,
+          "description": "`<pds-top-app-bar>`: the header at the top of a screen.",
+          "attributes": [
+            {
+              "name": "variant",
+              "type": {
+                "text": "'short'|'short-with-sub'|'long'"
+              },
+              "default": "short",
+              "description": "short and short-with-sub are a fixed 64px; long is 96px and can grow further for a longer headline."
+            },
+            {
+              "name": "title",
+              "type": {
+                "text": "string"
+              },
+              "description": "The headline text. Renders as the default slot's fallback content; slotted markup takes over instead."
+            },
+            {
+              "name": "subtitle",
+              "type": {
+                "text": "string"
+              },
+              "description": "Second line of text; only shown while `variant=\"short-with-sub\"`."
+            },
+            {
+              "name": "scrolled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Applies an on-scroll tint. This component has no scroll listener of its own; toggle this yourself."
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "variant",
+              "type": {
+                "text": "'short'|'short-with-sub'|'long'"
+              },
+              "default": "short",
+              "reflects": true,
+              "description": "short and short-with-sub are a fixed 64px; long is 96px and can grow further for a longer headline."
+            },
+            {
+              "kind": "field",
+              "name": "title",
+              "type": {
+                "text": "string"
+              },
+              "reflects": true,
+              "description": "The headline text. Renders as the default slot's fallback content; slotted markup takes over instead."
+            },
+            {
+              "kind": "field",
+              "name": "subtitle",
+              "type": {
+                "text": "string"
+              },
+              "reflects": true,
+              "description": "Second line of text; only shown while `variant=\"short-with-sub\"`."
+            },
+            {
+              "kind": "field",
+              "name": "scrolled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "reflects": true,
+              "description": "Applies an on-scroll tint. This component has no scroll listener of its own; toggle this yourself."
+            }
+          ],
+          "slots": [
+            {
+              "name": "",
+              "description": "The title text, for richer markup than the `title` attribute allows."
+            },
+            {
+              "name": "leading",
+              "description": "A leading icon or back button, sized to a 48x48 target."
+            },
+            {
+              "name": "trailing",
+              "description": "Trailing action icons."
+            }
+          ],
+          "cssProperties": [
+            {
+              "name": "--pds-surface-1",
+              "description": "Bar background."
+            },
+            {
+              "name": "--pds-on-surface-1",
+              "description": "Title colour, and the default colour the leading/trailing slots inherit."
+            },
+            {
+              "name": "--pds-on-surface-2",
+              "description": "Subtitle colour."
+            },
+            {
+              "name": "--pds-top-app-bar-scroll-tint",
+              "description": "Opacity (0 to 1) of the tint applied while `scrolled`."
+            }
+          ],
+          "cssParts": [
+            {
+              "name": "bar"
+            },
+            {
+              "name": "leading"
+            },
+            {
+              "name": "content"
+            },
+            {
+              "name": "title"
+            },
+            {
+              "name": "subtitle"
+            },
+            {
+              "name": "trailing"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "PdsTopAppBar",
+          "declaration": {
+            "name": "PdsTopAppBar",
+            "module": "src/pds-top-app-bar.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "pds-top-app-bar",
+          "declaration": {
+            "name": "PdsTopAppBar",
+            "module": "src/pds-top-app-bar.js"
+          }
+        }
+      ]
+    }
+  ]
+}
