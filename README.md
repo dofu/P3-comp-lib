@@ -19,9 +19,11 @@ new page or in an existing project, unless the prompt says otherwise.
    your own. If the library has no component or icon for what you need,
    say so in your answer and use the closest one. Do not invent it.
 2. **The current POEMS app is not a reference.** Do not reproduce its
-   visuals or its screenshots. This library and `tokens/tokens.css` are
-   the only visual source: use the tokens for every colour, never a hex
-   value or a custom colour.
+   visuals or its screenshots. This library, `tokens/tokens.css` and the
+   reference screens in `examples/` are the only visual sources: use the
+   tokens for every colour, never a hex value or a custom colour, and
+   match the reference screen when one exists for the tab you are
+   building (see `examples/README.md`, which says how current each one is).
 3. **Bottom navigation only on root screens.** Add `pds-navigation-bar`
    (Home, Watchlist, Markets, Trade, Community, Me) only when the prompt
    names a root screen or asks for it. A detail screen, a form or a ticket
@@ -139,6 +141,7 @@ P3-comp-lib/
   tokens/tokens.css     - colour tokens as CSS custom properties (light + dark)
   brand/                - POEMS logo and mark as SVG (website pages only)
   icons/                - V2 icon set, 135 SVG files + icons.json (use through pds-icon)
+  examples/             - reference screens pulled from Figma, with provenance and staleness (examples/README.md)
   preview/pds-preview.* - the reviewer's frame and toggles for generated screens (not in index.js)
   src/pds-<name>.js     - one file per component (25 files)
   src/pds-<name>.md     - usage guidance per component (when to use, do & don't, gaps)
