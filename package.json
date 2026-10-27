@@ -4,7 +4,12 @@
   "description": "A framework-free component library, built as native web components.",
   "type": "module",
   "main": "index.js",
-  "files": ["src", "tokens", "custom-elements.json"],
+  "files": [
+    "src",
+    "tokens",
+    "brand",
+    "custom-elements.json"
+  ],
   "customElements": "custom-elements.json",
   "license": "UNLICENSED",
   "private": true

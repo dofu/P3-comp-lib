@@ -30,11 +30,46 @@ guide. See "What's built" below for the full list and tag names.
    importing `./index.js` (or the one component needed from `src/`) and
    `./tokens/tokens.css`.
 
+## Rules for every screen
+
+Read these before generating anything. They apply to every screen built
+with this library unless the prompt says otherwise.
+
+1. **No logo in an app screen.** POEMS app screens never carry the POEMS
+   logo or wordmark in the header. The top app bar holds a title,
+   navigation and actions only. The logo belongs to website pages, and
+   only when the prompt says the screen is a website. Treat every screen
+   as an app screen unless told it is a website.
+2. **Light and dark preview, outside the screen.** Render the screen
+   inside a phone-sized frame and put a light/dark toggle on the page
+   outside that frame, for the person reviewing the design to flip
+   themes. The toggle is not part of the screen and must not appear
+   inside it. It sets `data-theme="light"` or `data-theme="dark"` on the
+   `<html>` element, which is what `tokens/tokens.css` reads. For the
+   theme to show, the screen's own surface must paint
+   `background: var(--pds-surface-1)` and `color: var(--pds-on-surface-1)`;
+   the library does not style the page for you.
+
+## Brand assets
+
+`brand/` holds the POEMS logo from the Foundations file, as SVG:
+
+| File | Use |
+|---|---|
+| `brand/poems-logo.svg` | wordmark with the orange swoosh, 62 x 34, for light backgrounds |
+| `brand/poems-logo-on-dark.svg` | same wordmark in white, for dark backgrounds |
+| `brand/poems-mark.svg` | the square "p" mark, 34 x 34, for light backgrounds |
+| `brand/poems-mark-on-dark.svg` | the "p" mark in white, for dark backgrounds |
+
+Website pages only (see rule 1). Do not recolour, stretch or redraw them;
+scale with `width`/`height` on an `<img>` and keep the aspect ratio.
+
 ## Folder layout
 
 ```
 P3-comp-lib/
   tokens/tokens.css     - colour tokens as CSS custom properties (light + dark)
+  brand/                - POEMS logo and mark as SVG (website pages only)
   src/pds-<name>.js     - one file per component (25 files)
   src/pds-<name>.md     - usage guidance per component (when to use, do & don't, gaps)
   custom-elements.json  - machine-readable manifest of all 25 components
