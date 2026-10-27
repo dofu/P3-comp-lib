@@ -25,6 +25,12 @@ confirmation, or a blocking error. Never show more than one dialog at once.
 
 - Never stack a second dialog on top of an open one.
 
+## In a preview
+
+Inside `pds-preview` the dialog opens inside the phone frame with its own
+scrim, so it reads like the app. Outside a preview it is a real modal in
+the browser's top layer.
+
 ## Known limitations
 
 - No icon slot or scrollable-content layout yet, just title, body, and up

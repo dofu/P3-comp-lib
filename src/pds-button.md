@@ -55,6 +55,11 @@ request is in flight.
   link, not a third button. (No text variant ships yet; use a plain link
   styled with `--pds-on-container-tertiary` until it does.)
 
+## Buy and Sell
+
+`tone="positive"` makes the button green (Buy, price up), `tone="negative"`
+red (Sell, price down), in both variants. Everything else stays orange.
+
 ## Don't
 
 - Never use two `variant="primary"` buttons on one screen.

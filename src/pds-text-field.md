@@ -22,6 +22,12 @@ value is never cut short.
 
 - Never truncate a typed value with an ellipsis; let it shrink or scroll instead.
 
+## Label beside the field
+
+The trade ticket puts labels to the left: `label-position="start"` lays the
+label and the field on one row (two fifths, three fifths), supporting text
+under the field.
+
 ## Known limitations
 
 - Only a single generic trailing-icon slot; no built-in password

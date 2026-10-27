@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Trade Ticket</title>
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="../../tokens/tokens.css">
+  <style>
+    /* Layout: one phone frame (pds-preview) on a plain stage. Inside it the ticket is a column of
+       label | control rows on a 16px gutter, a quote block above, a gross-value band below. The review
+       sheet and the risk-check dialog are the library's own modals. Every colour is a tokens.css token. */
+    html, body { margin: 0; }
+    body {
+      background: var(--pds-surface-1);
+      color: var(--pds-on-surface-1);
+      font-family: Roboto, system-ui, sans-serif;
+      padding-block: 0;
+      padding-left: max(16px, env(safe-area-inset-left, 0px));
+      padding-right: max(16px, env(safe-area-inset-right, 0px));
+    }
+    [hidden] { display: none !important; }
+
+    .ticket { display: flex; flex-direction: column; font-size: 14px; line-height: 20px; }
+    .num { font-variant-numeric: tabular-nums; }
+    .muted { color: var(--pds-on-surface-2); }
+    .neg { color: var(--pds-on-surface-text-negative); }
+    .spacer { flex: 1; }
+
+    /* Counter header */
+    .counter { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 8px 16px 4px; }
+    .counter h1, .counter h3 { margin: 0; font-size: 20px; line-height: 28px; font-weight: 400; }
+    .counter p { margin: 0; }
+
+    /* Quote block */
+    .quote { display: grid; gap: 8px; padding: 0 16px 12px; }
+    .quote-row { display: flex; align-items: center; gap: 8px; min-height: 48px; }
+    .quote-row .price { font-size: 20px; line-height: 28px; }
+    .depth { display: grid; gap: 8px; }
+    .bidask { display: flex; align-items: stretch; border: 1px solid var(--pds-transparency-outline-20); border-radius: 8px; overflow: hidden; }
+    .bidask > div { flex: 1; min-width: 0; display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 8px 12px; }
+    .bidask .num { font-size: 16px; line-height: 24px; }
+    .vols { display: flex; justify-content: space-between; gap: 8px; }
+    .vols > div { display: grid; gap: 2px; }
+    .vols > div:nth-child(2) { text-align: center; }
+    .vols > div:last-child { text-align: right; }
+    .vols .num { font-size: 16px; line-height: 24px; }
+    .unit-vols { padding: 0 16px 12px; }
+
+    .unit { display: flex; align-items: center; gap: 8px; min-height: 56px; padding: 0 16px; }
+
+    /* Order form */
+    .order { display: flex; flex-direction: column; padding: 4px 0 8px; }
+    .segment { display: flex; flex-wrap: wrap; gap: 8px; }
+    .segment.side { padding: 8px 16px 8px; }
+    .row { display: grid; grid-template-columns: minmax(0, 104px) minmax(0, 1fr); align-items: center; gap: 8px 12px; min-height: 56px; padding: 2px 16px; }
+    .row > .segment { justify-content: flex-end; gap: 6px; }
+    .row > .value { text-align: right; font-size: 16px; line-height: 24px; }
+    .stepper { display: flex; align-items: center; gap: 4px; min-width: 0; }
+    .stepper pds-text-field { flex: 1; min-width: 0; }
+    .stepper pds-text-field::part(input) { text-align: center; }
+    pds-menu { display: block; min-width: 0; }
+    pds-menu::part(panel) { width: 100%; }
+    .limits { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 16px; padding: 4px 16px 12px; font-size: 12px; line-height: 16px; }
+    .limits > div { display: flex; justify-content: space-between; gap: 8px; min-width: 0; }
+
+    /* Gross value band and the one main action */
+    .total { display: grid; gap: 12px; padding: 16px; background: var(--pds-surface-2); }
+    .gross { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+    .gross .label { font-weight: 500; letter-spacing: 0.5px; text-transform: uppercase; }
+    .gross .num { font-size: 20px; line-height: 28px; }
+    pds-button.full { display: block; width: 100%; }
+    pds-button.full::part(button) { width: 100%; }
+
+    /* Review order sheet: phone-wide even on a desktop viewport */
+    pds-bottom-sheet::part(dialog) { width: 375px; max-width: 100%; margin: 0 auto; }
+    pds-bottom-sheet::part(content) { padding: 0; }
+    .sheet h2 { margin: 0; padding: 8px 16px 16px; font-size: 22px; line-height: 28px; font-weight: 400; }
+    .sheet .counter { padding: 0 16px 16px; }
+    .side-mark { font-size: 22px; line-height: 28px; font-weight: 500; letter-spacing: 0.5px; text-transform: uppercase; }
+    .summary { background: var(--pds-surface-2); padding: 4px 16px; }
+    .pairs { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 16px; padding: 12px 0; }
+    .pair { display: grid; gap: 2px; min-width: 0; }
+    .pair .value { font-size: 20px; line-height: 28px; font-weight: 500; }
+    .flag { font-size: 12px; line-height: 16px; }
+    .sheet .total { background: var(--pds-surface-1); }
+
+    /* Risk-check dialog */
+    pds-dialog { --pds-dialog-max-width: 327px; }
+    pds-dialog p { margin: 0 0 12px; }
+    pds-dialog p:last-of-type { margin-bottom: 0; }
+  </style>
+</head>
+<body>
+  <pds-preview id="preview" height="812">
+    <pds-top-app-bar variant="short-with-sub" title="Trade" data-title-zh="交易" data-title-ja="取引" subtitle="Cash Plus (2222222)">
+      <pds-icon-button slot="leading" icon="arrow_left" label="Back" data-label-zh="返回" data-label-ja="戻る"></pds-icon-button>
+    </pds-top-app-bar>
+
+    <main class="ticket">
+      <section class="counter">
+        <div>
+          <h1>ST Engineering</h1>
+          <p class="muted">EQ · SGX: S63</p>
+        </div>
+        <pds-icon-button icon="search" label="Search counters" data-label-zh="搜索股票" data-label-ja="銘柄を検索"></pds-icon-button>
+      </section>
+
+      <section class="quote">
+        <div class="quote-row">
+          <span class="muted" data-zh="常规" data-ja="通常">Regular</span>
+          <span class="price num">3.960</span>
+          <span class="num">+0.220</span>
+          <span class="num">+4.10%</span>
+          <span class="spacer"></span>
+          <pds-icon-button id="quote-toggle" icon="chevron_up" label="Hide bid and ask" data-label-zh="收起买卖价" data-label-ja="気配を隠す"></pds-icon-button>
+        </div>
+        <div class="depth" id="depth">
+          <div class="bidask">
+            <div><span class="muted" data-zh="买价" data-ja="買気配">Bid</span><span class="num">3.960</span></div>
+            <pds-divider direction="vertical"></pds-divider>
+            <div><span class="num">3.962</span><span class="muted" data-zh="卖价" data-ja="売気配">Ask</span></div>
+          </div>
+          <div class="vols">
+            <div><span class="muted" data-zh="买量(千)" data-ja="買数量(千)">BVol(k)</span><span class="num">113.120</span></div>
+            <div><span class="muted" data-zh="成交量(千)" data-ja="出来高(千)">Vol(k)</span><span class="num">113.120</span></div>
+            <div><span class="muted" data-zh="卖量(千)" data-ja="売数量(千)">SVol(k)</span><span class="num">113.120</span></div>
+          </div>
+        </div>
+      </section>
+      <pds-divider></pds-divider>
+
+      <section class="unit">
+        <span class="muted">SGX Unit Share</span>
+        <span class="num neg">3.962</span>
+        <span class="num neg">-0.010</span>
+        <span class="num neg">-0.04%</span>
+        <span class="spacer"></span>
+        <pds-icon-button id="unit-toggle" icon="chevron_down" label="Show unit share volumes" data-label-zh="显示单位份额成交量" data-label-ja="ユニットの出来高を表示"></pds-icon-button>
+      </section>
+      <div class="vols unit-vols" id="unit-vols" hidden>
+        <div><span class="muted" data-zh="买量(千)" data-ja="買数量(千)">BVol(k)</span><span class="num">20.150</span></div>
+        <div><span class="muted" data-zh="成交量(千)" data-ja="出来高(千)">Vol(k)</span><span class="num">41.300</span></div>
+        <div><span class="muted" data-zh="卖量(千)" data-ja="売数量(千)">SVol(k)</span><span class="num">21.150</span></div>
+      </div>
+      <pds-divider></pds-divider>
+
+      <form class="order" id="order" novalidate>
+        <div class="segment side" id="side" role="group">
+          <pds-chip selected tone="positive" data-value="buy"><span data-zh="买入" data-ja="買い">Buy</span></pds-chip>
+          <pds-chip data-value="short"><span data-zh="卖空" data-ja="空売り">Short sell</span></pds-chip>
+          <pds-chip tone="negative" data-value="sell"><span data-zh="卖出" data-ja="売り">Sell</span></pds-chip>
+        </div>
+
+        <div class="row">
+          <span data-zh="订单类型" data-ja="注文タイプ">Order type</span>
+          <pds-menu id="type-menu">
+            <pds-text-field slot="trigger" id="type" value="Limit" data-value-zh="限价" data-value-ja="指値">
+              <pds-icon slot="trailing-icon" name="chevron_down"></pds-icon>
+            </pds-text-field>
+            <pds-menu-item value="limit"><span data-zh="限价" data-ja="指値">Limit</span></pds-menu-item>
+            <pds-menu-item value="market"><span data-zh="市价" data-ja="成行">Market</span></pds-menu-item>
+          </pds-menu>
+        </div>
+
+        <div class="row">
+          <span data-zh="付款方式" data-ja="支払方法">Payment mode</span>
+          <div class="segment" id="payment" role="group">
+            <pds-chip selected data-value="cash"><span data-zh="现金" data-ja="現金">Cash</span></pds-chip>
+            <pds-chip data-value="cpf">CPF</pds-chip>
+            <pds-chip data-value="srs">SRS</pds-chip>
+          </div>
+        </div>
+
+        <div class="row">
+          <span data-zh="价格" data-ja="価格">Price</span>
+          <div class="stepper">
+            <pds-icon-button id="price-down" icon="minus" label="Lower price" data-label-zh="减价" data-label-ja="価格を下げる"></pds-icon-button>
+            <pds-text-field id="price" type="tel" value="3.960"></pds-text-field>
+            <pds-icon-button id="price-up" icon="add" label="Raise price" data-label-zh="加价" data-label-ja="価格を上げる"></pds-icon-button>
+          </div>
+        </div>
+
+        <div class="row">
+          <span data-zh="数量" data-ja="数量">Quantity</span>
+          <div class="stepper">
+            <pds-icon-button id="qty-down" icon="minus" label="Remove 100 shares" data-label-zh="减100股" data-label-ja="100株減らす"></pds-icon-button>
+            <pds-text-field id="qty" type="tel" placeholder="Min 100" data-placeholder-zh="最少100" data-placeholder-ja="最低100"></pds-text-field>
+            <pds-icon-button id="qty-up" icon="add" label="Add 100 shares" data-label-zh="加100股" data-label-ja="100株追加"></pds-icon-button>
+          </div>
+        </div>
+
+        <div class="limits">
+          <div><span class="muted" data-zh="最大买入量（无融资）" data-ja="最大買付数量（信用なし）">Max buy qty (no margin)</span><span class="num">800</span></div>
+          <div><span class="muted" data-zh="最大卖出量" data-ja="最大売却数量">Max sell qty</span><span class="num">100</span></div>
+          <div><span class="muted" data-zh="最大买入量（融资）" data-ja="最大買付数量（信用）">Max buy qty (margin)</span><span class="num">7,500</span></div>
+          <div><span class="muted" data-zh="最大卖空量" data-ja="最大空売り数量">Max short sell qty</span><span class="num">7,500</span></div>
+        </div>
+        <pds-divider length="middle-inset"></pds-divider>
+
+        <div class="row">
+          <span data-zh="结算货币" data-ja="決済通貨">Settlement currency</span>
+          <span class="value num">SGD</span>
+        </div>
+
+        <div class="row">
+          <span data-zh="有效期" data-ja="有効期限">Validity</span>
+          <div class="segment" id="validity" role="group">
+            <pds-chip selected data-value="day"><span data-zh="当日" data-ja="当日">Day</span></pds-chip>
+            <pds-chip data-value="gtd">GTD</pds-chip>
+          </div>
+        </div>
+
+        <div class="row">
+          <span data-zh="密码" data-ja="パスワード">Password</span>
+          <pds-text-field id="password" type="password" placeholder="Enter password" data-placeholder-zh="输入密码" data-placeholder-ja="パスワードを入力">
+            <pds-icon-button slot="trailing-icon" id="password-toggle" icon="visibility_off" label="Show password" data-label-zh="显示密码" data-label-ja="パスワードを表示"></pds-icon-button>
+          </pds-text-field>
+        </div>
+      </form>
+
+      <footer class="total">
+        <div class="gross">
+          <span class="label" data-zh="总额" data-ja="総額">Gross value</span>
+          <span class="num" id="gross">SGD 0</span>
+        </div>
+        <pds-button class="full" id="review" tone="positive"><span data-zh="查看买入订单" data-ja="買い注文を確認">Review buy order</span></pds-button>
+      </footer>
+    </main>
+
+    <pds-bottom-sheet id="review-sheet" class="sheet">
+      <h2 data-zh="查看订单" data-ja="注文の確認">Review order</h2>
+      <div class="counter">
+        <div>
+          <h3>ST Engineering</h3>
+          <p class="muted">EQ · SGX: S63</p>
+        </div>
+        <span class="side-mark" id="sheet-side" data-zh="买入" data-ja="買い">Buy</span>
+      </div>
+      <div class="summary">
+        <div class="pairs">
+          <div class="pair">
+            <span class="muted" data-zh="价格" data-ja="価格">Price</span>
+            <span class="value num" id="s-price">3.960</span>
+            <span class="flag neg" id="s-flag" hidden data-zh="买价偏高" data-ja="買値が高い">High buy price</span>
+          </div>
+          <div class="pair">
+            <span class="muted" data-zh="数量" data-ja="数量">Quantity</span>
+            <span class="value num" id="s-qty">100</span>
+          </div>
+        </div>
+        <pds-divider></pds-divider>
+        <div class="pairs">
+          <div class="pair"><span class="muted" data-zh="订单类型" data-ja="注文タイプ">Order type</span><span class="value" id="s-type" data-zh="限价" data-ja="指値">Limit</span></div>
+          <div class="pair"><span class="muted" data-zh="结算货币" data-ja="決済通貨">Settlement currency</span><span class="value num">SGD</span></div>
+        </div>
+        <pds-divider></pds-divider>
+        <div class="pairs">
+          <div class="pair"><span class="muted" data-zh="付款方式" data-ja="支払方法">Payment mode</span><span class="value" id="s-payment" data-zh="现金" data-ja="現金">Cash</span></div>
+          <div class="pair"><span class="muted" data-zh="有效期" data-ja="有効期限">Validity</span><span class="value" id="s-validity" data-zh="当日" data-ja="当日">Day</span></div>
+        </div>
+        <pds-divider></pds-divider>
+        <div class="pairs">
+          <div class="pair"><span class="muted" data-zh="提交人" data-ja="提出者">Submitted by</span><span class="value num">2222222</span></div>
+        </div>
+      </div>
+      <footer class="total">
+        <div class="gross">
+          <span class="label" data-zh="总额" data-ja="総額">Gross value</span>
+          <span class="num" id="s-gross">SGD 0</span>
+        </div>
+        <pds-button class="full" id="confirm" tone="positive"><span data-zh="确认买入订单" data-ja="買い注文を確定">Confirm buy order</span></pds-button>
+      </footer>
+    </pds-bottom-sheet>
+
+    <pds-dialog id="range-dialog">
+      <span slot="title" id="range-title" data-zh="买价超出允许范围" data-ja="買値が許容範囲外">Buy price outside allowed range</span>
+      <p data-zh="您的价格超出允许范围 $2.57 至 $5.34。" data-ja="価格が許容範囲（$2.57〜$5.34）外です。">Your price is outside the allowed range of $2.57 to $5.34.</p>
+      <p data-zh="联系交易代表（TR）提交此订单。" data-ja="取引担当者（TR）に連絡して注文してください。">Contact your Trading Representative (TR) to submit this order.</p>
+      <pds-button slot="actions" id="range-ok"><span data-zh="好的" data-ja="OK">Okay</span></pds-button>
+    </pds-dialog>
+  </pds-preview>
+
+  <script type="module">
+    import "../../index.js";
+    import "../../preview/pds-preview.js";
+
+    const $ = (id) => document.getElementById(id);
+    const preview = $("preview");
+    const lang = () => preview.language;
+    const LANGS = ["en", "zh", "ja"];
+    // Copy written from script carries all three languages, so the preview's Language toggle still works on it.
+    const setText = (el, copy) => { for (const k of LANGS) el.setAttribute(`data-${k}`, copy[k]); el.textContent = copy[lang()]; };
+    const setAttr = (el, attr, copy) => { for (const k of LANGS) el.setAttribute(`data-${attr}-${k}`, copy[k]); el.setAttribute(attr, copy[lang()]); };
+    const clearAttr = (el, attr) => { for (const k of LANGS) el.removeAttribute(`data-${attr}-${k}`); el.removeAttribute(attr); };
+    const copyOf = (el) => { const en = el.getAttribute("data-en") ?? el.textContent.trim(); return { en, zh: el.getAttribute("data-zh") ?? en, ja: el.getAttribute("data-ja") ?? en }; };
+    const attrCopy = (el, attr) => { const en = el.getAttribute(`data-${attr}-en`) ?? el.getAttribute(attr); return { en, zh: el.getAttribute(`data-${attr}-zh`) ?? en, ja: el.getAttribute(`data-${attr}-ja`) ?? en }; };
+
+    // Quote placeholders, as on the reference screen. The allowed price range is the risk check's.
+    const BID = 3.960, ASK = 3.962, RANGE = [2.57, 5.34];
+    const SIDE = {
+      buy:   { cta: { en: "Review buy order", zh: "查看买入订单", ja: "買い注文を確認" }, mark: { en: "Buy", zh: "买入", ja: "買い" },
+               confirm: { en: "Confirm buy order", zh: "确认买入订单", ja: "買い注文を確定" }, done: { en: "Buy order submitted", zh: "买入订单已提交", ja: "買い注文を送信しました" },
+               flag: { en: "High buy price", zh: "买价偏高", ja: "買値が高い" }, range: { en: "Buy price outside allowed range", zh: "买价超出允许范围", ja: "買値が許容範囲外" } },
+      short: { cta: { en: "Review short sell order", zh: "查看卖空订单", ja: "空売り注文を確認" }, mark: { en: "Short sell", zh: "卖空", ja: "空売り" },
+               confirm: { en: "Confirm short sell order", zh: "确认卖空订单", ja: "空売り注文を確定" }, done: { en: "Short sell order submitted", zh: "卖空订单已提交", ja: "空売り注文を送信しました" },
+               flag: { en: "Low sell price", zh: "卖价偏低", ja: "売値が低い" }, range: { en: "Sell price outside allowed range", zh: "卖价超出允许范围", ja: "売値が許容範囲外" } },
+      sell:  { cta: { en: "Review sell order", zh: "查看卖出订单", ja: "売り注文を確認" }, mark: { en: "Sell", zh: "卖出", ja: "売り" },
+               confirm: { en: "Confirm sell order", zh: "确认卖出订单", ja: "売り注文を確定" }, done: { en: "Sell order submitted", zh: "卖出订单已提交", ja: "売り注文を送信しました" },
+               flag: { en: "Low sell price", zh: "卖价偏低", ja: "売値が低い" }, range: { en: "Sell price outside allowed range", zh: "卖价超出允许范围", ja: "売値が許容範囲外" } },
+    };
+    const QTY_ERROR = { en: "Enter at least 100 shares", zh: "最少输入100股", ja: "100株以上を入力" };
+    const DEPTH = { show: { en: "Show bid and ask", zh: "显示买卖价", ja: "気配を表示" }, hide: { en: "Hide bid and ask", zh: "收起买卖价", ja: "気配を隠す" } };
+    const UNIT = { show: { en: "Show unit share volumes", zh: "显示单位份额成交量", ja: "ユニットの出来高を表示" }, hide: { en: "Hide unit share volumes", zh: "收起单位份额成交量", ja: "ユニットの出来高を隠す" } };
+    const PASSWORD = { show: { en: "Show password", zh: "显示密码", ja: "パスワードを表示" }, hide: { en: "Hide password", zh: "隐藏密码", ja: "パスワードを隠す" } };
+
+    const price = $("price"), qty = $("qty");
+    const num = (field) => parseFloat(String(field.value).replace(/,/g, "")) || 0;
+    const money = (n) => {
+      const v = Math.round(n * 100) / 100;
+      return "SGD " + (v % 1 === 0 ? v.toLocaleString("en-SG", { maximumFractionDigits: 0 }) : v.toLocaleString("en-SG", { minimumFractionDigits: 2, maximumFractionDigits: 2 }));
+    };
+    const update = () => {
+      $("gross").textContent = money(num(price) * Math.round(num(qty)));
+      if (Math.round(num(qty)) >= 100) clearAttr(qty, "error");
+    };
+    price.addEventListener("input", update);
+    qty.addEventListener("input", update);
+    $("price-down").addEventListener("click", () => { price.value = Math.max(0, num(price) - 0.01).toFixed(3); update(); });
+    $("price-up").addEventListener("click", () => { price.value = (num(price) + 0.01).toFixed(3); update(); });
+    $("qty-down").addEventListener("click", () => { const q = Math.max(0, Math.round(num(qty)) - 100); qty.value = q ? String(q) : ""; update(); });
+    $("qty-up").addEventListener("click", () => { qty.value = String(Math.round(num(qty)) + 100); update(); });
+
+    // Chips standing in for a segmented control: the tapped chip becomes the selected one.
+    let side = "buy";
+    const segment = (group, onChange) => group.addEventListener("click", (e) => {
+      const chip = e.target.closest("pds-chip");
+      if (!chip || chip.hasAttribute("disabled")) return;
+      for (const c of group.querySelectorAll("pds-chip")) c.toggleAttribute("selected", c === chip);
+      onChange?.(chip.dataset.value);
+    });
+    // Buy is green, Sell red, Short sell the default orange (the reference screens).
+    const TONE = { buy: "positive", short: null, sell: "negative" };
+    segment($("side"), (v) => {
+      side = v;
+      for (const b of [$("review"), $("confirm")]) { if (TONE[v]) b.setAttribute("tone", TONE[v]); else b.removeAttribute("tone"); }
+      setText($("review").firstElementChild, SIDE[v].cta);
+      setText($("sheet-side"), SIDE[v].mark);
+      setText($("confirm").firstElementChild, SIDE[v].confirm);
+      setText($("s-flag"), SIDE[v].flag);
+      setText($("range-title"), SIDE[v].range);
+    });
+    segment($("payment"));
+    segment($("validity"));
+    const selectedCopy = (group) => { const chip = group.querySelector("pds-chip[selected]"); return copyOf(chip.querySelector("[data-zh]") || chip); };
+
+    $("type-menu").addEventListener("select", (e) => {
+      const item = e.target.closest("pds-menu-item");
+      if (item) setAttr($("type"), "value", copyOf(item.querySelector("[data-zh]") || item));
+    });
+
+    const toggle = (button, target, copy) => button.addEventListener("click", () => {
+      target.hidden = !target.hidden;
+      button.setAttribute("icon", target.hidden ? "chevron_down" : "chevron_up");
+      setAttr(button, "label", target.hidden ? copy.show : copy.hide);
+    });
+    toggle($("quote-toggle"), $("depth"), DEPTH);
+    toggle($("unit-toggle"), $("unit-vols"), UNIT);
+
+    $("password-toggle").addEventListener("click", () => {
+      const show = $("password").getAttribute("type") === "password";
+      $("password").setAttribute("type", show ? "text" : "password");
+      $("password-toggle").setAttribute("icon", show ? "visibility" : "visibility_off");
+      setAttr($("password-toggle"), "label", show ? PASSWORD.hide : PASSWORD.show);
+    });
+
+    $("review").addEventListener("click", () => {
+      const p = num(price), q = Math.round(num(qty));
+      if (q < 100) { setAttr(qty, "error", QTY_ERROR); return; }
+      if (p < RANGE[0] || p > RANGE[1]) { $("range-dialog").showModal(); return; }
+      $("s-price").textContent = p.toFixed(3);
+      $("s-qty").textContent = q.toLocaleString("en-SG");
+      $("s-flag").hidden = side === "buy" ? p <= ASK : p >= BID;
+      setText($("s-type"), attrCopy($("type"), "value"));
+      setText($("s-payment"), selectedCopy($("payment")));
+      setText($("s-validity"), selectedCopy($("validity")));
+      $("s-gross").textContent = money(p * q);
+      $("review-sheet").show();
+    });
+
+    $("range-ok").addEventListener("click", () => $("range-dialog").close("ok"));
+
+    $("confirm").addEventListener("click", async () => {
+      const button = $("confirm");
+      button.setAttribute("pending", "");
+      await new Promise((r) => setTimeout(r, 900));
+      button.removeAttribute("pending");
+      $("review-sheet").close();
+      const snack = document.createElement("pds-snackbar");
+      setAttr(snack, "message", SIDE[side].done);
+      snack.addEventListener("dismiss", () => snack.remove());
+      preview.appendChild(snack);
+    });
+  </script>
+</body>
+</html>

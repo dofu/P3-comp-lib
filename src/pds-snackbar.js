@@ -21,6 +21,10 @@
  *
  * @slot - Message content, used only when the `message` attribute is not set.
  *
+ * Place it inside the screen (inside `pds-preview`): the preview frame contains
+ * `position: fixed`, so the snackbar sits at the bottom of the phone frame.
+ * Appended to `document.body` it sits at the bottom of the browser window.
+ *
  * @fires dismiss - detail: `{ reason: "timeout" | "action" | "close" }`.
  *   Fired just before the component hides itself.
  *

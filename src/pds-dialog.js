@@ -61,7 +61,11 @@ TEMPLATE.innerHTML = `
       justify-content: flex-end;
       gap: 8px;
     }
+    .scrim { position: fixed; inset: 0; background: var(--pds-transparent-black-50, rgba(0, 0, 0, 0.5)); z-index: 999; }
+    .scrim[hidden] { display: none; }
+    dialog[open]:not(:modal) { position: fixed; inset: 0; margin: auto; z-index: 1000; }
   </style>
+  <div class="scrim" part="scrim" hidden></div>
   <dialog part="dialog">
     <div class="title" part="title"><slot name="title"></slot></div>
     <div class="body" part="body"><slot></slot></div>
@@ -79,6 +83,8 @@ export class PdsDialog extends HTMLElement {
     this.attachShadow({ mode: "open" });
     this.shadowRoot.appendChild(TEMPLATE.content.cloneNode(true));
     this._dialog = this.shadowRoot.querySelector("dialog");
+    this._scrim = this.shadowRoot.querySelector(".scrim");
+    this._scrim.addEventListener("click", () => { if (this.dismissible) this._dismissFromScrim(); });
     this._onCancel = this._onCancel.bind(this);
     this._onClick = this._onClick.bind(this);
     this._onClose = this._onClose.bind(this);
@@ -88,6 +94,7 @@ export class PdsDialog extends HTMLElement {
     this._dialog.addEventListener("cancel", this._onCancel);
     this._dialog.addEventListener("click", this._onClick);
     this._dialog.addEventListener("close", this._onClose);
+    this._dialog.addEventListener("close", () => { this._scrim.hidden = true; });
   }
 
   disconnectedCallback() {
@@ -117,7 +124,13 @@ export class PdsDialog extends HTMLElement {
   get returnValue() { return this._dialog.returnValue; }
   set returnValue(v) { this._dialog.returnValue = v; }
 
-  showModal() { this._dialog.showModal(); }
+  /** Inside a pds-preview the dialog stays in the phone frame (no top layer); elsewhere it is a real modal. */
+  _contained() { return !!this.closest("pds-preview"); }
+  _dismissFromScrim() { this._dialog.close(); }
+  showModal() {
+    if (this._contained()) { this._scrim.hidden = false; this._dialog.show(); }
+    else this._dialog.showModal();
+  }
   close(returnValue) { this._dialog.close(returnValue); }
 }
 

@@ -5,6 +5,8 @@
  *
  * @attr {boolean} [selected=false] - Shows a check icon in place of any
  *   leading icon and switches to the filled colour recipe.
+ * @attr {'positive'|'negative'} [tone] - Colour of the selected state: green for Buy
+ *   or price up, red for Sell or price down. Use for Buy/Sell choices.
  * @attr {boolean} [dismissible=false] - Shows a trailing dismiss button
  *   and fires `dismiss` when activated.
  * @attr {boolean} [disabled=false] - Disabled state.
@@ -66,6 +68,10 @@ TEMPLATE.innerHTML = `
       color: var(--pds-on-surface-1, #141414);
     }
     :host([selected]) .body { color: var(--pds-grey-600, #141414); }
+    :host([selected][tone="positive"]) .chip { background: var(--pds-container-positive, #008b57); border-color: transparent; }
+    :host([selected][tone="negative"]) .chip { background: var(--pds-container-negative, #ca2323); border-color: transparent; }
+    :host([selected][tone="positive"]) .body, :host([selected][tone="positive"]) .check { color: var(--pds-on-container-positive, #ffffff); }
+    :host([selected][tone="negative"]) .body, :host([selected][tone="negative"]) .check { color: var(--pds-on-container-negative, #ffffff); }
     :host([disabled]) .body { color: var(--pds-grey-300, #747474); cursor: not-allowed; }
     .body:focus-visible {
       outline: 2px solid var(--pds-orange-500, #f78f20);

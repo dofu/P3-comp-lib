@@ -129,6 +129,7 @@ TEMPLATE.innerHTML = `
     .frame {
       display: flex;
       flex-direction: column;
+      transform: translateZ(0); /* makes the frame the containing block for position: fixed children: snackbars, contained dialogs and sheets */
       width: var(--_width, 375px);
       max-width: 100%;
       min-height: var(--_height, 812px);
@@ -189,7 +190,9 @@ export class PdsPreview extends HTMLElement {
 
   connectedCallback() {
     this.shadowRoot.querySelector(".toolbar").addEventListener("click", this._onClick);
-    this.shadowRoot.querySelector(".note-font").hidden = fontAvailable("Roboto");
+    const fontNote = this.shadowRoot.querySelector(".note-font");
+    fontNote.hidden = fontAvailable("Roboto");
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { fontNote.hidden = fontAvailable("Roboto"); });
     this._sync();
   }
 

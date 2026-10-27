@@ -98,7 +98,7 @@
           "name": "PdsBottomSheet",
           "tagName": "pds-bottom-sheet",
           "customElement": true,
-          "description": "`<pds-bottom-sheet>`: a panel anchored to the bottom edge of the viewport, for a focused task or a short set of choices on narrow screens. Wraps the native `<dialog>` element.",
+          "description": "`<pds-bottom-sheet>`: a panel anchored to the bottom edge of the viewport, for a focused task or a short set of choices on narrow screens. Wraps the native `<dialog>` element. Inside pds-preview it opens inside the phone frame with its own scrim instead of the browser's top layer.",
           "attributes": [
             {
               "name": "open",
@@ -182,6 +182,9 @@
             },
             {
               "name": "content"
+            },
+            {
+              "name": "scrim"
             }
           ]
         }
@@ -247,6 +250,13 @@
               },
               "default": "false",
               "description": "Shows an inline spinner, keeps the label, and disables the button so a second tap cannot fire while a request is in flight. Set it back to false yourself once the request finishes or fails."
+            },
+            {
+              "name": "tone",
+              "type": {
+                "text": "'positive'|'negative'"
+              },
+              "description": "positive = green (Buy, price up), negative = red (Sell, price down)."
             }
           ],
           "members": [
@@ -289,6 +299,15 @@
               "default": "false",
               "reflects": true,
               "description": "Shows an inline spinner, keeps the label, and disables the button so a second tap cannot fire while a request is in flight. Set it back to false yourself once the request finishes or fails."
+            },
+            {
+              "kind": "field",
+              "reflects": true,
+              "name": "tone",
+              "type": {
+                "text": "'positive'|'negative'"
+              },
+              "description": "positive = green (Buy, price up), negative = red (Sell, price down)."
             }
           ],
           "slots": [
@@ -756,6 +775,13 @@
               },
               "default": "false",
               "description": "Disabled state."
+            },
+            {
+              "name": "tone",
+              "type": {
+                "text": "'positive'|'negative'"
+              },
+              "description": "positive = green (Buy, price up), negative = red (Sell, price down)."
             }
           ],
           "members": [
@@ -788,6 +814,15 @@
               "default": "false",
               "reflects": true,
               "description": "Disabled state."
+            },
+            {
+              "kind": "field",
+              "reflects": true,
+              "name": "tone",
+              "type": {
+                "text": "'positive'|'negative'"
+              },
+              "description": "positive = green (Buy, price up), negative = red (Sell, price down)."
             }
           ],
           "slots": [
@@ -882,7 +917,7 @@
           "name": "PdsDialog",
           "tagName": "pds-dialog",
           "customElement": true,
-          "description": "`<pds-dialog>`: a modal that interrupts the user for a decision.",
+          "description": "`<pds-dialog>`: a modal that interrupts the user for a decision. Inside pds-preview it opens inside the phone frame with its own scrim instead of the browser's top layer.",
           "attributes": [
             {
               "name": "dismissible",
@@ -988,6 +1023,9 @@
             },
             {
               "name": "actions"
+            },
+            {
+              "name": "scrim"
             }
           ]
         }
@@ -2381,7 +2419,7 @@
           "name": "PdsSideSheet",
           "tagName": "pds-side-sheet",
           "customElement": true,
-          "description": "`<pds-side-sheet>`: a panel anchored to the left or right edge of the viewport, for supplementary content or actions alongside the main view. Wraps the native `<dialog>` element.",
+          "description": "`<pds-side-sheet>`: a panel anchored to the left or right edge of the viewport, for supplementary content or actions alongside the main view. Wraps the native `<dialog>` element. Inside pds-preview it opens inside the phone frame with its own scrim instead of the browser's top layer.",
           "attributes": [
             {
               "name": "open",
@@ -2476,6 +2514,9 @@
             },
             {
               "name": "content"
+            },
+            {
+              "name": "scrim"
             }
           ]
         }
@@ -3088,6 +3129,13 @@
                 "text": "string"
               },
               "description": "Forwarded to the internal control."
+            },
+            {
+              "name": "label-position",
+              "type": {
+                "text": "'start'"
+              },
+              "description": "start puts the label to the left of the field on one row (trade ticket layout). Default: label above."
             }
           ],
           "members": [
@@ -3175,6 +3223,15 @@
               },
               "reflects": true,
               "description": "Forwarded to the internal control."
+            },
+            {
+              "kind": "field",
+              "reflects": true,
+              "name": "label-position",
+              "type": {
+                "text": "'start'"
+              },
+              "description": "start puts the label to the left of the field on one row (trade ticket layout). Default: label above."
             }
           ],
           "slots": [

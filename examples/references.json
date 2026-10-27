@@ -85,8 +85,9 @@
       "checkedFileLastModified": null,
       "status": "unverified",
       "note": "Same approved page. Buy is green and Review buy order is a green primary; the library's orange primary is not used on trade tickets.",
-      "exemplarHtml": false,
-      "render": "examples/trade-ticket-buy/reference.png"
+      "exemplarHtml": true,
+      "render": "examples/trade-ticket-buy/reference.png",
+      "exemplar": "examples/trade-ticket-buy/index.html"
     },
     {
       "slug": "trade-ticket-risk-check",

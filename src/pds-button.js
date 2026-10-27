@@ -8,6 +8,9 @@
  *   content.
  * @attr {'primary'|'secondary'} [variant=primary] - primary = filled;
  *   secondary = outlined.
+ * @attr {'positive'|'negative'} [tone] - Buy or price-up actions take `positive`
+ *   (green); Sell or price-down actions take `negative` (red). Applies to both
+ *   variants.
  * @attr {boolean} [disabled=false] - Disabled state.
  * @attr {boolean} [pending=false] - Shows an inline spinner, keeps the
  *   label, and disables the button so a second tap cannot fire while a
@@ -98,6 +101,10 @@ TEMPLATE.innerHTML = `
       border: none;
     }
 
+    :host([tone="positive"]:not([variant="secondary"])) button { background: var(--pds-container-positive, #008b57); color: var(--pds-on-container-positive, #ffffff); }
+    :host([tone="negative"]:not([variant="secondary"])) button { background: var(--pds-container-negative, #ca2323); color: var(--pds-on-container-negative, #ffffff); }
+    :host([tone="positive"][variant="secondary"]) button { border-color: var(--pds-container-positive, #008b57); color: var(--pds-container-positive, #008b57); }
+    :host([tone="negative"][variant="secondary"]) button { border-color: var(--pds-container-negative, #ca2323); color: var(--pds-container-negative, #ca2323); }
     :host([disabled]) button {
       background: var(--pds-container-disabled, rgba(20, 20, 20, 0.12));
       color: var(--pds-grey-300, #747474);
@@ -192,6 +199,9 @@ export class PdsButton extends HTMLElement {
 
   get disabled() { return this.hasAttribute("disabled"); }
   set disabled(v) { this.toggleAttribute("disabled", Boolean(v)); }
+
+  get tone() { return this.getAttribute("tone"); }
+  set tone(v) { if (v) this.setAttribute("tone", v); else this.removeAttribute("tone"); }
 
   get pending() { return this.hasAttribute("pending"); }
   set pending(v) { this.toggleAttribute("pending", Boolean(v)); }

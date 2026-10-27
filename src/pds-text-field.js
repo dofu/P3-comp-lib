@@ -5,6 +5,8 @@
  *
  * @attr {string} [label] - Visible caption, programmatically associated
  *   with the input via a real `<label for>`.
+ * @attr {'start'} [label-position] - `start` puts the label to the left of the
+ *   field on one row (the trade ticket layout). Default: label above.
  * @attr {string} [value] - Current text; reflects the live control on
  *   every input event.
  * @attr {string} [placeholder] - Forwarded to the internal control.
@@ -100,6 +102,9 @@ TEMPLATE.innerHTML = `
     }
     :host([error]) .supporting { color: var(--pds-on-surface-text-negative, #ca2323); }
     .supporting:empty { display: none; }
+    :host([label-position="start"]) { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); column-gap: 12px; align-items: center; }
+    :host([label-position="start"]) .label { margin: 0; padding-right: 4px; }
+    :host([label-position="start"]) .supporting { grid-column: 2; }
   </style>
   <label class="label" part="label"></label>
   <div class="container" part="container">

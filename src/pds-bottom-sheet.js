@@ -57,7 +57,11 @@ TEMPLATE.innerHTML = `
       opacity: 0.4;
     }
     .content { padding: 0 16px 16px; }
+    .scrim { position: fixed; inset: 0; background: var(--pds-transparent-black-50, rgba(0, 0, 0, 0.5)); z-index: 999; }
+    .scrim[hidden] { display: none; }
+    dialog[open]:not(:modal) { position: fixed; z-index: 1000; }
   </style>
+  <div class="scrim" part="scrim" hidden></div>
   <dialog part="dialog">
     <div class="handle" part="handle"></div>
     <div class="content" part="content"><slot></slot></div>
@@ -74,6 +78,8 @@ export class PdsBottomSheet extends HTMLElement {
     this.attachShadow({ mode: "open" });
     this.shadowRoot.appendChild(TEMPLATE.content.cloneNode(true));
     this._dialog = this.shadowRoot.querySelector("dialog");
+    this._scrim = this.shadowRoot.querySelector(".scrim");
+    this._scrim.addEventListener("click", () => { if (this.dismissible) this._dismissFromScrim(); });
     this._upgradeProperty("open");
   }
 
@@ -96,13 +102,14 @@ export class PdsBottomSheet extends HTMLElement {
     this._dialog.addEventListener("click", (event) => {
       if (event.target === this._dialog && this.dismissible) this._closeWith("backdrop");
     });
-    if (this.open) this._dialog.showModal();
+    if (this.open) this._openDialog();
   }
 
   attributeChangedCallback(name) {
     if (name !== "open") return;
-    if (this.open && !this._dialog.open) this._dialog.showModal();
+    if (this.open && !this._dialog.open) this._openDialog();
     else if (!this.open && this._dialog.open) this._dialog.close();
+    if (!this.open) this._scrim.hidden = true;
   }
 
   show() { this.open = true; }
@@ -112,6 +119,13 @@ export class PdsBottomSheet extends HTMLElement {
     this.open = false;
     this.dispatchEvent(new CustomEvent("dismiss", { bubbles: true, composed: true, detail: { reason } }));
   }
+
+  /** Inside a pds-preview the sheet stays in the phone frame (no top layer); elsewhere it is a real modal. */
+  _openDialog() {
+    if (this.closest("pds-preview")) { this._scrim.hidden = false; this._dialog.show(); }
+    else this._dialog.showModal();
+  }
+  _dismissFromScrim() { this._closeWith("backdrop"); }
 
   get open() { return this.hasAttribute("open"); }
   set open(v) { this.toggleAttribute("open", Boolean(v)); }

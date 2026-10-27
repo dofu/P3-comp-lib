@@ -26,6 +26,48 @@
   --pds-white-20: rgba(255, 255, 255, 0.2);
   --pds-container-primary-1: #f78f20;
 
+  /* The full V2 colour palette from the design system's Colors 2.0 board (46 primitives). */
+  --pds-blue-100: #b0c5f0;
+  --pds-blue-200: #8aa9e8;
+  --pds-blue-400: #3369d8;
+  --pds-blue-500: #0043ce;
+  --pds-blue-600: #003dbb;
+  --pds-blue-700: #003092;
+  --pds-blue-800: #002571;
+  --pds-blue-900: #001c57;
+  --pds-orange-100: #fcdcb8;
+  --pds-orange-200: #fcd0a1;
+  --pds-orange-300: #fbc082;
+  --pds-orange-400: #f9ab58;
+  --pds-orange-600: #e57a08;
+  --pds-orange-700: #c36807;
+  --pds-orange-800: #a55806;
+  --pds-orange-900: #8d4b05;
+  --pds-red-200: #e55151;
+  --pds-red-300: #de2626;
+  --pds-red-400: #ca2323;
+  --pds-red-500: #9e1b1b;
+  --pds-red-600: #7a1515;
+  --pds-green-100: #54b18e;
+  --pds-green-200: #33a279;
+  --pds-green-300: #008b57;
+  --pds-green-400: #007e4f;
+  --pds-green-500: #00633e;
+  --pds-green-600: #004c30;
+  --pds-violet-100: #d4bbdd;
+  --pds-violet-200: #a36cb6;
+  --pds-violet-300: #914fa8;
+  --pds-violet-400: #752392;
+  --pds-yellow-100: #fff2b3;
+  --pds-yellow-200: #ffe45b;
+  --pds-yellow-300: #ffde3b;
+  --pds-yellow-400: #ffd60a;
+  --pds-grey-50: #eaeaea;
+  --pds-grey-100: #bfbfbf;
+  --pds-grey-200: #9f9f9f;
+  --pds-grey-400: #595959;
+  --pds-grey-500: #2f2f2f;
+
   /* Fixed overlay tints: layered on top of a colour that doesn't
      itself change between Light and Dark (a modal scrim, a filled
      button's own state-layer wash), so these stay constant too. */
@@ -64,6 +106,11 @@
   --pds-outline-focus: #0043ce; /* focused field outline: V2 Blue/blue-500 (DS Text fields page) */
   --pds-state-hover: rgba(20, 20, 20, 0.08);
   --pds-state-pressed: rgba(20, 20, 20, 0.12);
+  --pds-container-positive: #008b57; /* Buy, price up: green-300 */
+  --pds-container-negative: #ca2323; /* Sell, price down: red-400 */
+  --pds-on-container-positive: #ffffff;
+  --pds-on-container-negative: #ffffff;
+  --pds-on-surface-text-positive: #007e4f; /* green-400 */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -80,6 +127,11 @@
     --pds-outline-focus: #0043ce;
     --pds-state-hover: rgba(255, 255, 255, 0.08);
     --pds-state-pressed: rgba(255, 255, 255, 0.12);
+    --pds-container-positive: #33a279; /* green-200 */
+    --pds-container-negative: #de2626; /* red-300 */
+    --pds-on-container-positive: #ffffff;
+    --pds-on-container-negative: #ffffff;
+    --pds-on-surface-text-positive: #54b18e; /* green-100 */
     --pds-container-secondary-1-50: #595959;
     --pds-container-secondary-2-100: #595959;
     --pds-on-container-tertiary: #f78f20;
@@ -104,6 +156,11 @@
   --pds-outline-focus: #0043ce;
   --pds-state-hover: rgba(255, 255, 255, 0.08);
   --pds-state-pressed: rgba(255, 255, 255, 0.12);
+  --pds-container-positive: #33a279; /* green-200 */
+  --pds-container-negative: #de2626; /* red-300 */
+  --pds-on-container-positive: #ffffff;
+  --pds-on-container-negative: #ffffff;
+  --pds-on-surface-text-positive: #54b18e; /* green-100 */
   --pds-container-secondary-1-50: #595959;
   --pds-container-secondary-2-100: #595959;
   --pds-on-container-tertiary: #f78f20;
@@ -134,4 +191,9 @@
   --pds-scheme-on-surface: #1d1b20;
   --pds-scheme-on-surface-variant: #49454f;
   --pds-scheme-secondary-container: #e8def8;
+  --pds-container-positive: #008b57; /* Buy, price up: green-300 */
+  --pds-container-negative: #ca2323; /* Sell, price down: red-400 */
+  --pds-on-container-positive: #ffffff;
+  --pds-on-container-negative: #ffffff;
+  --pds-on-surface-text-positive: #007e4f; /* green-400 */
 }

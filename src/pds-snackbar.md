@@ -14,6 +14,8 @@ needs to complete a task or avoid an error; use a dialog for that.
 ## Do
 
 - Keep the message to one short, plain-language line.
+- Append it inside the screen (inside `pds-preview`), never to `document.body`,
+  so it sits at the bottom of the phone frame and not of the browser window.
 - Give it an action only when there's something to undo or follow up on.
 
 ## Don't

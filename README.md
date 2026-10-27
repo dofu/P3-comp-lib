@@ -121,7 +121,18 @@ screen makes the same choice:
 | Tag or label next to a title ("Cash Plus", "Opted in") | A secondary text line under the title |
 | Quick-action tile (icon over a caption) | `pds-icon-button` with a caption under it |
 | Mascot or illustration | `pds-icon name="ask_ai"` for the AI entry point; otherwise leave it out |
+| Stepper (minus, value, plus) | A `pds-text-field` between two `pds-icon-button`s (`minus`, `add`) |
+| Select or dropdown | A `pds-text-field` as the `trigger` slot of `pds-menu`, with `chevron_down` as its trailing icon |
+| Bid/ask bar, quote strip | Not available: build it from `pds-divider` and text, say so in a Hand-built line |
 | Date picker, slider, chart | Not available yet: a `pds-text-field` for the date or value, a static image for the chart, and say so |
+
+Trade screens: Buy, price up and the bid side are green, Sell, price down
+and the ask side are red. Use `tone="positive"` or `tone="negative"` on
+`pds-button` and `pds-chip`, and the `--pds-on-surface-text-positive` and
+`--pds-on-surface-text-negative` tokens for prices. The full V2 palette is
+in `tokens/tokens.css` as `--pds-<colour>-<step>`; never type a hex value.
+A label to the left of a field (the ticket layout) is
+`pds-text-field label-position="start"`.
 
 ## Brand assets
 
