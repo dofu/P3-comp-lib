@@ -39,8 +39,10 @@ whenever 中文 or 日本語 is selected.
 
 ## Status bar
 
-The frame starts with `pds-status-bar` (time, signal, wifi, battery, notch),
-as every P3 screen in Figma does. Set `status-bar="off"` to hide it. A
+The frame starts with `pds-status-bar` (time, signal, wifi, battery), as
+every P3 screen in Figma does. Set `status-bar="off"` to hide it, or add
+`notch` to draw the device notch (off by default: it reads as a black
+stain on light screens at small sizes). A
 screen inside the preview must not add its own.
 
 ## Home line

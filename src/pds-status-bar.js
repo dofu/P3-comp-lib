@@ -7,7 +7,7 @@
  *
  * @attr {string} [time=9:41] - The clock text.
  * @attr {boolean} [notch=false] - Draw the device notch (black, 219 x 30,
- *   centred). `pds-preview` turns it on.
+ *   centred). Off in `pds-preview` unless it is given `notch`.
  *
  * @cssprop --pds-on-surface-1 - Time, icon and battery colour; the bar itself
  *   is transparent and takes the screen's surface behind it.

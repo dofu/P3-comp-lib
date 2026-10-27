@@ -3782,7 +3782,7 @@
                 "text": "'on'|'off'"
               },
               "default": "on",
-              "description": "The phone status bar (pds-status-bar with the notch) at the top of the frame, as on the P3 screens in Figma."
+              "description": "The phone status bar (pds-status-bar) at the top of the frame, as on the P3 screens in Figma."
             },
             {
               "name": "home-indicator",
@@ -3791,6 +3791,14 @@
               },
               "default": "on",
               "description": "The phone's home line (pds-home-indicator) at the bottom of the frame. The bottom navigation bar is not added: only root screens carry one."
+            },
+            {
+              "name": "notch",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draw the device notch in the status bar. Off by default: on a light screen the black notch reads as a stain at small sizes."
             }
           ],
           "members": [
@@ -3852,7 +3860,7 @@
                 "text": "'on'|'off'"
               },
               "default": "on",
-              "description": "The phone status bar (pds-status-bar with the notch) at the top of the frame, as on the P3 screens in Figma."
+              "description": "The phone status bar (pds-status-bar) at the top of the frame, as on the P3 screens in Figma."
             },
             {
               "kind": "field",
@@ -3863,6 +3871,16 @@
               },
               "default": "on",
               "description": "The phone's home line (pds-home-indicator) at the bottom of the frame. The bottom navigation bar is not added: only root screens carry one."
+            },
+            {
+              "kind": "field",
+              "reflects": true,
+              "name": "notch",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draw the device notch in the status bar. Off by default: on a light screen the black notch reads as a stain at small sizes."
             }
           ],
           "events": [
