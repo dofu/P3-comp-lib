@@ -60,17 +60,20 @@ new page or in an existing project, unless the prompt says otherwise.
    (`title`, `label`, `placeholder`, `supporting-text`, `error`,
    `message`, `action-label`). The preview's Language toggle switches
    them. See `preview/pds-preview.md`. Disclaimer: Chinese and Japanese copy is not taken from POEMS translation files. Claude is tasked to suggest the shortest wording possible; translators review it before anything ships.
-7. **Finish with the checklist.** End your answer with these six lines,
-   filled in honestly:
+7. **Finish with the checklist, short.** End your answer with the line
+   `Components used:` and the `pds-*` tags you used. Then add a line only
+   for something the reviewer needs to know; leave the others out:
 
    ```
    Components used: <pds-* tags>
-   Hand-built controls: none
-   Missing components I flagged: <none, or which>
-   Logo in screen: none
-   Wrapped in pds-preview: yes
-   Copy in en, zh, ja: every string
+   Hand-built: <what, and why the library had nothing for it>
+   Substituted: <missing component, and what you used instead>
+   Logo in screen: <why, if it is a website page>
+   Not in pds-preview: <why>
+   Copy not in all three languages: <which strings>
    ```
+
+   A clean screen ends with the first line alone. Never write "none".
 
 ## Why web components, and why plain JS
 
