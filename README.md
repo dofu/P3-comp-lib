@@ -5,6 +5,45 @@ A framework-free UI component library, built as native
 25 custom elements, each shipped as plain JavaScript with a matching usage
 guide. See "What's built" below for the full list and tag names.
 
+## Rules for every screen
+
+Read these first. They apply to every screen built with this library, in a
+new page or in an existing project, unless the prompt says otherwise.
+
+1. **Build from this library only.** Every control on the screen is a
+   `pds-*` element from this repo. Never write your own button, input,
+   tab, chip, switch, list, dialog or navigation, never style a raw
+   `<button>` or `<input>` to look like one, and never copy patterns from
+   another UI kit. If the library has no component for what you need, say
+   so in your answer and use the closest one. Do not invent it.
+2. **The current POEMS app is not a reference.** Do not reproduce its
+   visuals or its screenshots. This library and `tokens/tokens.css` are
+   the only visual source: use the tokens for every colour, never a hex
+   value or a custom colour.
+3. **No logo in an app screen.** POEMS app screens never carry the POEMS
+   logo or wordmark in the header. The top app bar holds a title,
+   navigation and actions only. The logo belongs to website pages, and
+   only when the prompt says the screen is a website. Treat every screen
+   as an app screen unless told it is a website.
+4. **Wrap the screen in `<pds-preview>`.** Import `preview/pds-preview.js`
+   and put the whole screen inside `<pds-preview>`. It draws the
+   phone-sized frame (375 px wide, 48 px corners) and, above the frame and
+   outside the screen, the reviewer's toggles: Light/Dark and
+   Rounded/Square corners. Do not build your own theme or corner
+   controls, and never put such controls inside the screen. The frame
+   paints the surface tokens, so the screen needs no page background of
+   its own. See `preview/pds-preview.md`.
+5. **Finish with the checklist.** End your answer with these five lines,
+   filled in honestly:
+
+   ```
+   Components used: <pds-* tags>
+   Hand-built controls: none
+   Missing components I flagged: <none, or which>
+   Logo in screen: none
+   Wrapped in pds-preview: yes
+   ```
+
 ## Why web components, and why plain JS
 
 - **No framework required.** `<pds-button>` and `<pds-badge>` work in a
@@ -29,25 +68,6 @@ guide. See "What's built" below for the full list and tag names.
 3. Write plain HTML using the tags, e.g. `<pds-button size="large">Buy</pds-button>`,
    importing `./index.js` (or the one component needed from `src/`) and
    `./tokens/tokens.css`.
-
-## Rules for every screen
-
-Read these before generating anything. They apply to every screen built
-with this library unless the prompt says otherwise.
-
-1. **No logo in an app screen.** POEMS app screens never carry the POEMS
-   logo or wordmark in the header. The top app bar holds a title,
-   navigation and actions only. The logo belongs to website pages, and
-   only when the prompt says the screen is a website. Treat every screen
-   as an app screen unless told it is a website.
-2. **Wrap the screen in `<pds-preview>`.** Import `preview/pds-preview.js`
-   and put the whole screen inside `<pds-preview>`. It draws the
-   phone-sized frame (375 px wide, 48 px corners) and, above the frame and
-   outside the screen, the reviewer's toggles: Light/Dark and
-   Rounded/Square corners. Do not build your own theme or corner
-   controls, and never put such controls inside the screen. The frame
-   paints the surface tokens, so the screen needs no page background of
-   its own. See `preview/pds-preview.md`.
 
 ## Brand assets
 
