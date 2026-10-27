@@ -48,6 +48,12 @@ request is in flight.
 - Keep the label short: 1 to 3 words, action-first ("Place order", not
   "Order will be placed").
 - Use `variant="secondary"` for the button next to a primary action.
+- Actions stacked on one screen share one width. A secondary button under
+  a full-width primary is full width too; never a small pill beside or under
+  a large one.
+- A lesser action such as "Reset password" or "Forgot password?" is a text
+  link, not a third button. (No text variant ships yet; use a plain link
+  styled with `--pds-on-container-tertiary` until it does.)
 
 ## Don't
 
