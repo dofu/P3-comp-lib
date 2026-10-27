@@ -125,7 +125,7 @@ export class PdsTopAppBar extends HTMLElement {
     this.shadowRoot.appendChild(TEMPLATE.content.cloneNode(true));
     this._titleSlot = this.shadowRoot.querySelector(".title slot");
     this._subtitleEl = this.shadowRoot.querySelector(".subtitle");
-    this._titleFallback = document.createElement("span");
+    this._fallbackNode = null; // the text node this component writes into the slot when there is no authored content
     this._onTitleSlotChange = this._onTitleSlotChange.bind(this);
   }
 
@@ -149,11 +149,16 @@ export class PdsTopAppBar extends HTMLElement {
   }
 
   _syncTitleFallback() {
-    const hasSlotted = this._titleSlot.assignedNodes().some(
-      (n) => n.nodeType === Node.ELEMENT_NODE || (n.textContent || "").trim() !== ""
+    // Authored content wins; the component's own fallback node does not count as authored,
+    // so a later change to the title attribute still updates the rendered title.
+    const authored = this._titleSlot.assignedNodes().some(
+      (n) => n !== this._fallbackNode && (n.nodeType === Node.ELEMENT_NODE || (n.textContent || "").trim() !== "")
     );
-    if (hasSlotted) return;
-    this.textContent = this.getAttribute("title") || "";
+    if (authored) return;
+    const text = this.getAttribute("title") || "";
+    if (!this._fallbackNode) this._fallbackNode = document.createTextNode(text);
+    else this._fallbackNode.textContent = text;
+    if (this._fallbackNode.parentNode !== this) { this.textContent = ""; this.appendChild(this._fallbackNode); }
   }
 
   _syncSubtitle() {
