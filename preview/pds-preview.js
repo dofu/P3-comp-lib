@@ -13,12 +13,19 @@
  * @attr {number} [width=375] - Frame width in CSS px.
  * @attr {number} [height=812] - Frame minimum height in CSS px. The frame
  *   grows with its content.
+ * @attr {'en'|'zh'|'ja'} [language=en] - Copy language to preview: English,
+ *   modern Chinese (Simplified, `zh-Hans`) or Japanese. Sets `lang` on
+ *   `<html>` and swaps the screen's copy: an element with `data-zh` and
+ *   `data-ja` gets its text replaced; an element with `data-<attr>-zh` and
+ *   `data-<attr>-ja` gets that attribute replaced (title, label,
+ *   placeholder, supporting-text, error, message, action-label). English
+ *   is kept in `data-en` / `data-<attr>-en` and restored on EN.
  *
  * @slot - The screen. The frame paints `--pds-surface-1` behind it and
  *   `--pds-on-surface-1` for text, so the screen need not style its own
  *   page background.
  *
- * @fires pds-preview-change - detail: `{ theme, corners }` after either toggle.
+ * @fires pds-preview-change - detail: `{ theme, corners, language }` after any toggle.
  *   (Named so it cannot be confused with the screen's own `change` events,
  *   which bubble up through this wrapper.)
  *
@@ -26,6 +33,7 @@
  * @cssprop --pds-on-surface-1 - Frame text colour.
  * @cssprop --pds-preview-radius - Corner radius when `corners="rounded"` (default 48px).
  */
+const LANG_TAGS = { en: "en", zh: "zh-Hans", ja: "ja" };
 const TEMPLATE = document.createElement("template");
 TEMPLATE.innerHTML = `
   <style>
@@ -109,13 +117,21 @@ TEMPLATE.innerHTML = `
         <button type="button" data-corners-choice="square" aria-pressed="false">Square</button>
       </div>
     </div>
+    <div class="control">
+      <span id="language-label">Language</span>
+      <div class="segment" role="group" aria-labelledby="language-label">
+        <button type="button" data-language-choice="en" aria-pressed="true" lang="en">EN</button>
+        <button type="button" data-language-choice="zh" aria-pressed="false" lang="zh-Hans">中文</button>
+        <button type="button" data-language-choice="ja" aria-pressed="false" lang="ja">日本語</button>
+      </div>
+    </div>
   </div>
   <div class="frame" part="frame"><slot></slot></div>
 `;
 
 export class PdsPreview extends HTMLElement {
   static get observedAttributes() {
-    return ["theme", "corners", "width", "height"];
+    return ["theme", "corners", "width", "height", "language"];
   }
 
   constructor() {
@@ -144,7 +160,8 @@ export class PdsPreview extends HTMLElement {
     if (!button) return;
     if (button.dataset.themeChoice) this.theme = button.dataset.themeChoice;
     if (button.dataset.cornersChoice) this.corners = button.dataset.cornersChoice;
-    this.dispatchEvent(new CustomEvent("pds-preview-change", { bubbles: true, composed: true, detail: { theme: this.theme, corners: this.corners } }));
+    if (button.dataset.languageChoice) this.language = button.dataset.languageChoice;
+    this.dispatchEvent(new CustomEvent("pds-preview-change", { bubbles: true, composed: true, detail: { theme: this.theme, corners: this.corners, language: this.language } }));
   }
 
   _sync() {
@@ -155,6 +172,29 @@ export class PdsPreview extends HTMLElement {
     for (const b of this.shadowRoot.querySelectorAll("[data-corners-choice]")) b.setAttribute("aria-pressed", String(b.dataset.cornersChoice === corners));
     this._frame.style.setProperty("--_width", `${this.width}px`);
     this._frame.style.setProperty("--_height", `${this.height}px`);
+    const language = this.language;
+    for (const b of this.shadowRoot.querySelectorAll("[data-language-choice]")) b.setAttribute("aria-pressed", String(b.dataset.languageChoice === language));
+    document.documentElement.lang = LANG_TAGS[language];
+    this._applyLanguage(language);
+  }
+
+  /** Swap the screen's copy to `language`, keeping the English in data-en / data-<attr>-en. */
+  _applyLanguage(language) {
+    for (const el of this.querySelectorAll("*")) {
+      if (el.hasAttribute("data-zh") || el.hasAttribute("data-ja")) {
+        if (!el.hasAttribute("data-en")) el.setAttribute("data-en", el.textContent.trim());
+        const text = el.getAttribute(`data-${language}`);
+        if (text !== null) el.textContent = text;
+      }
+      for (const { name } of [...el.attributes]) {
+        const m = /^data-(.+)-(zh|ja)$/.exec(name);
+        if (!m) continue;
+        const attr = m[1];
+        if (!el.hasAttribute(`data-${attr}-en`)) el.setAttribute(`data-${attr}-en`, el.getAttribute(attr) ?? "");
+        const value = el.getAttribute(`data-${attr}-${language}`);
+        if (value !== null) el.setAttribute(attr, value);
+      }
+    }
   }
 
   get theme() { return this.getAttribute("theme") === "dark" ? "dark" : "light"; }
@@ -168,6 +208,9 @@ export class PdsPreview extends HTMLElement {
 
   get height() { return Number(this.getAttribute("height")) || 812; }
   set height(v) { this.setAttribute("height", String(v)); }
+
+  get language() { const v = this.getAttribute("language"); return v === "zh" || v === "ja" ? v : "en"; }
+  set language(v) { this.setAttribute("language", v === "zh" || v === "ja" ? v : "en"); }
 }
 
 if (!customElements.get("pds-preview")) customElements.define("pds-preview", PdsPreview);

@@ -28,12 +28,22 @@ new page or in an existing project, unless the prompt says otherwise.
 4. **Wrap the screen in `<pds-preview>`.** Import `preview/pds-preview.js`
    and put the whole screen inside `<pds-preview>`. It draws the
    phone-sized frame (375 px wide, 48 px corners) and, above the frame and
-   outside the screen, the reviewer's toggles: Light/Dark and
-   Rounded/Square corners. Do not build your own theme or corner
+   outside the screen, the reviewer's toggles: Light/Dark, Rounded/Square
+   corners and Language. Do not build your own theme, corner or language
    controls, and never put such controls inside the screen. The frame
    paints the surface tokens, so the screen needs no page background of
    its own. See `preview/pds-preview.md`.
-5. **Finish with the checklist.** End your answer with these five lines,
+5. **Copy: short, complete, in three languages.** Write every
+   user-facing string as a complete sentence or label, as short as it can
+   be. No fillers or fluff: no "please", "simply", "just", "in order to",
+   no pleasantries. Give every string in English, modern Chinese
+   (Simplified) and Japanese: text as
+   `<span data-zh="…" data-ja="…">English</span>` inside the component,
+   attribute copy as `data-<attr>-zh` and `data-<attr>-ja` on the element
+   (`title`, `label`, `placeholder`, `supporting-text`, `error`,
+   `message`, `action-label`). The preview's Language toggle switches
+   them. See `preview/pds-preview.md`.
+6. **Finish with the checklist.** End your answer with these six lines,
    filled in honestly:
 
    ```
@@ -42,6 +52,7 @@ new page or in an existing project, unless the prompt says otherwise.
    Missing components I flagged: <none, or which>
    Logo in screen: none
    Wrapped in pds-preview: yes
+   Copy in en, zh, ja: every string
    ```
 
 ## Why web components, and why plain JS

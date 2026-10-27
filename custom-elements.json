@@ -3359,7 +3359,7 @@
           "name": "PdsPreview",
           "tagName": "pds-preview",
           "customElement": true,
-          "description": "`<pds-preview>`: the reviewer's frame around a generated screen. Not an app component and not exported from index.js: a phone-sized card with 48px corners and, above it and outside the screen, toggles for light/dark and rounded/square corners.",
+          "description": "`<pds-preview>`: the reviewer's frame around a generated screen. Not an app component and not exported from index.js: a phone-sized card with 48px corners and, above it and outside the screen, toggles for light/dark, rounded/square corners and language (EN, zh-Hans, ja).",
           "attributes": [
             {
               "name": "theme",
@@ -3392,6 +3392,14 @@
               },
               "default": "812",
               "description": "Frame minimum height in CSS px; the frame grows with its content."
+            },
+            {
+              "name": "language",
+              "type": {
+                "text": "'en'|'zh'|'ja'"
+              },
+              "default": "en",
+              "description": "Copy language to preview: English, modern Chinese (Simplified, zh-Hans) or Japanese. Sets lang on <html> and swaps copy declared with data-zh/data-ja (text) or data-<attr>-zh/data-<attr>-ja (attributes)."
             }
           ],
           "members": [
@@ -3434,6 +3442,16 @@
               "default": "812",
               "reflects": true,
               "description": "Frame minimum height in CSS px; the frame grows with its content."
+            },
+            {
+              "kind": "field",
+              "reflects": true,
+              "name": "language",
+              "type": {
+                "text": "'en'|'zh'|'ja'"
+              },
+              "default": "en",
+              "description": "Copy language to preview: English, modern Chinese (Simplified, zh-Hans) or Japanese. Sets lang on <html> and swaps copy declared with data-zh/data-ja (text) or data-<attr>-zh/data-<attr>-ja (attributes)."
             }
           ],
           "events": [
@@ -3442,7 +3460,7 @@
               "type": {
                 "text": "CustomEvent"
               },
-              "description": "detail: { theme, corners } after either toggle. Named apart from the screen's own change events, which bubble through the wrapper."
+              "description": "detail: { theme, corners, language } after either toggle. Named apart from the screen's own change events, which bubble through the wrapper."
             }
           ],
           "slots": [
