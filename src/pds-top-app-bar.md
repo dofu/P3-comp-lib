@@ -28,6 +28,17 @@ primary purpose is search; a dedicated search header fits better there.
 Titles may truncate as a last resort; switch to `variant="long"` when the
 title itself matters more than a fixed bar height.
 
+## Rules from the design system documentation
+
+- The subtitle is secondary context under a short title, such as an
+  account or entity name. Never an independent second sentence.
+- A long title switches to `variant="long"` and the bar grows. Never type
+  an ellipsis into a title.
+- A title may truncate as a last resort. A value (a price, a holding)
+  never does; it is not a title.
+- In Dark, scroll elevation is a hairline divider under the bar, never a
+  drop shadow.
+
 ## Known limitations
 
 - The scroll-tint opacity applied while `scrolled` is a placeholder, not

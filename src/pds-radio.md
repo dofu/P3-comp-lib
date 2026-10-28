@@ -27,6 +27,16 @@ matching how native radio groups behave.
 - Never leave a group with zero radios checked once the user has
   interacted with it.
 
+## Rules from the design system documentation
+
+- Two to five options, never more than six, and all visible at once. A
+  set that needs hiding is a menu or a sheet, not a radio group.
+- If "None" is a valid answer it is its own option. Nothing selected never
+  means none.
+- Options are mutually exclusive in wording, one line each, no trailing
+  punctuation.
+- The whole row selects the option, not only the circle.
+
 ## Known limitations
 
 - Disabled currently looks identical to enabled; only interactivity is removed.

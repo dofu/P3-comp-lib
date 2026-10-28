@@ -23,6 +23,30 @@ buttons use.
 - Never use a chip as a substitute for a button; it is for filtering,
   input, or choice, not a primary action.
 
+## Rules from the design system documentation
+
+- POEMS uses three kinds of chip. Filter: several can be active at
+  once, a selected chip shows the check. Selector: opens a picker, the
+  label shows the current choice, with a trailing dropdown icon. Input: a
+  user-added entry, dismissible. Assist and Suggestion chips are not used,
+  by decision.
+- Chips select independently and never deselect a sibling. One choice
+  from a set (Buy / Sell, Cash / CPF / SRS, Day / GTD) is a segmented
+  button or a radio group, not a chip row. Until the segmented button
+  ships, a chip row standing in for one is reported in a Substituted line.
+- A label is one or two words, a noun or an attribute ("SG", "Futures",
+  "Dividends"). Never a verb: a verb chip is a button. No punctuation.
+  Render the label as written; no casing transform.
+- A chip row is one horizontal line that scrolls, with the next chip
+  peeking. It never wraps to a second line. A wrapping grid belongs only
+  inside a filter sheet.
+- A chip grows with its label and never truncates. Never shrink a chip
+  below 32 px to fit a container.
+- Add a leading icon only when it disambiguates. Show selection with the
+  check, never with colour alone.
+- Something chip-shaped that does not tap is not a chip; it is a tag, and
+  for now that is plain text.
+
 ## Known limitations
 
 - Hover and Pressed colours are not finalised yet.

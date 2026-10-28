@@ -31,7 +31,7 @@ TEMPLATE.innerHTML = `
       border: none;
       position: fixed;
       inset: 0 0 0 auto;
-      width: min(400px, 100%);
+      width: min(320px, 100%); /* Figma: 320 px, every variant */
       height: 100%;
       box-sizing: border-box;
       border-radius: 16px 0 0 16px;

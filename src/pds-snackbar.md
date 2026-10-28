@@ -24,6 +24,20 @@ needs to complete a task or avoid an error; use a dialog for that.
 - Never use a filled or elevated button as the action; it's a plain text button.
 - Never show more than one snackbar at a time.
 
+## Rules from the design system documentation
+
+- Say what happened: "Order submitted successfully". Never a generic
+  acknowledgement.
+- At most one action, a single verb: "Undo", "Amend". The action is never
+  the only way to recover from what the message reports.
+- A second snackbar replaces the first. Nothing stacks and nothing queues.
+- Without an action it dismisses itself: 6 seconds for one line, 10 for
+  two or three. With an action it stays until the user acts.
+- It never covers the navigation bar or a floating button.
+- Never show a live account number; mask sensitive data.
+- At larger text sizes the message wraps to two lines and the container
+  grows. Never truncate it.
+
 ## Known limitations
 
 - The action label's colour does not currently meet WCAG AA contrast

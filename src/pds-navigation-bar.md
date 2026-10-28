@@ -35,6 +35,15 @@ label; the others are grey. There is no pill.
 - Never draw the icons by hand or take them from another set.
 - Never add a pill or background behind the selected icon.
 
+## Rules from the design system documentation
+
+- Labels are one or two words and never wrap, truncate or shrink to fit.
+- Destinations keep fixed positions and the same order on every screen.
+  Never scroll, hide or rearrange them.
+- Re-selecting the active destination scrolls its content back to the top
+  instead of navigating.
+- A dot badge never carries a number. A count badge is for a count only.
+
 ## Known limitations
 
 - Hover and Focus colours are not finalised for individual items.

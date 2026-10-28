@@ -22,6 +22,17 @@ Use `pds-switch` instead when the setting takes effect immediately.
 - Never use a checkbox where only one of several options can be true; use
   radio buttons instead.
 
+## Rules from the design system documentation
+
+- Phrase the option so that checked means yes: "Send me updates", never
+  "Don't send me updates".
+- Sentence case, no full stop, two lines at most.
+- Never for a one-of-N choice. The in-app font-size setting shipped that
+  mistake and was changed to radio buttons.
+- Every state (checked, unchecked, mixed) has its own mark. Never colour
+  alone.
+- The whole label is the tap target, ideally the whole row.
+
 ## Known limitations
 
 - No form participation via ElementInternals yet; read `.checked` /

@@ -28,6 +28,20 @@ list; use a list row instead.
 - Never mix a whole-card tap target with other tappable rows inside it
   unless the pressed states are visually distinct.
 
+## Rules from the design system documentation
+
+- Five patterns only; extend a slot before inventing a new card.
+- No shadows on dark surfaces. A tonal raise or a hairline instead.
+- A title clamps at two lines with an ellipsis, the only text allowed to
+  truncate. A value never truncates: the full value with currency and
+  tabular figures.
+- A post body clamps at three lines with a "more" affordance. A meta row
+  is one line of facts: time, validity, points.
+- Dense, repeating financial data is a list, not a stack of cards.
+- Samples carry real POEMS data, never lorem or "Label Here".
+- Declare the tap model: the whole card, or an inert container with its
+  own internal actions.
+
 ## Known limitations
 
 - This is a draft proposal, not a reviewed, final component.

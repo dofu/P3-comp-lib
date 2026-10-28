@@ -30,6 +30,21 @@ in a list; use `pds-list-row` instead.
 
 - Never truncate a financial value; let names truncate instead if space is tight.
 
+## Rules from the design system documentation
+
+- Rows grow with their content and with the text size. Never give a row
+  a fixed height.
+- Primary text is one line, two at most. Three or more lines means the
+  content wants a card.
+- Secondary text is metadata only (market, time, quantity), one line, and
+  may truncate. Never a second sentence.
+- A value sits right-aligned in the trailing slot with tabular figures,
+  the full value and its currency. Colour is for movement only (the
+  positive and negative text tokens), never decoration.
+- Rows adopt the surface behind them. Never give a row a fill of its own.
+- Whole-row tap is the default. A row with an inline control (switch,
+  checkbox) makes that control the target and the row goes inert.
+
 ## Known limitations
 
 - No Hover/Pressed/Selected styling yet.

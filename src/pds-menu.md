@@ -32,6 +32,20 @@ menu.addEventListener("select", (event) => {
 - Don't nest another `pds-menu` directly inside a `pds-menu-item`'s
   default slot; use the `trailing` slot to hint at a submenu instead.
 
+## Rules from the design system documentation
+
+- Labels are sentence case and action-first, one line at the menu's
+  width.
+- Ten or more items, or a multi-step task, is a bottom sheet on mobile,
+  not a menu.
+- The trailing arrow appears only on an item that opens a nested menu,
+  never as decoration.
+- Dividers group related actions.
+- A selected item is still selected the next time the menu opens.
+- The menu anchors to the control that opened it, closes on an outside tap
+  or Esc without changing the selection, and opens above the trigger when
+  there is no room below.
+
 ## Known limitations
 
 - Submenus (an item that opens a nested panel) are not implemented.

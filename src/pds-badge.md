@@ -31,6 +31,16 @@ decoration.
 - Never make the badge itself clickable; it is deliberately
   `pointer-events: none`. Put the tap target on the thing it decorates.
 
+## Rules from the design system documentation
+
+- A numbered badge appears only in the Notification box. Everywhere else
+  (Me, Community, gamification) it is the dot.
+- The count comes from the server. It is never computed or incremented on
+  the client.
+- A count badge announces as part of its host ("Notifications, 5 new"); a
+  dot announces as "new content". The badge itself is never focusable.
+- A badge clears when the user views its source, and for no other reason.
+
 ## Known limitations
 
 - The count cap defaults to 99; pass `max` to change it.

@@ -66,6 +66,27 @@ red (Sell, price down), in both variants. Everything else stays orange.
 - Never override the casing the component applies; type sentence case and
   let `size` decide.
 
+## Rules from the design system documentation
+
+- Never truncate a label, at any text size. The label fits, then the
+  button grows taller, then the label wraps to two lines, then a
+  side-by-side pair stacks with the primary on top. Never shrink the font
+  to force a fit.
+- A money action never reads OK, Yes or Submit. The label restates the
+  action and its consequence: "Place order", "Cancel transfer".
+- A value in a label is the full value with its currency code, never
+  rounded. The amount on the button is the amount that gets sent.
+- Three actions in one group means the screen needs a menu or a page.
+- No text-only or ghost button for a destructive or money-moving action.
+- An icon-only button for a money action needs an unambiguous glyph and
+  an accessible label.
+- Casing applies to Latin labels only; Chinese and Japanese labels are
+  never transformed.
+- An edge-to-edge, full-bleed button is only for the single screen-level
+  action (a trade ticket's Review or Confirm). Inside scrolling content a
+  button keeps the 16 px side margins.
+- On web at 1024 px and above use `size="medium"`.
+
 ## Known limitations
 
 - Hover, Pressed and Focus colours are not finalised; the focus ring shown

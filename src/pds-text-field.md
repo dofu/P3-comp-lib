@@ -28,6 +28,17 @@ The trade ticket puts labels to the left: `label-position="start"` lays the
 label and the field on one row (two fifths, three fifths), supporting text
 under the field.
 
+## Rules from the design system documentation
+
+- One error message, the most likely one. Never concatenate every rule
+  that could fail. Error text replaces supporting text; the two never show
+  together.
+- Supporting text is one line where possible, and only information about
+  the field (what it is for, the format).
+- A counter states the limit, "0/20 characters", never a bare count.
+- Every icon-only control in or beside a field (trailing icons, stepper
+  plus and minus) has its own 48 by 48 hit area.
+
 ## Known limitations
 
 - Only a single generic trailing-icon slot; no built-in password

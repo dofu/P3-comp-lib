@@ -23,6 +23,19 @@ effect once the user submits a form.
 - Never use it for a choice that needs a separate confirm step; use a
   checkbox for that.
 
+## Rules from the design system documentation
+
+- Label the on state: "Enable biometric authentication". Never a
+  question, never a bare noun, never a double negative ("Disable
+  notifications", off).
+- The change applies the instant the user taps. A switch never sits
+  behind Apply or Submit. A failed save reverts the switch and shows an
+  inline error, never silently.
+- Not a two-option view picker (Chart / Table). That is a segmented
+  button.
+- An explanation goes in helper text under the row, not in the label. The
+  label stays on one line where possible.
+
 ## Known limitations
 
 - No form participation via ElementInternals yet; read `.checked`

@@ -38,6 +38,22 @@ filters.addEventListener("dismiss", (event) => {
 
 - Don't stack a second sheet or dialog on top of an open sheet.
 
+## Rules from the design system documentation
+
+- Content decides whether a sheet is Standard or Persistent. A sheet
+  with a Cancel button is Persistent: tapping outside does not close it
+  (`dismissible="false"`). A sheet without one is Standard: tapping
+  outside closes it.
+- Legal and compliance copy (a disclaimer, a terms notice) is always
+  Persistent and needs an explicit acknowledgement.
+- Every sheet has a close control reachable by keyboard and screen
+  reader. The drag handle is never the only way out.
+- Sheet titles are sentence case and may truncate at narrow widths.
+  Values never truncate.
+- Sizes from Figma: the bottom sheet has a 28 px radius on its top corners
+  only and a 32 by 4 px handle; the side sheet is 320 px wide with a 16 px
+  radius.
+
 ## Known limitations
 
 - The bottom sheet's drag handle is decorative; dragging to dismiss

@@ -29,3 +29,9 @@ project that includes this library, these rules apply.
    `data-ja` and `data-<attr>-zh/ja` conventions in `preview/pds-preview.md`.
    Chinese and Japanese copy is your suggestion, the shortest wording
    possible, not taken from POEMS translation files; say so if asked.
+8. Follow README section "Content rules from the design system": a
+   financial value never truncates or rounds; a money action never reads
+   OK, Yes or Submit; one choice from a few is a segmented button or radio,
+   several at once are chips or checkboxes; nothing shrinks or truncates at
+   larger text sizes. Each `src/<component>.md` ends with that component's
+   own rules; read it before using the component.

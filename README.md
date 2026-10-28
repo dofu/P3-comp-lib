@@ -89,6 +89,33 @@ new page or in an existing project, unless the prompt says otherwise.
 
    A clean screen ends with the screen.
 
+## Content rules from the design system
+
+These come from the design system's component documentation and apply
+to every screen, whatever the component.
+
+1. **A financial value never truncates, rounds or breaks mid-number**,
+   and carries its currency code. A name or a title may truncate as a
+   last resort; a value never does. The column grows or scrolls instead.
+2. **A money action never reads OK, Yes or Submit.** The label restates
+   the action: "Place order", "Cancel order" / "Keep order". The amount
+   shown is the amount that gets sent.
+3. **Choice grammar.** One of a few, all visible: a segmented button (a
+   chip row stands in until it ships, reported as Substituted) or a radio
+   group. Several at once: chips or checkboxes. Takes effect the moment it
+   is tapped: a switch. A chip is never a button, and a switch never sits
+   behind Apply.
+4. **Text scaling.** The app offers Regular, Large and Extra Large text
+   (100, 115 and 130 %). At every size a label fits, then grows, then
+   wraps, then a pair stacks. Nothing shrinks and nothing truncates.
+5. **Confirmations and feedback.** A decision that blocks is a dialog
+   with a specific headline ("Cancel this order?"). A finished background
+   action is a snackbar that says what happened. A sheet with a Cancel
+   button cannot be dismissed by tapping outside; a disclaimer never can.
+
+Each component's guide in `src/<component>.md` ends with the rules that
+apply to it alone.
+
 ## Why web components, and why plain JS
 
 - **No framework required.** `<pds-button>` and `<pds-badge>` work in a
