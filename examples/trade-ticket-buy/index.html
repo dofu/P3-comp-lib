@@ -75,8 +75,6 @@
     .gross { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
     .gross .label { font-weight: 500; letter-spacing: 0.5px; text-transform: uppercase; }
     .gross .num { font-size: 20px; line-height: 28px; }
-    pds-button.full { display: block; width: 100%; }
-    pds-button.full::part(button) { width: 100%; }
 
     /* Review order sheet: phone-wide even on a desktop viewport */
     pds-bottom-sheet::part(dialog) { width: 375px; max-width: 100%; margin: 0 auto; }
@@ -230,7 +228,7 @@
           <span class="label" data-zh="总额" data-ja="総額">Gross value</span>
           <span class="num" id="gross">SGD 0</span>
         </div>
-        <pds-button class="full" id="review" tone="positive"><span data-zh="查看买入订单" data-ja="買い注文を確認">Review buy order</span></pds-button>
+        <pds-button block id="review" tone="positive"><span data-zh="查看买入订单" data-ja="買い注文を確認">Review buy order</span></pds-button>
       </footer>
     </main>
 
@@ -275,7 +273,7 @@
           <span class="label" data-zh="总额" data-ja="総額">Gross value</span>
           <span class="num" id="s-gross">SGD 0</span>
         </div>
-        <pds-button class="full" id="confirm" tone="positive"><span data-zh="确认买入订单" data-ja="買い注文を確定">Confirm buy order</span></pds-button>
+        <pds-button block id="confirm" tone="positive"><span data-zh="确认买入订单" data-ja="買い注文を確定">Confirm buy order</span></pds-button>
       </footer>
     </pds-bottom-sheet>
 

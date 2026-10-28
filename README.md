@@ -120,6 +120,12 @@ to every screen, whatever the component.
    with a specific headline ("Cancel this order?"). A finished background
    action is a snackbar that says what happened. A sheet with a Cancel
    button cannot be dismissed by tapping outside; a disclaimer never can.
+6. **Button width follows content, never a pixel value.** A button hugs
+   its label by default. A button whose label toggles (Follow / Following)
+   reserves the width of its widest label (`reserve`), so it never resizes
+   on tap and a column of them lines up. Only the single screen-level
+   action, and actions stacked to share one width, fill the container
+   (`block`).
 
 Each component's guide in `src/<component>.md` ends with the rules that
 apply to it alone.
