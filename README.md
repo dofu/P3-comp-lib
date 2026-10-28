@@ -135,6 +135,20 @@ Never a size, gap or radius off the scale; the smallest text is 11 px
 and body copy is 14 or 16 px. The scales and the rules are in
 `foundations/README.md`.
 
+## Report a problem
+
+When a screen comes out wrong and one reply does not fix it, send these
+four things to the design system team in one message:
+
+1. The prompt, pasted as you typed it.
+2. The link to the result: the artifact or the page, not a picture of it.
+3. The lines Claude wrote under the screen (Substituted, Hand-built,
+   Logo in screen, Copy missing a language), or "none".
+4. One screenshot of the part that is wrong, with the Light/Dark and
+   Language toggles as you had them.
+
+Say which Claude organisation you are in; links do not cross them.
+
 ## Why web components, and why plain JS
 
 - **No framework required.** `<pds-button>` and `<pds-badge>` work in a
