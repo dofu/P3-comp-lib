@@ -1,5 +1,13 @@
 # Component library: web components
 
+![Components](https://img.shields.io/badge/components-29-F78F20)
+![Web Components](https://img.shields.io/badge/web%20components-native-0043CE)
+![No build step](https://img.shields.io/badge/build%20step-none-008B57)
+![Themes](https://img.shields.io/badge/themes-light%20%7C%20dark-141414)
+![Copy](https://img.shields.io/badge/copy-EN%20%7C%20%E4%B8%AD%E6%96%87%20%7C%20%E6%97%A5%E6%9C%AC%E8%AA%9E-595959)
+![Last commit](https://img.shields.io/github/last-commit/dofu/P3-comp-lib)
+![Repo size](https://img.shields.io/github/repo-size/dofu/P3-comp-lib)
+
 A framework-free UI component library, built as native
 [Web Components](https://developer.mozilla.org/en-US/docs/Web/API/Web_components).
 29 custom elements, each shipped as plain JavaScript with a matching usage
