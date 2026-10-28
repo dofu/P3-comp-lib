@@ -116,6 +116,17 @@ to every screen, whatever the component.
 Each component's guide in `src/<component>.md` ends with the rules that
 apply to it alone.
 
+## Foundations: type, spacing, radius
+
+`foundations/` holds the typography, spacing and radius tokens;
+`tokens/tokens.css` loads them, so nothing extra to include. Hand-built
+text takes a type class (`pds-type-body-medium`, `pds-type-title-large`,
+`pds-type-headline-small` and so on), hand-built layout takes
+`--pds-space-*` for every gap and `--pds-radius-*` for every corner.
+Never a size, gap or radius off the scale; the smallest text is 11 px
+and body copy is 14 or 16 px. The scales and the rules are in
+`foundations/README.md`.
+
 ## Why web components, and why plain JS
 
 - **No framework required.** `<pds-button>` and `<pds-badge>` work in a

@@ -69,16 +69,17 @@ TEMPLATE.innerHTML = `
     .message {
       flex: 1;
       min-width: 0;
-      font-size: 14px;
-      line-height: 20px;
+      font-size: var(--pds-type-body-medium-size, 14px);
+      letter-spacing: var(--pds-type-body-medium-tracking, 0.25px);
+      line-height: var(--pds-type-body-medium-line, 20px);
       color: var(--pds-on-container-inverse-primary, #ffffff);
     }
     .action {
       all: unset;
       flex: none;
-      font-size: 14px;
-      font-weight: 500;
-      letter-spacing: 0.1px;
+      font-size: var(--pds-type-label-large-size, 14px);
+      letter-spacing: var(--pds-type-label-large-tracking, 0.1px);
+      font-weight: var(--pds-type-label-large-weight, 500);
       text-transform: uppercase;
       color: var(--pds-on-container-tertiary, #f78f20);
       cursor: pointer;

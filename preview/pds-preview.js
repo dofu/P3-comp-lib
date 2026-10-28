@@ -141,6 +141,8 @@ TEMPLATE.innerHTML = `
       box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08), 0 8px 24px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.08);
     }
     .home { margin-top: auto; }
+    ::slotted(pds-navigation-bar) { margin-top: auto; } /* a bottom bar placed as a direct child sits above the home line */
+    .frame.has-nav .home { margin-top: 0; }
     :host([corners="square"]) .frame {
       border-radius: 0;
     }
@@ -194,6 +196,10 @@ export class PdsPreview extends HTMLElement {
     fontNote.hidden = fontAvailable("Roboto");
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { fontNote.hidden = fontAvailable("Roboto"); });
     this._sync();
+    const slot = this.shadowRoot.querySelector("slot:not([name])");
+    this._syncNav = () => this.shadowRoot.querySelector(".frame").classList.toggle("has-nav", slot.assignedElements().some((e) => e.tagName === "PDS-NAVIGATION-BAR"));
+    slot.addEventListener("slotchange", this._syncNav);
+    this._syncNav();
   }
 
   disconnectedCallback() {

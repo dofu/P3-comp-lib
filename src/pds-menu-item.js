@@ -52,7 +52,7 @@ TEMPLATE.innerHTML = `
     .check { width: 20px; height: 20px; flex: none; display: none; }
     :host([selected]) .check { display: inline-flex; }
     :host([selected]) ::slotted([slot="leading"]) { display: none; }
-    .label { flex: 1 1 auto; font-size: 14px; line-height: 20px; text-align: left; }
+    .label { flex: 1 1 auto; font-size: var(--pds-type-body-medium-size, 14px); letter-spacing: var(--pds-type-body-medium-tracking, 0.25px); line-height: var(--pds-type-body-medium-line, 20px); text-align: left; }
     ::slotted([slot="trailing"]) { flex: none; color: var(--pds-scheme-on-surface-variant, #49454f); }
     :host([disabled]) .row { opacity: 0.38; cursor: default; pointer-events: none; }
   </style>

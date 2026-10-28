@@ -31,9 +31,9 @@ TEMPLATE.innerHTML = `
       gap: 4px;
       height: 48px;
       padding: 0 16px;
-      font-size: 14px;
-      letter-spacing: 0.1px;
-      line-height: 20px;
+      font-size: var(--pds-type-label-large-size, 14px);
+      letter-spacing: var(--pds-type-label-large-tracking, 0.1px);
+      line-height: var(--pds-type-label-large-line, 20px);
       color: var(--pds-on-surface-1, #141414);
       cursor: pointer;
       white-space: nowrap;

@@ -1,0 +1,119 @@
+/*
+  Typography tokens: the V2 Typeface scale, read from the design file's
+  text styles on 2026-10-28. Fifteen styles, two weights (Regular 400 and
+  Medium 500), one family. tokens/tokens.css loads this file.
+
+  Use a class on hand-built text (<p class="pds-type-body-medium">) or the
+  tokens in your own CSS. Never a size outside this scale.
+*/
+
+:root {
+  --pds-font-family: Roboto, system-ui, sans-serif;
+
+  --pds-type-display-large-size: 57px;
+  --pds-type-display-large-line: 64px;
+  --pds-type-display-large-weight: 400;
+  --pds-type-display-large-tracking: -0.25px;
+  --pds-type-display-large: 400 57px/64px var(--pds-font-family);
+
+  --pds-type-display-medium-size: 45px;
+  --pds-type-display-medium-line: 52px;
+  --pds-type-display-medium-weight: 400;
+  --pds-type-display-medium-tracking: 0px;
+  --pds-type-display-medium: 400 45px/52px var(--pds-font-family);
+
+  --pds-type-display-small-size: 36px;
+  --pds-type-display-small-line: 44px;
+  --pds-type-display-small-weight: 400;
+  --pds-type-display-small-tracking: 0px;
+  --pds-type-display-small: 400 36px/44px var(--pds-font-family);
+
+  --pds-type-headline-large-size: 32px;
+  --pds-type-headline-large-line: 40px;
+  --pds-type-headline-large-weight: 400;
+  --pds-type-headline-large-tracking: 0px;
+  --pds-type-headline-large: 400 32px/40px var(--pds-font-family);
+
+  --pds-type-headline-medium-size: 28px;
+  --pds-type-headline-medium-line: 36px;
+  --pds-type-headline-medium-weight: 400;
+  --pds-type-headline-medium-tracking: 0px;
+  --pds-type-headline-medium: 400 28px/36px var(--pds-font-family);
+
+  --pds-type-headline-small-size: 24px;
+  --pds-type-headline-small-line: 32px;
+  --pds-type-headline-small-weight: 400;
+  --pds-type-headline-small-tracking: 0px;
+  --pds-type-headline-small: 400 24px/32px var(--pds-font-family);
+
+  --pds-type-title-large-size: 22px;
+  --pds-type-title-large-line: 28px;
+  --pds-type-title-large-weight: 400;
+  --pds-type-title-large-tracking: 0px;
+  --pds-type-title-large: 400 22px/28px var(--pds-font-family);
+
+  --pds-type-title-medium-size: 16px;
+  --pds-type-title-medium-line: 24px;
+  --pds-type-title-medium-weight: 500;
+  --pds-type-title-medium-tracking: 0.15px;
+  --pds-type-title-medium: 500 16px/24px var(--pds-font-family);
+
+  --pds-type-title-small-size: 14px;
+  --pds-type-title-small-line: 20px;
+  --pds-type-title-small-weight: 500;
+  --pds-type-title-small-tracking: 0.1px;
+  --pds-type-title-small: 500 14px/20px var(--pds-font-family);
+
+  --pds-type-body-large-size: 16px;
+  --pds-type-body-large-line: 24px;
+  --pds-type-body-large-weight: 400;
+  --pds-type-body-large-tracking: 0.5px;
+  --pds-type-body-large: 400 16px/24px var(--pds-font-family);
+
+  --pds-type-body-medium-size: 14px;
+  --pds-type-body-medium-line: 20px;
+  --pds-type-body-medium-weight: 400;
+  --pds-type-body-medium-tracking: 0.25px;
+  --pds-type-body-medium: 400 14px/20px var(--pds-font-family);
+
+  --pds-type-body-small-size: 12px;
+  --pds-type-body-small-line: 16px;
+  --pds-type-body-small-weight: 400;
+  --pds-type-body-small-tracking: 0.4px;
+  --pds-type-body-small: 400 12px/16px var(--pds-font-family);
+
+  --pds-type-label-large-size: 14px;
+  --pds-type-label-large-line: 20px;
+  --pds-type-label-large-weight: 500;
+  --pds-type-label-large-tracking: 0.1px;
+  --pds-type-label-large: 500 14px/20px var(--pds-font-family);
+
+  --pds-type-label-medium-size: 12px;
+  --pds-type-label-medium-line: 16px;
+  --pds-type-label-medium-weight: 500;
+  --pds-type-label-medium-tracking: 0.5px;
+  --pds-type-label-medium: 500 12px/16px var(--pds-font-family);
+
+  --pds-type-label-small-size: 11px;
+  --pds-type-label-small-line: 16px;
+  --pds-type-label-small-weight: 500;
+  --pds-type-label-small-tracking: 0.5px;
+  --pds-type-label-small: 500 11px/16px var(--pds-font-family);
+
+}
+
+.pds-type-display-large { font: var(--pds-type-display-large); letter-spacing: var(--pds-type-display-large-tracking); }
+.pds-type-display-medium { font: var(--pds-type-display-medium); letter-spacing: var(--pds-type-display-medium-tracking); }
+.pds-type-display-small { font: var(--pds-type-display-small); letter-spacing: var(--pds-type-display-small-tracking); }
+.pds-type-headline-large { font: var(--pds-type-headline-large); letter-spacing: var(--pds-type-headline-large-tracking); }
+.pds-type-headline-medium { font: var(--pds-type-headline-medium); letter-spacing: var(--pds-type-headline-medium-tracking); }
+.pds-type-headline-small { font: var(--pds-type-headline-small); letter-spacing: var(--pds-type-headline-small-tracking); }
+.pds-type-title-large { font: var(--pds-type-title-large); letter-spacing: var(--pds-type-title-large-tracking); }
+.pds-type-title-medium { font: var(--pds-type-title-medium); letter-spacing: var(--pds-type-title-medium-tracking); }
+.pds-type-title-small { font: var(--pds-type-title-small); letter-spacing: var(--pds-type-title-small-tracking); }
+.pds-type-body-large { font: var(--pds-type-body-large); letter-spacing: var(--pds-type-body-large-tracking); }
+.pds-type-body-medium { font: var(--pds-type-body-medium); letter-spacing: var(--pds-type-body-medium-tracking); }
+.pds-type-body-small { font: var(--pds-type-body-small); letter-spacing: var(--pds-type-body-small-tracking); }
+.pds-type-label-large { font: var(--pds-type-label-large); letter-spacing: var(--pds-type-label-large-tracking); }
+.pds-type-label-medium { font: var(--pds-type-label-medium); letter-spacing: var(--pds-type-label-medium-tracking); }
+.pds-type-label-small { font: var(--pds-type-label-small); letter-spacing: var(--pds-type-label-small-tracking); }

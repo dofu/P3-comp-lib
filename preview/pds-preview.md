@@ -56,7 +56,8 @@ screen inside the preview must not add its own.
 The frame ends with `pds-home-indicator` (the 34px zone with the home
 line), as every P3 screen in Figma does. Set `home-indicator="off"` to
 hide it. The bottom navigation bar is not part of the frame: add
-`pds-navigation-bar` only on root screens.
+`pds-navigation-bar` only on root screens, as a direct child of the
+preview after the content: the preview pins it above the home line.
 
 ## Stage
 

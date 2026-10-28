@@ -1,0 +1,21 @@
+/*
+  Corner radius tokens, from the design file's Radius foundation
+  (migrated 2026-08-25). tokens/tokens.css loads this file.
+
+  What the shipped components use: chips radius-md, dialogs radius-xl,
+  menus, snackbars and checkboxes radius-sm, buttons, badges, switches
+  and the search bar radius-full. The bottom sheet's 28 px top corners
+  sit between 2xl and 3xl; an open decision in the design system.
+*/
+
+:root {
+  --pds-radius-none: 0px;
+  --pds-radius-xs: 2px;
+  --pds-radius-sm: 4px;
+  --pds-radius-md: 8px;
+  --pds-radius-lg: 12px;
+  --pds-radius-xl: 16px;
+  --pds-radius-2xl: 24px;
+  --pds-radius-3xl: 32px;
+  --pds-radius-full: 9999px;
+}

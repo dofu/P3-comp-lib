@@ -54,9 +54,9 @@ TEMPLATE.innerHTML = `
     }
     .label {
       display: block;
-      font-size: 12px;
-      letter-spacing: 0.4px;
-      line-height: 16px;
+      font-size: var(--pds-type-body-small-size, 12px);
+      letter-spacing: var(--pds-type-body-small-tracking, 0.4px);
+      line-height: var(--pds-type-body-small-line, 16px);
       color: var(--pds-on-surface-1, #141414);
       margin-bottom: 4px;
     }
@@ -83,9 +83,9 @@ TEMPLATE.innerHTML = `
       all: unset;
       flex: 1;
       min-width: 0;
-      font-size: 16px;
-      letter-spacing: 0.5px;
-      line-height: 24px;
+      font-size: var(--pds-type-body-large-size, 16px);
+      letter-spacing: var(--pds-type-body-large-tracking, 0.5px);
+      line-height: var(--pds-type-body-large-line, 24px);
       color: var(--pds-on-surface-1, #141414);
       white-space: nowrap;
       overflow-x: auto;
@@ -96,8 +96,9 @@ TEMPLATE.innerHTML = `
     :host([disabled]) input, :host([disabled]) textarea { color: var(--pds-grey-300, #747474); }
     .supporting {
       margin-top: 4px;
-      font-size: 12px;
-      line-height: 16px;
+      font-size: var(--pds-type-body-small-size, 12px);
+      letter-spacing: var(--pds-type-body-small-tracking, 0.4px);
+      line-height: var(--pds-type-body-small-line, 16px);
       color: var(--pds-on-surface-1, #141414);
     }
     :host([error]) .supporting { color: var(--pds-on-surface-text-negative, #ca2323); }

@@ -51,15 +51,15 @@ TEMPLATE.innerHTML = `
     ::slotted([slot="leading"]) { width: 40px; height: 40px; flex: none; color: var(--pds-on-surface-1, #141414); }
     .content { flex: 1; min-width: 0; display: flex; flex-direction: column; }
     .primary {
-      font-size: 16px;
-      letter-spacing: 0.5px;
-      line-height: 24px;
+      font-size: var(--pds-type-body-large-size, 16px);
+      letter-spacing: var(--pds-type-body-large-tracking, 0.5px);
+      line-height: var(--pds-type-body-large-line, 24px);
       color: var(--pds-on-surface-1, #141414);
     }
     .secondary {
-      font-size: 14px;
-      letter-spacing: 0.25px;
-      line-height: 20px;
+      font-size: var(--pds-type-body-medium-size, 14px);
+      letter-spacing: var(--pds-type-body-medium-tracking, 0.25px);
+      line-height: var(--pds-type-body-medium-line, 20px);
       color: var(--pds-on-surface-1, #141414);
     }
     :host([lines="3"]) .secondary {

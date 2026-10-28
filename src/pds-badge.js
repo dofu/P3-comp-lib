@@ -49,8 +49,8 @@ TEMPLATE.innerHTML = `
       border-radius: 999px;
       background: var(--pds-red-100, #e96e6e);
       color: var(--pds-white, #ffffff);
-      font-size: 11px;
-      font-weight: 500;
+      font-size: var(--pds-type-label-small-size, 11px);
+      font-weight: var(--pds-type-label-small-weight, 500);
       line-height: 1;
     }
     .visually-hidden {

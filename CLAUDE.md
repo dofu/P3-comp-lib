@@ -12,7 +12,10 @@ project that includes this library, these rules apply.
    the closest one.
 3. `custom-elements.json` is the contract: use only the attributes it
    lists. Per-component guidance (when to use, do and don't) is in
-   `src/<component>.md`. Colours come from `tokens/tokens.css` only.
+   `src/<component>.md`. Colours come from `tokens/tokens.css` only; type,
+   spacing and radius from `foundations/` (a `pds-type-*` class on every
+   hand-built text, `--pds-space-*` for every gap, `--pds-radius-*` for
+   every corner; nothing off those scales).
 4. Add `pds-navigation-bar` only on root screens; the preview frame
    already carries the status bar and the home line.
 5. Wrap every screen you render for review in `<pds-preview>` from

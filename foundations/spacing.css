@@ -1,0 +1,28 @@
+/*
+  Spacing tokens: one 4 px scale, the number is the multiple of 4.
+  Values from the design file's Spacing foundation (migrated 2026-08-25).
+  tokens/tokens.css loads this file.
+*/
+
+:root {
+  --pds-space-0: 0px;
+  --pds-space-1: 4px;
+  --pds-space-2: 8px;
+  --pds-space-3: 12px;
+  --pds-space-4: 16px;
+  --pds-space-5: 20px;
+  --pds-space-6: 24px;
+  --pds-space-8: 32px;
+  --pds-space-10: 40px;
+  --pds-space-12: 48px;
+  --pds-space-16: 64px;
+  --pds-space-20: 80px;
+  --pds-space-24: 96px;
+  --pds-space-32: 128px;
+
+  /* Derived from the scale and the 375 px phone frame. */
+  --pds-gutter: var(--pds-space-4);          /* side margin of every screen */
+  --pds-screen-width: 375px;
+  --pds-content-width: 343px;                /* 375 minus two gutters */
+  --pds-target: var(--pds-space-12);         /* minimum touch target, 48 px */
+}

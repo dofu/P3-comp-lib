@@ -84,8 +84,8 @@ TEMPLATE.innerHTML = `
       justify-content: center;
     }
     .title {
-      font-size: 22px;
-      line-height: 28px;
+      font-size: var(--pds-type-title-large-size, 22px);
+      line-height: var(--pds-type-title-large-line, 28px);
       color: var(--pds-on-surface-1, #141414);
       overflow: hidden;
       text-overflow: ellipsis;
@@ -96,8 +96,9 @@ TEMPLATE.innerHTML = `
     }
     .subtitle {
       display: none;
-      font-size: 14px;
-      line-height: 20px;
+      font-size: var(--pds-type-body-medium-size, 14px);
+      letter-spacing: var(--pds-type-body-medium-tracking, 0.25px);
+      line-height: var(--pds-type-body-medium-line, 20px);
       color: var(--pds-on-surface-2, #595959);
     }
     :host([variant="short-with-sub"]) .subtitle {

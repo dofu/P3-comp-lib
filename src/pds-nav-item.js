@@ -34,6 +34,7 @@ TEMPLATE.innerHTML = `
     :host {
       display: inline-flex;
       flex: 1 1 0;
+      min-width: 0; /* six items share the bar; a label never spills into its neighbour */
       font-family: Roboto, system-ui, sans-serif;
     }
     button {
@@ -65,9 +66,13 @@ TEMPLATE.innerHTML = `
     ::slotted([slot="icon"]) { width: 24px; height: 24px; }
     ::slotted([slot="badge"]) { position: absolute; top: -4px; right: -4px; }
     .label {
-      font-size: 12px;
-      letter-spacing: 0.5px;
-      line-height: 16px;
+      font-size: var(--pds-type-label-medium-size, 12px);
+      letter-spacing: var(--pds-type-label-medium-tracking, 0.5px);
+      line-height: var(--pds-type-label-medium-line, 16px);
+      max-width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis; /* the P3 labels fit in Roboto; an ellipsis means the label is too long for the bar */
     }
     :host([selected]) .label {
       color: var(--pds-on-surface-1, #141414);

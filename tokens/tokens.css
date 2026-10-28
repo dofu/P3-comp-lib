@@ -1,5 +1,11 @@
+@import url("../foundations/typography.css");
+@import url("../foundations/spacing.css");
+@import url("../foundations/radius.css");
+
 /*
-  Design tokens as CSS custom properties.
+  Design tokens as CSS custom properties. Colour and theme live here;
+  typography, spacing and radius are loaded from ../foundations/ by the
+  imports above (inline them too if you inline this file).
 
   Load this file once, globally, before any component renders:
     <link rel="stylesheet" href="tokens/tokens.css">

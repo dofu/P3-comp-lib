@@ -51,9 +51,9 @@ TEMPLATE.innerHTML = `
 
     :host(:not([variant="rich"])) .surface {
       padding: 4px 8px;
-      font-size: 12px;
-      letter-spacing: 0.4px;
-      line-height: 16px;
+      font-size: var(--pds-type-body-small-size, 12px);
+      letter-spacing: var(--pds-type-body-small-tracking, 0.4px);
+      line-height: var(--pds-type-body-small-line, 16px);
       max-width: 250px;
     }
     :host([variant="rich"]) .surface {
@@ -63,17 +63,17 @@ TEMPLATE.innerHTML = `
     }
     .heading {
       display: none;
-      font-size: 14px;
-      font-weight: 500;
-      letter-spacing: 0.1px;
+      font-size: var(--pds-type-label-large-size, 14px);
+      letter-spacing: var(--pds-type-label-large-tracking, 0.1px);
+      font-weight: var(--pds-type-label-large-weight, 500);
       line-height: 20px;
       margin-bottom: 4px;
     }
     :host([variant="rich"][heading]) .heading { display: block; }
     .body {
-      font-size: 14px;
-      letter-spacing: 0.25px;
-      line-height: 20px;
+      font-size: var(--pds-type-body-medium-size, 14px);
+      letter-spacing: var(--pds-type-body-medium-tracking, 0.25px);
+      line-height: var(--pds-type-body-medium-line, 20px);
       display: none;
     }
     :host([variant="rich"]) .body { display: block; }
@@ -87,9 +87,9 @@ TEMPLATE.innerHTML = `
     ::slotted([slot="primary-action"]),
     ::slotted([slot="secondary-action"]) {
       color: var(--pds-on-container-tertiary, #f78f20);
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.5px;
+      font-size: var(--pds-type-label-medium-size, 12px);
+      letter-spacing: var(--pds-type-label-medium-tracking, 0.5px);
+      font-weight: var(--pds-type-label-medium-weight, 500);
     }
   </style>
   <slot part="trigger"></slot>

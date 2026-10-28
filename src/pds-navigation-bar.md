@@ -22,6 +22,13 @@ and the filled style when selected (`trade` has one style). The selected
 item gets a 2px orange line across its top, an orange icon and a bold
 label; the others are grey. There is no pill.
 
+## Placement
+
+Put the bar as a direct child of `pds-preview`, after the screen's
+content. The preview pins it to the bottom of the frame, directly above
+the home line, however short the screen is. Inside a wrapper element it
+is not pinned.
+
 ## Do
 
 - Keep exactly one destination selected at a time.

@@ -47,13 +47,14 @@ TEMPLATE.innerHTML = `
       opacity: var(--pds-dialog-scrim-opacity, 0.5);
     }
     .title {
-      font-size: 22px;
-      line-height: 28px;
+      font-size: var(--pds-type-title-large-size, 22px);
+      line-height: var(--pds-type-title-large-line, 28px);
       margin-bottom: 16px;
     }
     .body {
-      font-size: 14px;
-      line-height: 20px;
+      font-size: var(--pds-type-body-medium-size, 14px);
+      letter-spacing: var(--pds-type-body-medium-tracking, 0.25px);
+      line-height: var(--pds-type-body-medium-line, 20px);
       margin-bottom: 24px;
     }
     .actions {

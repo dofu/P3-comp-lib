@@ -70,22 +70,22 @@ TEMPLATE.innerHTML = `
     :host([size="small"]) button {
       min-height: 40px;
       padding: 12px 16px;
-      font-size: 12px;
-      letter-spacing: 0.5px;
+      font-size: var(--pds-type-label-medium-size, 12px);
+      letter-spacing: var(--pds-type-label-medium-tracking, 0.5px);
       text-transform: none;
     }
     :host([size="medium"]) button,
     :host(:not([size])) button {
       min-height: 44px;
       padding: 12px 24px;
-      font-size: 14px;
-      letter-spacing: 0.1px;
+      font-size: var(--pds-type-label-large-size, 14px);
+      letter-spacing: var(--pds-type-label-large-tracking, 0.1px);
       text-transform: uppercase;
     }
     :host([size="large"]) button {
       min-height: 92px;
       padding: 12px 48px;
-      font-size: 28px;
+      font-size: var(--pds-type-headline-medium-size, 28px);
       letter-spacing: 0.1px;
       text-transform: uppercase;
     }

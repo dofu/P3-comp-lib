@@ -62,9 +62,10 @@ TEMPLATE.innerHTML = `
       align-items: center;
       gap: 8px;
       cursor: pointer;
-      font-size: 14px;
-      letter-spacing: 0.25px;
-      line-height: 20px;
+      font-size: var(--pds-type-body-medium-size, 14px);
+      letter-spacing: var(--pds-type-body-medium-tracking, 0.25px);
+      line-height: var(--pds-type-body-medium-line, 20px);
+      white-space: nowrap; /* a chip grows with its label; the row scrolls */
       color: var(--pds-on-surface-1, #141414);
     }
     :host([selected]) .body { color: var(--pds-grey-600, #141414); }

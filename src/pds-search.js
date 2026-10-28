@@ -57,9 +57,9 @@ TEMPLATE.innerHTML = `
       all: unset;
       flex: 1;
       min-width: 0;
-      font-size: 16px;
-      letter-spacing: 0.5px;
-      line-height: 24px;
+      font-size: var(--pds-type-body-large-size, 16px);
+      letter-spacing: var(--pds-type-body-large-tracking, 0.5px);
+      line-height: var(--pds-type-body-large-line, 24px);
       color: var(--pds-on-surface-1, #141414);
       caret-color: var(--pds-on-container-caret, #0043ce);
     }
