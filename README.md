@@ -137,8 +137,10 @@ and body copy is 14 or 16 px. The scales and the rules are in
 
 ## Report a problem
 
-When a screen comes out wrong and one reply does not fix it, send these
-four things to the design system team in one message:
+When a screen comes out wrong and one reply does not fix it, ask in
+[Discussions](https://github.com/dofu/P3-comp-lib/discussions) (Q&A).
+Answers are marked when they settle the question, so the next person
+finds them. Put these four things in the post:
 
 1. The prompt, pasted as you typed it.
 2. The link to the result: the artifact or the page, not a picture of it.
