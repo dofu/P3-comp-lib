@@ -43,6 +43,11 @@ payment, should set `pending` while the request is in flight:
 This keeps the label, shows a spinner, and blocks a second tap while the
 request is in flight.
 
+## Buy and Sell
+
+`tone="positive"` makes the button green (Buy, price up), `tone="negative"`
+red (Sell, price down), in both variants. Everything else stays orange.
+
 ## Do
 
 - Keep the label short: 1 to 3 words, action-first ("Place order", not
@@ -54,11 +59,6 @@ request is in flight.
 - A lesser action such as "Reset password" or "Forgot password?" is a text
   link, not a third button. (No text variant ships yet; use a plain link
   styled with `--pds-on-container-tertiary` until it does.)
-
-## Buy and Sell
-
-`tone="positive"` makes the button green (Buy, price up), `tone="negative"`
-red (Sell, price down), in both variants. Everything else stays orange.
 
 ## Don't
 

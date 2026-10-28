@@ -5,14 +5,14 @@
  * @element pds-icon
  *
  * @attr {string} name - File name in `icons/` without `.svg`, for example
- *   `search`, `home-rounded`, `home-filled`, `trade`. The full list is
- *   `icons/icons.json`. A missing `-rounded`/`-filled` variant falls back to
+ *   `search`, `home_rounded`, `home_filled`, `trade`. The full list is
+ *   `icons/icons.json`. A missing `_rounded`/`_filled` variant falls back to
  *   the base name (that fallback costs one 404 request; prefer `iconName()`
- *   or `pds-nav-item`'s `icon` attribute, which know which icons are styled).
+ *   or `pds-navigation-item`'s `icon` attribute, which know which icons are styled).
  * @attr {number} [size=24] - Width and height in CSS px.
  * @attr {string} [label] - Accessible name. Without it the icon is decorative.
  *
- * @fires pds-icon-error - detail: `{ name }` when no file could be loaded.
+ * @fires error - detail: `{ name }` when no file could be loaded.
  *
  * @cssprop --pds-icon-size - Width and height; the `size` attribute sets it.
  *
@@ -24,12 +24,12 @@
  */
 const ICONS_URL = new URL("../icons/", import.meta.url);
 
-/** Icons that exist as `<name>-rounded` and `<name>-filled` (see icons/icons.json). */
+/** Icons that exist as `<name>_rounded` and `<name>_filled` (see icons/icons.json). */
 export const STYLED_ICONS = new Set(["home", "watchlist", "globe", "community", "me", "like", "edit", "edit_individual", "edit_group", "fractional_share"]);
 
 /** `<name>-<style>` when the icon has that style, else `<name>`. */
 export function iconName(name, style) {
-  return STYLED_ICONS.has(name) ? `${name}-${style}` : name;
+  return STYLED_ICONS.has(name) ? `${name}_${style}` : name;
 }
 const cache = new Map();
 
@@ -99,7 +99,7 @@ export class PdsIcon extends HTMLElement {
     const token = ++this._token;
     if (!name) { this._box.innerHTML = ""; return; }
     const candidates = [name];
-    const base = name.replace(/-(rounded|filled)$/, "");
+    const base = name.replace(/_(rounded|filled)$/, "");
     if (base !== name) candidates.push(base);
     for (const candidate of candidates) {
       try {
@@ -111,7 +111,7 @@ export class PdsIcon extends HTMLElement {
     }
     if (token !== this._token) return;
     this._box.innerHTML = "";
-    this.dispatchEvent(new CustomEvent("pds-icon-error", { bubbles: true, composed: true, detail: { name } }));
+    this.dispatchEvent(new CustomEvent("error", { bubbles: true, composed: true, detail: { name } }));
   }
 
   get name() { return this.getAttribute("name") || ""; }

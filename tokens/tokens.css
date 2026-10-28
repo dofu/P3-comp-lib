@@ -29,7 +29,7 @@
   --pds-red-100: #e96e6e;
   --pds-blue-300: #5481de;
   --pds-white: #ffffff;
-  --pds-white-20: rgba(255, 255, 255, 0.2);
+  --pds-transparent-white-20: rgba(255, 255, 255, 0.2);
   --pds-container-primary-1: #f78f20;
 
   /* The full V2 colour palette from the design system's Colors 2.0 board (46 primitives). */

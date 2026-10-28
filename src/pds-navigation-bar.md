@@ -1,4 +1,4 @@
-# pds-navigation-bar / pds-nav-item
+# pds-navigation-bar / pds-navigation-item
 
 ## When to use
 
@@ -8,12 +8,12 @@ the root. The P3 bar has six, in this order, with these icons from
 
 ```html
 <pds-navigation-bar>
-  <pds-nav-item icon="home" selected>Home</pds-nav-item>
-  <pds-nav-item icon="watchlist">Watchlist</pds-nav-item>
-  <pds-nav-item icon="globe">Markets</pds-nav-item>
-  <pds-nav-item icon="trade">Trade</pds-nav-item>
-  <pds-nav-item icon="community">Community</pds-nav-item>
-  <pds-nav-item icon="me">Me</pds-nav-item>
+  <pds-navigation-item icon="home" selected>Home</pds-navigation-item>
+  <pds-navigation-item icon="watchlist">Watchlist</pds-navigation-item>
+  <pds-navigation-item icon="globe">Markets</pds-navigation-item>
+  <pds-navigation-item icon="trade">Trade</pds-navigation-item>
+  <pds-navigation-item icon="community">Community</pds-navigation-item>
+  <pds-navigation-item icon="me">Me</pds-navigation-item>
 </pds-navigation-bar>
 ```
 

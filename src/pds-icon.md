@@ -15,7 +15,7 @@ it, so it takes the surrounding text colour.
 
 Icons with two styles (`home`, `watchlist`, `globe`, `community`, `me`,
 `like`, `edit`, `edit_individual`, `edit_group`, `fractional_share`) are
-named `<name>-rounded` and `<name>-filled`; `sort` has `-default`,
+named `<name>_rounded` and `<name>_filled`; `sort` has `-default`,
 `-ascending` and `-descending`.
 
 ## Do
@@ -36,5 +36,5 @@ named `<name>-rounded` and `<name>-filled`; `sort` has `-default`,
 - The page must import the library from a URL (the CDN or a served copy),
   so that `icons/icons.js` can be loaded next to it. A page that pastes the
   library's code inline has no `icons/` next to it and the icons render
-  empty (a `pds-icon-error` event fires).
+  empty (a `error` event fires).
 - No size tokens yet; `size` is a plain number of px.

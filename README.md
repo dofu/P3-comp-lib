@@ -148,6 +148,41 @@ four things to the design system team in one message:
 
 Say which Claude organisation you are in; links do not cross them.
 
+## Naming
+
+One convention, so a name can be guessed:
+
+- Tags: `pds-<thing>`. A child of a container is the container's name
+  plus `-item` or the singular: `pds-menu-item`, `pds-list-row`,
+  `pds-navigation-item`, `pds-tab`, `pds-segment`.
+- Attributes: lowercase, hyphenated (`label-position`, `action-label`).
+  Booleans are present or absent. Enumerated values are lowercase words
+  (`variant="secondary"`, `tone="positive"`, `corners="square"`).
+- Events: plain lowercase names, no prefix: `change`, `select`, `dismiss`,
+  `close`, `search`, `error`. `detail` is an object: `{ value }`,
+  `{ reason }`. One exception: the preview fires `preview-change`,
+  because the screen's own `change` events bubble through it.
+- Overlays open with `show()` and close with `close()`. The dialog also
+  answers to `showModal()`, the native name, which does the same.
+- Tokens: `--pds-` plus the Figma variable path in kebab case
+  (`--pds-container-primary-1`, `--pds-transparency-outline-20`);
+  primitives `--pds-<colour>-<step>`; foundations `--pds-type-<role>-<size>`,
+  `--pds-space-<n>`, `--pds-radius-<name>`; component knobs
+  `--pds-<component>-<property>`.
+- Icons: snake_case, as Material names them (`arrow_left`,
+  `visibility_off`); the styled pairs are `<name>_rounded` and
+  `<name>_filled`.
+- CSS parts: one lowercase word for the element (`button`, `input`,
+  `dialog`, `scrim`, `segment`).
+- Files: the tag name (`src/pds-text-field.js` and `.md`); folders in
+  kebab case; `examples/<screen-slug>/` with `reference.png` and
+  `index.html`.
+- Copy in three languages: `data-zh`, `data-ja`, `data-<attr>-zh`,
+  `data-<attr>-ja`.
+- Every guide reads in the same order: When to use, the component's own
+  sections, Do, Don't, Rules from the design system documentation, Known
+  limitations.
+
 ## Why web components, and why plain JS
 
 - **No framework required.** `<pds-button>` and `<pds-badge>` work in a
@@ -220,18 +255,18 @@ scale with `width`/`height` on an `<img>` and keep the aspect ratio.
 <pds-icon name="notification" label="Notifications"></pds-icon>
 ```
 
-Ten icons have a rounded and a filled style (`home-rounded`,
-`home-filled`, ...). The bottom bar uses them through `pds-nav-item`'s
+Ten icons have a rounded and a filled style (`home_rounded`,
+`home_filled`, ...). The bottom bar uses them through `pds-navigation-item`'s
 `icon` attribute, which swaps styles with selection:
 
 ```html
 <pds-navigation-bar>
-  <pds-nav-item icon="home" selected>Home</pds-nav-item>
-  <pds-nav-item icon="watchlist">Watchlist</pds-nav-item>
-  <pds-nav-item icon="globe">Markets</pds-nav-item>
-  <pds-nav-item icon="trade">Trade</pds-nav-item>
-  <pds-nav-item icon="community">Community</pds-nav-item>
-  <pds-nav-item icon="me">Me</pds-nav-item>
+  <pds-navigation-item icon="home" selected>Home</pds-navigation-item>
+  <pds-navigation-item icon="watchlist">Watchlist</pds-navigation-item>
+  <pds-navigation-item icon="globe">Markets</pds-navigation-item>
+  <pds-navigation-item icon="trade">Trade</pds-navigation-item>
+  <pds-navigation-item icon="community">Community</pds-navigation-item>
+  <pds-navigation-item icon="me">Me</pds-navigation-item>
 </pds-navigation-bar>
 ```
 
@@ -259,7 +294,7 @@ P3-comp-lib/
 (`pds-card`, an early exploration, see below), Checkbox (`pds-checkbox`),
 Chip (`pds-chip`), Dialog (`pds-dialog`), Divider (`pds-divider`), List
 (`pds-list` + `pds-list-row`), Menu (`pds-menu` + `pds-menu-item`),
-Icon (`pds-icon`), Icon button (`pds-icon-button`), Status bar (`pds-status-bar`), Home indicator (`pds-home-indicator`), Navigation bar (`pds-navigation-bar` + `pds-nav-item`), Progress indicator
+Icon (`pds-icon`), Icon button (`pds-icon-button`), Status bar (`pds-status-bar`), Home indicator (`pds-home-indicator`), Navigation bar (`pds-navigation-bar` + `pds-navigation-item`), Progress indicator
 (`pds-progress`, circular and linear), Radio button (`pds-radio`), Search
 (`pds-search`), Sheets (`pds-bottom-sheet` + `pds-side-sheet`), Snackbar
 (`pds-snackbar`), Switch (`pds-switch`), Tabs (`pds-tabs` + `pds-tab`), Text

@@ -989,7 +989,7 @@
           ],
           "events": [
             {
-              "name": "pds-dialog-close",
+              "name": "close",
               "description": "Fired after the dialog closes. detail.returnValue mirrors the native dialog's returnValue."
             }
           ],
@@ -1596,7 +1596,7 @@
               "type": {
                 "text": "string"
               },
-              "description": "File name in icons/ without .svg (e.g. search, home-rounded, home-filled, trade); see icons/icons.json. A missing -rounded/-filled variant falls back to the base name."
+              "description": "File name in icons/ without .svg (e.g. search, home_rounded, home_filled, trade); see icons/icons.json. A missing -rounded/-filled variant falls back to the base name."
             },
             {
               "name": "size",
@@ -1622,7 +1622,7 @@
               "type": {
                 "text": "string"
               },
-              "description": "File name in icons/ without .svg (e.g. search, home-rounded, home-filled, trade); see icons/icons.json. A missing -rounded/-filled variant falls back to the base name."
+              "description": "File name in icons/ without .svg (e.g. search, home_rounded, home_filled, trade); see icons/icons.json. A missing -rounded/-filled variant falls back to the base name."
             },
             {
               "kind": "field",
@@ -1646,7 +1646,7 @@
           ],
           "events": [
             {
-              "name": "pds-icon-error",
+              "name": "error",
               "type": {
                 "text": "CustomEvent"
               },
@@ -1804,14 +1804,14 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/pds-nav-item.js",
+      "path": "src/pds-navigation-item.js",
       "declarations": [
         {
           "kind": "class",
-          "name": "PdsNavItem",
-          "tagName": "pds-nav-item",
+          "name": "PdsNavigationItem",
+          "tagName": "pds-navigation-item",
           "customElement": true,
-          "description": "`<pds-nav-item>`: a navigation destination, used inside `pds-navigation-bar`. Matches the P3 bottom bar: 2px orange top line, orange icon and bold label when selected, grey otherwise, no pill.",
+          "description": "`<pds-navigation-item>`: a navigation destination, used inside `pds-navigation-bar`. Matches the P3 bottom bar: 2px orange top line, orange icon and bold label when selected, grey otherwise, no pill.",
           "attributes": [
             {
               "name": "selected",
@@ -1819,14 +1819,14 @@
                 "text": "boolean"
               },
               "default": "false",
-              "description": "Exactly one `pds-nav-item` sharing the same parent is selected at a time; enforced by the parent."
+              "description": "Exactly one `pds-navigation-item` sharing the same parent is selected at a time; enforced by the parent."
             },
             {
               "name": "icon",
               "type": {
                 "text": "string"
               },
-              "description": "Icon name from icons/ (home, watchlist, globe, trade, community, me for the P3 bottom bar). Shows <name>-rounded when unselected and <name>-filled when selected, falling back to <name>. Use the icon slot for a custom icon instead."
+              "description": "Icon name from icons/ (home, watchlist, globe, trade, community, me for the P3 bottom bar). Shows <name>_rounded when unselected and <name>_filled when selected, falling back to <name>. Use the icon slot for a custom icon instead."
             }
           ],
           "members": [
@@ -1838,7 +1838,7 @@
               },
               "default": "false",
               "reflects": true,
-              "description": "Exactly one `pds-nav-item` sharing the same parent is selected at a time; enforced by the parent."
+              "description": "Exactly one `pds-navigation-item` sharing the same parent is selected at a time; enforced by the parent."
             },
             {
               "kind": "field",
@@ -1847,7 +1847,7 @@
               "type": {
                 "text": "string"
               },
-              "description": "Icon name from icons/ (home, watchlist, globe, trade, community, me for the P3 bottom bar). Shows <name>-rounded when unselected and <name>-filled when selected, falling back to <name>. Use the icon slot for a custom icon instead."
+              "description": "Icon name from icons/ (home, watchlist, globe, trade, community, me for the P3 bottom bar). Shows <name>_rounded when unselected and <name>_filled when selected, falling back to <name>. Use the icon slot for a custom icon instead."
             }
           ],
           "slots": [
@@ -1900,18 +1900,18 @@
       "exports": [
         {
           "kind": "js",
-          "name": "PdsNavItem",
+          "name": "PdsNavigationItem",
           "declaration": {
-            "name": "PdsNavItem",
-            "module": "src/pds-nav-item.js"
+            "name": "PdsNavigationItem",
+            "module": "src/pds-navigation-item.js"
           }
         },
         {
           "kind": "custom-element-definition",
-          "name": "pds-nav-item",
+          "name": "pds-navigation-item",
           "declaration": {
-            "name": "PdsNavItem",
-            "module": "src/pds-nav-item.js"
+            "name": "PdsNavigationItem",
+            "module": "src/pds-navigation-item.js"
           }
         }
       ]
@@ -1925,13 +1925,13 @@
           "name": "PdsNavigationBar",
           "tagName": "pds-navigation-bar",
           "customElement": true,
-          "description": "`<pds-navigation-bar>`: a bottom navigation bar managing single-selection among its `pds-nav-item` children.",
+          "description": "`<pds-navigation-bar>`: a bottom navigation bar managing single-selection among its `pds-navigation-item` children.",
           "attributes": [],
           "members": [],
           "slots": [
             {
               "name": "",
-              "description": "One or more `pds-nav-item` elements, in destination order."
+              "description": "One or more `pds-navigation-item` elements, in destination order."
             }
           ],
           "cssProperties": [
@@ -3942,7 +3942,7 @@
           ],
           "events": [
             {
-              "name": "pds-preview-change",
+              "name": "preview-change",
               "type": {
                 "text": "CustomEvent"
               },

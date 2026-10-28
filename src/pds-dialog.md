@@ -12,9 +12,15 @@ confirmation, or a blocking error. Never show more than one dialog at once.
   <pds-button slot="actions" variant="primary">Discard</pds-button>
 </pds-dialog>
 <script type="module">
-  confirm.showModal();
+  confirm.show();
 </script>
 ```
+
+## In a preview
+
+Inside `pds-preview` the dialog opens inside the phone frame with its own
+scrim, so it reads like the app. Outside a preview it is a real modal in
+the browser's top layer.
 
 ## Do
 
@@ -24,12 +30,6 @@ confirmation, or a blocking error. Never show more than one dialog at once.
 ## Don't
 
 - Never stack a second dialog on top of an open one.
-
-## In a preview
-
-Inside `pds-preview` the dialog opens inside the phone frame with its own
-scrim, so it reads like the app. Outside a preview it is a real modal in
-the browser's top layer.
 
 ## Rules from the design system documentation
 

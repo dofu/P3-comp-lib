@@ -1,14 +1,14 @@
 /**
- * `<pds-nav-item>`: a navigation destination, used inside `pds-navigation-bar`.
+ * `<pds-navigation-item>`: a navigation destination, used inside `pds-navigation-bar`.
  *
- * @element pds-nav-item
+ * @element pds-navigation-item
  *
- * @attr {boolean} [selected=false] - Exactly one `pds-nav-item` sharing
+ * @attr {boolean} [selected=false] - Exactly one `pds-navigation-item` sharing
  *   the same parent is selected at a time; enforced by the parent.
  * @attr {string} [icon] - Icon name from `icons/` (see `icons/icons.json`):
  *   `home`, `watchlist`, `globe`, `trade`, `community`, `me` for the P3
- *   bottom bar. The item shows `<name>-rounded` when unselected and
- *   `<name>-filled` when selected, falling back to `<name>` where no
+ *   bottom bar. The item shows `<name>_rounded` when unselected and
+ *   `<name>_filled` when selected, falling back to `<name>` where no
  *   variant exists. Use the `icon` slot instead for a custom icon.
  *
  * @slot - The item's label text.
@@ -92,7 +92,7 @@ TEMPLATE.innerHTML = `
   </button>
 `;
 
-export class PdsNavItem extends HTMLElement {
+export class PdsNavigationItem extends HTMLElement {
   static get observedAttributes() {
     return ["selected", "icon"];
   }
@@ -147,4 +147,4 @@ export class PdsNavItem extends HTMLElement {
   set icon(v) { if (v) this.setAttribute("icon", v); else this.removeAttribute("icon"); }
 }
 
-customElements.define("pds-nav-item", PdsNavItem);
+customElements.define("pds-navigation-item", PdsNavigationItem);

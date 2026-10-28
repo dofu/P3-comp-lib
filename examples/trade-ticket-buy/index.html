@@ -384,7 +384,7 @@
     $("review").addEventListener("click", () => {
       const p = num(price), q = Math.round(num(qty));
       if (q < 100) { setAttr(qty, "error", QTY_ERROR); return; }
-      if (p < RANGE[0] || p > RANGE[1]) { $("range-dialog").showModal(); return; }
+      if (p < RANGE[0] || p > RANGE[1]) { $("range-dialog").show(); return; }
       $("s-price").textContent = p.toFixed(3);
       $("s-qty").textContent = q.toLocaleString("en-SG");
       $("s-flag").hidden = side === "buy" ? p <= ASK : p >= BID;

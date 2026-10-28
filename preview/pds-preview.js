@@ -39,7 +39,7 @@
  *   `--pds-on-surface-1` for text, so the screen need not style its own
  *   page background.
  *
- * @fires pds-preview-change - detail: `{ theme, corners, language }` after any toggle.
+ * @fires preview-change - detail: `{ theme, corners, language }` after any toggle.
  *   (Named so it cannot be confused with the screen's own `change` events,
  *   which bubble up through this wrapper.)
  *
@@ -216,7 +216,7 @@ export class PdsPreview extends HTMLElement {
     if (button.dataset.themeChoice) this.theme = button.dataset.themeChoice;
     if (button.dataset.cornersChoice) this.corners = button.dataset.cornersChoice;
     if (button.dataset.languageChoice) this.language = button.dataset.languageChoice;
-    this.dispatchEvent(new CustomEvent("pds-preview-change", { bubbles: true, composed: true, detail: { theme: this.theme, corners: this.corners, language: this.language } }));
+    this.dispatchEvent(new CustomEvent("preview-change", { bubbles: true, composed: true, detail: { theme: this.theme, corners: this.corners, language: this.language } }));
   }
 
   _sync() {

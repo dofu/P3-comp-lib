@@ -24,7 +24,7 @@ export * from "./src/pds-tabs.js";
 export * from "./src/pds-tab.js";
 export * from "./src/pds-icon.js";
 export * from "./src/pds-icon-button.js";
-export * from "./src/pds-nav-item.js";
+export * from "./src/pds-navigation-item.js";
 export * from "./src/pds-navigation-bar.js";
 export * from "./src/pds-menu.js";
 export * from "./src/pds-menu-item.js";

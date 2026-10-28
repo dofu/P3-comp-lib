@@ -12,7 +12,7 @@
  * @slot actions - Up to two actions (composed from `pds-button`). Never
  *   more than two: one to confirm, one to dismiss.
  *
- * @fires pds-dialog-close - Fired after the dialog closes. detail.returnValue
+ * @fires close - Fired after the dialog closes. detail.returnValue
  *   mirrors the native dialog's returnValue.
  *
  * @cssprop --pds-container-secondary-1-50 - Dialog container fill.
@@ -113,7 +113,7 @@ export class PdsDialog extends HTMLElement {
   }
 
   _onClose() {
-    this.dispatchEvent(new CustomEvent("pds-dialog-close", {
+    this.dispatchEvent(new CustomEvent("close", {
       bubbles: true, composed: true, detail: { returnValue: this._dialog.returnValue },
     }));
   }
@@ -128,6 +128,8 @@ export class PdsDialog extends HTMLElement {
   /** Inside a pds-preview the dialog stays in the phone frame (no top layer); elsewhere it is a real modal. */
   _contained() { return !!this.closest("pds-preview"); }
   _dismissFromScrim() { this._dialog.close(); }
+  /** Opens the dialog. `showModal()` is the same call, kept for the native name. */
+  show() { this.showModal(); }
   showModal() {
     if (this._contained()) { this._scrim.hidden = false; this._dialog.show(); }
     else this._dialog.showModal();
