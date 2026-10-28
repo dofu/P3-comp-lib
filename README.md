@@ -270,7 +270,7 @@ This folder is self-contained; push it as the root of its own repository,
 or as a subfolder of an existing one. No `node_modules`, no build output:
 everything here is checked-in source.
 
-## You read this far
+## You've read this far 🥹
 
 Why does every preview come with a Dark toggle? Because light attracts
 bugs. 🪲
