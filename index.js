@@ -6,6 +6,8 @@ export * from "./src/pds-divider.js";
 export * from "./src/pds-switch.js";
 export * from "./src/pds-radio.js";
 export * from "./src/pds-chip.js";
+export * from "./src/pds-segmented-button.js";
+export * from "./src/pds-segment.js";
 export * from "./src/pds-status-bar.js";
 export * from "./src/pds-home-indicator.js";
 export * from "./src/pds-top-app-bar.js";

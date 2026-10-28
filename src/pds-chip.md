@@ -32,8 +32,7 @@ buttons use.
   by decision.
 - Chips select independently and never deselect a sibling. One choice
   from a set (Buy / Sell, Cash / CPF / SRS, Day / GTD) is a segmented
-  button or a radio group, not a chip row. Until the segmented button
-  ships, a chip row standing in for one is reported in a Substituted line.
+  button or a radio group, not a chip row: that is `pds-segmented-button`.
 - A label is one or two words, a noun or an attribute ("SG", "Futures",
   "Dividends"). Never a verb: a verb chip is a button. No punctuation.
   Render the label as written; no casing transform.

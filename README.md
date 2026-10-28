@@ -10,7 +10,7 @@
 
 A framework-free UI component library, built as native
 [Web Components](https://developer.mozilla.org/en-US/docs/Web/API/Web_components).
-29 custom elements, each shipped as plain JavaScript with a matching usage
+31 custom elements, each shipped as plain JavaScript with a matching usage
 guide. See "What's built" below for the full list and tag names.
 
 ## What a screen built with this is, and is not
@@ -108,9 +108,8 @@ to every screen, whatever the component.
 2. **A money action never reads OK, Yes or Submit.** The label restates
    the action: "Place order", "Cancel order" / "Keep order". The amount
    shown is the amount that gets sent.
-3. **Choice grammar.** One of a few, all visible: a segmented button (a
-   chip row stands in until it ships, reported as Substituted) or a radio
-   group. Several at once: chips or checkboxes. Takes effect the moment it
+3. **Choice grammar.** One of a few, all visible: a segmented button
+   (`pds-segmented-button`) or a radio group. Several at once: chips or checkboxes. Takes effect the moment it
    is tapped: a switch. A chip is never a button, and a switch never sits
    behind Apply.
 4. **Text scaling.** The app offers Regular, Large and Extra Large text
@@ -181,7 +180,6 @@ screen makes the same choice:
 
 | Need | Use instead |
 |---|---|
-| Segmented control (two or three options, one selected) | Two or three `pds-chip`, the chosen one `selected` |
 | Tag or label next to a title ("Cash Plus", "Opted in") | A secondary text line under the title |
 | Quick-action tile (icon over a caption) | `pds-icon-button` with a caption under it |
 | Mascot or illustration | `pds-icon name="ask_ai"` for the AI entry point; otherwise leave it out |
@@ -192,7 +190,7 @@ screen makes the same choice:
 
 Trade screens: Buy, price up and the bid side are green, Sell, price down
 and the ask side are red. Use `tone="positive"` or `tone="negative"` on
-`pds-button` and `pds-chip`, and the `--pds-on-surface-text-positive` and
+`pds-button`, `pds-chip` and `pds-segment`, and the `--pds-on-surface-text-positive` and
 `--pds-on-surface-text-negative` tokens for prices. The full V2 palette is
 in `tokens/tokens.css` as `--pds-<colour>-<step>`; never type a hex value.
 A label to the left of a field (the ticket layout) is
@@ -257,7 +255,7 @@ P3-comp-lib/
 
 ## What's built
 
-29 custom elements: Badge (`pds-badge`), Button (`pds-button`), Card
+31 custom elements: Segmented button (`pds-segmented-button`, with `pds-segment`), Badge (`pds-badge`), Button (`pds-button`), Card
 (`pds-card`, an early exploration, see below), Checkbox (`pds-checkbox`),
 Chip (`pds-chip`), Dialog (`pds-dialog`), Divider (`pds-divider`), List
 (`pds-list` + `pds-list-row`), Menu (`pds-menu` + `pds-menu-item`),
