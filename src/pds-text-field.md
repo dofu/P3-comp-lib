@@ -12,6 +12,12 @@ value is never cut short.
 <pds-text-field label="Amount" error="Enter a value greater than 0"></pds-text-field>
 ```
 
+## Label beside the field
+
+The trade ticket puts labels to the left: `label-position="start"` lays the
+label and the field on one row (two fifths, three fifths), supporting text
+under the field.
+
 ## Do
 
 - Set `error` to replace supporting text with a validation message; the
@@ -21,12 +27,6 @@ value is never cut short.
 ## Don't
 
 - Never truncate a typed value with an ellipsis; let it shrink or scroll instead.
-
-## Label beside the field
-
-The trade ticket puts labels to the left: `label-position="start"` lays the
-label and the field on one row (two fifths, three fifths), supporting text
-under the field.
 
 ## Rules from the design system documentation
 

@@ -105,7 +105,7 @@ apply to that frame only.
 
 - Width and height are plain attributes (`width="390"`); there is no
   device picker yet.
-- Listen for `pds-preview-change` (detail `{ theme, corners, language }`),
+- Listen for `preview-change` (detail `{ theme, corners, language }`),
   not `change`: the screen's own `change` events bubble through the wrapper.
 - Copy added to the screen after the first language switch is not
   translated until the toggle is pressed again.

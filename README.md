@@ -10,7 +10,7 @@
 
 A framework-free UI component library, built as native
 [Web Components](https://developer.mozilla.org/en-US/docs/Web/API/Web_components).
-29 custom elements, each shipped as plain JavaScript with a matching usage
+31 custom elements, each shipped as plain JavaScript with a matching usage
 guide. See "What's built" below for the full list and tag names.
 
 ## What a screen built with this is, and is not
@@ -108,9 +108,8 @@ to every screen, whatever the component.
 2. **A money action never reads OK, Yes or Submit.** The label restates
    the action: "Place order", "Cancel order" / "Keep order". The amount
    shown is the amount that gets sent.
-3. **Choice grammar.** One of a few, all visible: a segmented button (a
-   chip row stands in until it ships, reported as Substituted) or a radio
-   group. Several at once: chips or checkboxes. Takes effect the moment it
+3. **Choice grammar.** One of a few, all visible: a segmented button
+   (`pds-segmented-button`) or a radio group. Several at once: chips or checkboxes. Takes effect the moment it
    is tapped: a switch. A chip is never a button, and a switch never sits
    behind Apply.
 4. **Text scaling.** The app offers Regular, Large and Extra Large text
@@ -157,6 +156,41 @@ finds them. Put these four things in the post:
 
 Say which Claude organisation you are in; links do not cross them.
 
+## Naming
+
+One convention, so a name can be guessed:
+
+- Tags: `pds-<thing>`. A child of a container is the container's name
+  plus `-item` or the singular: `pds-menu-item`, `pds-list-row`,
+  `pds-navigation-item`, `pds-tab`, `pds-segment`.
+- Attributes: lowercase, hyphenated (`label-position`, `action-label`).
+  Booleans are present or absent. Enumerated values are lowercase words
+  (`variant="secondary"`, `tone="positive"`, `corners="square"`).
+- Events: plain lowercase names, no prefix: `change`, `select`, `dismiss`,
+  `close`, `search`, `error`. `detail` is an object: `{ value }`,
+  `{ reason }`. One exception: the preview fires `preview-change`,
+  because the screen's own `change` events bubble through it.
+- Overlays open with `show()` and close with `close()`. The dialog also
+  answers to `showModal()`, the native name, which does the same.
+- Tokens: `--pds-` plus the Figma variable path in kebab case
+  (`--pds-container-primary-1`, `--pds-transparency-outline-20`);
+  primitives `--pds-<colour>-<step>`; foundations `--pds-type-<role>-<size>`,
+  `--pds-space-<n>`, `--pds-radius-<name>`; component knobs
+  `--pds-<component>-<property>`.
+- Icons: snake_case, as Material names them (`arrow_left`,
+  `visibility_off`); the styled pairs are `<name>_rounded` and
+  `<name>_filled`.
+- CSS parts: one lowercase word for the element (`button`, `input`,
+  `dialog`, `scrim`, `segment`).
+- Files: the tag name (`src/pds-text-field.js` and `.md`); folders in
+  kebab case; `examples/<screen-slug>/` with `reference.png` and
+  `index.html`.
+- Copy in three languages: `data-zh`, `data-ja`, `data-<attr>-zh`,
+  `data-<attr>-ja`.
+- Every guide reads in the same order: When to use, the component's own
+  sections, Do, Don't, Rules from the design system documentation, Known
+  limitations.
+
 ## Why web components, and why plain JS
 
 - **No framework required.** `<pds-button>` and `<pds-badge>` work in a
@@ -189,7 +223,6 @@ screen makes the same choice:
 
 | Need | Use instead |
 |---|---|
-| Segmented control (two or three options, one selected) | Two or three `pds-chip`, the chosen one `selected` |
 | Tag or label next to a title ("Cash Plus", "Opted in") | A secondary text line under the title |
 | Quick-action tile (icon over a caption) | `pds-icon-button` with a caption under it |
 | Mascot or illustration | `pds-icon name="ask_ai"` for the AI entry point; otherwise leave it out |
@@ -200,7 +233,7 @@ screen makes the same choice:
 
 Trade screens: Buy, price up and the bid side are green, Sell, price down
 and the ask side are red. Use `tone="positive"` or `tone="negative"` on
-`pds-button` and `pds-chip`, and the `--pds-on-surface-text-positive` and
+`pds-button`, `pds-chip` and `pds-segment`, and the `--pds-on-surface-text-positive` and
 `--pds-on-surface-text-negative` tokens for prices. The full V2 palette is
 in `tokens/tokens.css` as `--pds-<colour>-<step>`; never type a hex value.
 A label to the left of a field (the ticket layout) is
@@ -230,18 +263,18 @@ scale with `width`/`height` on an `<img>` and keep the aspect ratio.
 <pds-icon name="notification" label="Notifications"></pds-icon>
 ```
 
-Ten icons have a rounded and a filled style (`home-rounded`,
-`home-filled`, ...). The bottom bar uses them through `pds-nav-item`'s
+Ten icons have a rounded and a filled style (`home_rounded`,
+`home_filled`, ...). The bottom bar uses them through `pds-navigation-item`'s
 `icon` attribute, which swaps styles with selection:
 
 ```html
 <pds-navigation-bar>
-  <pds-nav-item icon="home" selected>Home</pds-nav-item>
-  <pds-nav-item icon="watchlist">Watchlist</pds-nav-item>
-  <pds-nav-item icon="globe">Markets</pds-nav-item>
-  <pds-nav-item icon="trade">Trade</pds-nav-item>
-  <pds-nav-item icon="community">Community</pds-nav-item>
-  <pds-nav-item icon="me">Me</pds-nav-item>
+  <pds-navigation-item icon="home" selected>Home</pds-navigation-item>
+  <pds-navigation-item icon="watchlist">Watchlist</pds-navigation-item>
+  <pds-navigation-item icon="globe">Markets</pds-navigation-item>
+  <pds-navigation-item icon="trade">Trade</pds-navigation-item>
+  <pds-navigation-item icon="community">Community</pds-navigation-item>
+  <pds-navigation-item icon="me">Me</pds-navigation-item>
 </pds-navigation-bar>
 ```
 
@@ -265,11 +298,11 @@ p3-comp-lib/
 
 ## What's built
 
-29 custom elements: Badge (`pds-badge`), Button (`pds-button`), Card
+31 custom elements: Segmented button (`pds-segmented-button`, with `pds-segment`), Badge (`pds-badge`), Button (`pds-button`), Card
 (`pds-card`, an early exploration, see below), Checkbox (`pds-checkbox`),
 Chip (`pds-chip`), Dialog (`pds-dialog`), Divider (`pds-divider`), List
 (`pds-list` + `pds-list-row`), Menu (`pds-menu` + `pds-menu-item`),
-Icon (`pds-icon`), Icon button (`pds-icon-button`), Status bar (`pds-status-bar`), Home indicator (`pds-home-indicator`), Navigation bar (`pds-navigation-bar` + `pds-nav-item`), Progress indicator
+Icon (`pds-icon`), Icon button (`pds-icon-button`), Status bar (`pds-status-bar`), Home indicator (`pds-home-indicator`), Navigation bar (`pds-navigation-bar` + `pds-navigation-item`), Progress indicator
 (`pds-progress`, circular and linear), Radio button (`pds-radio`), Search
 (`pds-search`), Sheets (`pds-bottom-sheet` + `pds-side-sheet`), Snackbar
 (`pds-snackbar`), Switch (`pds-switch`), Tabs (`pds-tabs` + `pds-tab`), Text

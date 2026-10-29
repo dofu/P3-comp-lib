@@ -1,9 +1,9 @@
 /**
  * `<pds-navigation-bar>`: a bottom navigation bar managing single-selection
- * among its `pds-nav-item` children.
+ * among its `pds-navigation-item` children.
  *
  * @element pds-navigation-bar
- * @slot - One or more `pds-nav-item` elements, in destination order.
+ * @slot - One or more `pds-navigation-item` elements, in destination order.
  * @cssprop --pds-surface-1 - Bar background.
  * @cssprop --pds-transparency-outline-20 - The bar's top divider.
  */
@@ -42,20 +42,20 @@ export class PdsNavigationBar extends HTMLElement {
   }
 
   /** See the longer note on pds-tabs: connectedCallback can run before a
-   * slotted pds-nav-item has upgraded. Waiting for pds-nav-item to be
+   * slotted pds-navigation-item has upgraded. Waiting for pds-navigation-item to be
    * defined avoids silently breaking the initial selection sync. */
   _syncWhenReady() {
-    if (customElements.get("pds-nav-item")) {
+    if (customElements.get("pds-navigation-item")) {
       this._syncSelection();
       return;
     }
-    customElements.whenDefined("pds-nav-item").then(() => {
+    customElements.whenDefined("pds-navigation-item").then(() => {
       if (this.isConnected) this._syncSelection();
     });
   }
 
   _items() {
-    return Array.from(this.children).filter((el) => el.tagName === "PDS-NAV-ITEM");
+    return Array.from(this.children).filter((el) => el.tagName === "PDS-NAVIGATION-ITEM");
   }
 
   _syncSelection() {
@@ -68,7 +68,7 @@ export class PdsNavigationBar extends HTMLElement {
   }
 
   _onClick(event) {
-    const item = event.target.closest("pds-nav-item");
+    const item = event.target.closest("pds-navigation-item");
     if (!item || !this.contains(item)) return;
     for (const el of this._items()) {
       el.selected = el === item;
