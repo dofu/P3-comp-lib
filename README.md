@@ -5,8 +5,8 @@
 ![No build step](https://img.shields.io/badge/build%20step-none-008B57)
 ![Themes](https://img.shields.io/badge/themes-light%20%7C%20dark-141414)
 ![Copy](https://img.shields.io/badge/copy-EN%20%7C%20%E4%B8%AD%E6%96%87%20%7C%20%E6%97%A5%E6%9C%AC%E8%AA%9E-595959)
-![Last commit](https://img.shields.io/github/last-commit/dofu/P3-comp-lib)
-![Repo size](https://img.shields.io/github/repo-size/dofu/P3-comp-lib)
+![Last commit](https://img.shields.io/github/last-commit/dofu/p3-comp-lib)
+![Repo size](https://img.shields.io/github/repo-size/dofu/p3-comp-lib)
 
 A framework-free UI component library, built as native
 [Web Components](https://developer.mozilla.org/en-US/docs/Web/API/Web_components).
@@ -119,6 +119,12 @@ to every screen, whatever the component.
    with a specific headline ("Cancel this order?"). A finished background
    action is a snackbar that says what happened. A sheet with a Cancel
    button cannot be dismissed by tapping outside; a disclaimer never can.
+6. **Button width follows content, never a pixel value.** A button hugs
+   its label by default. A button whose label toggles (Follow / Following)
+   reserves the width of its widest label (`reserve`), so it never resizes
+   on tap and a column of them lines up. Only the single screen-level
+   action, and actions stacked to share one width, fill the container
+   (`block`).
 
 Each component's guide in `src/<component>.md` ends with the rules that
 apply to it alone.
@@ -136,8 +142,10 @@ and body copy is 14 or 16 px. The scales and the rules are in
 
 ## Report a problem
 
-When a screen comes out wrong and one reply does not fix it, send these
-four things to the design system team in one message:
+When a screen comes out wrong and one reply does not fix it, ask in
+[Discussions](https://github.com/dofu/p3-comp-lib/discussions) (Q&A).
+Answers are marked when they settle the question, so the next person
+finds them. Put these four things in the post:
 
 1. The prompt, pasted as you typed it.
 2. The link to the result: the artifact or the page, not a picture of it.
@@ -275,7 +283,7 @@ See `src/pds-icon.md` and `src/pds-navigation-bar.md`.
 ## Folder layout
 
 ```
-P3-comp-lib/
+p3-comp-lib/
   tokens/tokens.css     - colour tokens as CSS custom properties (light + dark)
   brand/                - POEMS logo and mark as SVG (website pages only)
   icons/                - V2 icon set, 135 SVG files + icons.json (use through pds-icon)

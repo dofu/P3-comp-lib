@@ -257,6 +257,21 @@
                 "text": "'positive'|'negative'"
               },
               "description": "positive = green (Buy, price up), negative = red (Sell, price down)."
+            },
+            {
+              "name": "reserve",
+              "type": {
+                "text": "string"
+              },
+              "description": "Comma-separated alternate labels this button can show, for example `reserve=\"Following\"` on a Follow button. The button takes the width of its widest label, so toggling the label never changes the width and a column of such buttons lines up."
+            },
+            {
+              "name": "block",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Fill the container's width: for the single screen-level action and for stacked actions that share one width. Otherwise width is the label plus padding; never set a pixel width on a button."
             }
           ],
           "members": [
@@ -308,6 +323,25 @@
                 "text": "'positive'|'negative'"
               },
               "description": "positive = green (Buy, price up), negative = red (Sell, price down)."
+            },
+            {
+              "kind": "field",
+              "name": "reserve",
+              "type": {
+                "text": "string"
+              },
+              "reflects": true,
+              "description": "Comma-separated alternate labels this button can show, for example `reserve=\"Following\"` on a Follow button. The button takes the width of its widest label, so toggling the label never changes the width and a column of such buttons lines up."
+            },
+            {
+              "kind": "field",
+              "name": "block",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "reflects": true,
+              "description": "Fill the container's width: for the single screen-level action and for stacked actions that share one width. Otherwise width is the label plus padding; never set a pixel width on a button."
             }
           ],
           "slots": [

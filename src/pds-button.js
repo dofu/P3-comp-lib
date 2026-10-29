@@ -16,6 +16,14 @@
  *   label, and disables the button so a second tap cannot fire while a
  *   request is in flight. Set it back to false yourself once the request
  *   finishes or fails.
+ * @attr {string} [reserve] - Comma-separated alternate labels this button can
+ *   show, for example `reserve="Following"` on a Follow button. The button
+ *   takes the width of its widest label, so toggling the label never changes
+ *   the width and a column of such buttons lines up. Give the labels in the
+ *   same language and casing as the slotted label.
+ * @attr {boolean} [block=false] - Fill the container's width: for the single
+ *   screen-level action and for stacked actions that share one width. Width
+ *   is otherwise the label plus padding; never set a pixel width on a button.
  *
  * @slot - The button's label text. Casing is applied by the component
  *   (Small keeps whatever case you type; Medium and Large uppercase it),
@@ -66,6 +74,26 @@ TEMPLATE.innerHTML = `
     button:disabled {
       cursor: not-allowed;
     }
+    :host([block]) {
+      display: block;
+    }
+    :host([block]) button {
+      width: 100%;
+    }
+    .label {
+      display: inline-grid;
+      justify-items: center;
+      align-items: center;
+    }
+    .label > slot {
+      display: block;
+      grid-area: 1 / 1;
+    }
+    .label > .ghost {
+      grid-area: 1 / 1;
+      visibility: hidden;
+      white-space: nowrap;
+    }
 
     :host([size="small"]) button {
       min-height: 40px;
@@ -98,7 +126,7 @@ TEMPLATE.innerHTML = `
     :host(:not([variant="secondary"])) button {
       background: var(--pds-container-primary-1, #f78f20);
       color: var(--pds-grey-600, #141414);
-      border: none;
+      border: 1px solid transparent; /* same geometry as secondary, so a filled Follow and an outlined Following line up */
     }
 
     :host([tone="positive"]:not([variant="secondary"])) button { background: var(--pds-container-positive, #008b57); color: var(--pds-on-container-positive, #ffffff); }
@@ -108,7 +136,7 @@ TEMPLATE.innerHTML = `
     :host([disabled]) button {
       background: var(--pds-container-disabled, rgba(20, 20, 20, 0.12));
       color: var(--pds-grey-300, #747474);
-      border: none;
+      border: 1px solid transparent;
     }
 
     ::slotted([slot="icon"]) {
@@ -144,13 +172,13 @@ TEMPLATE.innerHTML = `
   <button type="button" part="button">
     <span class="spinner" aria-hidden="true"></span>
     <slot name="icon"></slot>
-    <slot></slot>
+    <span class="label" part="label"><slot></slot></span>
   </button>
 `;
 
 export class PdsButton extends HTMLElement {
   static get observedAttributes() {
-    return ["size", "variant", "disabled", "pending"];
+    return ["size", "variant", "disabled", "pending", "reserve"];
   }
 
   constructor() {
@@ -158,6 +186,7 @@ export class PdsButton extends HTMLElement {
     this.attachShadow({ mode: "open" });
     this.shadowRoot.appendChild(TEMPLATE.content.cloneNode(true));
     this._button = this.shadowRoot.querySelector("button");
+    this._label = this.shadowRoot.querySelector(".label");
     this._onClick = this._onClick.bind(this);
   }
 
@@ -166,6 +195,7 @@ export class PdsButton extends HTMLElement {
     if (!this.hasAttribute("variant")) this.setAttribute("variant", "primary");
     this.addEventListener("click", this._onClick, true);
     this._syncDisabled();
+    this._syncReserve();
   }
 
   disconnectedCallback() {
@@ -174,6 +204,21 @@ export class PdsButton extends HTMLElement {
 
   attributeChangedCallback(name) {
     if (name === "disabled" || name === "pending") this._syncDisabled();
+    if (name === "reserve") this._syncReserve();
+  }
+
+  /** Ghost copies of the reserved labels sit under the real one, hidden, so the
+   *  button is as wide as the widest label it can show. */
+  _syncReserve() {
+    for (const ghost of this._label.querySelectorAll(".ghost")) ghost.remove();
+    const labels = (this.getAttribute("reserve") || "").split(",").map(s => s.trim()).filter(Boolean);
+    for (const text of labels) {
+      const ghost = document.createElement("span");
+      ghost.className = "ghost";
+      ghost.setAttribute("aria-hidden", "true");
+      ghost.textContent = text;
+      this._label.appendChild(ghost);
+    }
   }
 
   _syncDisabled() {
@@ -205,6 +250,13 @@ export class PdsButton extends HTMLElement {
 
   get pending() { return this.hasAttribute("pending"); }
   set pending(v) { this.toggleAttribute("pending", Boolean(v)); }
+
+  /** Comma-separated alternate labels; the button reserves the widest. */
+  get reserve() { return this.getAttribute("reserve") || ""; }
+  set reserve(v) { if (v) this.setAttribute("reserve", v); else this.removeAttribute("reserve"); }
+
+  get block() { return this.hasAttribute("block"); }
+  set block(v) { this.toggleAttribute("block", Boolean(v)); }
 }
 
 customElements.define("pds-button", PdsButton);
