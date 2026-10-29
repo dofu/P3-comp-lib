@@ -5,8 +5,8 @@
 ![No build step](https://img.shields.io/badge/build%20step-none-008B57)
 ![Themes](https://img.shields.io/badge/themes-light%20%7C%20dark-141414)
 ![Copy](https://img.shields.io/badge/copy-EN%20%7C%20%E4%B8%AD%E6%96%87%20%7C%20%E6%97%A5%E6%9C%AC%E8%AA%9E-595959)
-![Last commit](https://img.shields.io/github/last-commit/dofu/P3-comp-lib)
-![Repo size](https://img.shields.io/github/repo-size/dofu/P3-comp-lib)
+![Last commit](https://img.shields.io/github/last-commit/dofu/p3-comp-lib)
+![Repo size](https://img.shields.io/github/repo-size/dofu/p3-comp-lib)
 
 A framework-free UI component library, built as native
 [Web Components](https://developer.mozilla.org/en-US/docs/Web/API/Web_components).
@@ -144,7 +144,7 @@ and body copy is 14 or 16 px. The scales and the rules are in
 ## Report a problem
 
 When a screen comes out wrong and one reply does not fix it, ask in
-[Discussions](https://github.com/dofu/P3-comp-lib/discussions) (Q&A).
+[Discussions](https://github.com/dofu/p3-comp-lib/discussions) (Q&A).
 Answers are marked when they settle the question, so the next person
 finds them. Put these four things in the post:
 
@@ -250,7 +250,7 @@ See `src/pds-icon.md` and `src/pds-navigation-bar.md`.
 ## Folder layout
 
 ```
-P3-comp-lib/
+p3-comp-lib/
   tokens/tokens.css     - colour tokens as CSS custom properties (light + dark)
   brand/                - POEMS logo and mark as SVG (website pages only)
   icons/                - V2 icon set, 135 SVG files + icons.json (use through pds-icon)
